@@ -10,27 +10,33 @@ You can install the development version of pm4py with:
 remotes::install_github("fmannhardt/pm4py")
 ```
 
+Then, automatically install the pm4py package in a virtual or Conda environment:
+``` r
+install_pm4py()
+```
+
+See the `reticulate` documentation for more information on the available options or how to specifiy an existing Python environment: 
+https://rstudio.github.io/reticulate/
+
 ## Example
 
 ``` r
 library(pm4py)
+
+# Most of the data structures are converted in their bupaR equivalents
 library(bupaR)
 
-#
 # Discovery with Inductive Miner
-#
 pn <- discovery_inductive(patients)
 
-# result is auto converted to petrinetR object plus markings
+# This results in an auto-converted bupaR Petri net and markings
 str(pn)
 class(pn$petrinet)
 
 # Render with bupaR
 render_PN(pn$petrinet)
 
-#
 # Render with  PM4PY and DiagrammeR
-#
 library(DiagrammeR)
 viz <- import("pm4py.visualization.petrinet")
 
