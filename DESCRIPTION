@@ -1,0 +1,18 @@
+Package: pm4py
+Type: Package
+Title: R Interface to 'PM4PY'
+Version: 0.1.0
+Authors@R: person("Felix", "Mannhardt", email = "felix.mannhardt@sintef.no",
+  role = c("aut", "cre"))
+Description: Interface to 'PM4PY' <http://pm4py.org>, a process mining library in Python.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends: reticulate
+Imports: bupaR, dplyr, purrr, magrittr, stringr, petrinetR
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
+URL: https://github.com/fmannhardt/pm4py
+BugReports: https://github.com/fmannhardt/pm4py/issues
