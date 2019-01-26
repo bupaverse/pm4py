@@ -1,7 +1,7 @@
 Package: pm4py
 Type: Package
 Title: R Interface to the PM4PY Process Mining library
-Version: 0.1.0
+Version: 1.0.0.9000
 Authors@R: person("Felix", "Mannhardt", email = "felix.mannhardt@sintef.no",
   role = c("aut", "cre"))
 Description: Interface to 'PM4PY' <http://pm4py.org>, a process mining library 
@@ -17,7 +17,8 @@ Imports: bupaR,
   purrr, 
   magrittr, 
   stringr, 
-  petrinetR
+  petrinetR,
+  rlang
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Suggests: 

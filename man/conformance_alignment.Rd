@@ -33,6 +33,8 @@ Alignment between an Event Log and a Petri net
 }
 \examples{
 \dontrun{
+library(eventdataR)
+data(patients)
 net <- discovery_inductive(patients)
 
 a <- conformance_alignment(patients,

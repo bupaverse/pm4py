@@ -2,19 +2,28 @@
 % Please edit documentation in R/install.R
 \name{install_pm4py}
 \alias{install_pm4py}
-\title{Install pm4py library}
+\title{Install PM4PY library}
 \usage{
 install_pm4py(method = "auto", conda = "auto", ...)
 }
 \arguments{
-\item{method}{Installation method. By default, "auto" automatically finds a method that will work in the local environment. Change the default to force a specific installation method. Note that the "virtualenv" method is not available on Windows.}
+\item{method}{Installation method. By default, "auto" automatically finds a method that will work in the local environment.
+Change the default to force a specific installation method. Note that the "virtualenv" method is not available on Windows.}
 
 \item{conda}{Path to conda executable (or "auto" to find conda using the PATH and other conventional install locations).}
 
 \item{...}{Additional arguments passed to py_install().}
 }
 \description{
-Installs the pm4py into a virtualenv or conda env.
+Installs the \code{pm4py} package and its dependencies using \code{pip} since no
+Conda package is available. Further information on the parameters can
+be found in the \code{reticulate} package documentation:
+https://rstudio.github.io/reticulate/
+}
+\details{
+Additional requirements (a C++ compiler and GraphViz) of PM4PY might
+need to be installed to leverage all functionality;
+http://pm4py.pads.rwth-aachen.de/installation/
 }
 \examples{
 \dontrun{

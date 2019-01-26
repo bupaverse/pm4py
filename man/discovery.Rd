@@ -23,11 +23,14 @@ variant_alpha_classic()
 \arguments{
 \item{eventlog}{A bupaR event log.}
 
-\item{parameters}{A named list of PM4PY parameters, by default the \code{activity_key} from the bupaR event log is used. Use \link{param_activity_key} to specifiy a different key.}
+\item{parameters}{A named list of PM4PY parameters, by default the \code{activity_key} from the bupaR event log is used.
+Use \link{param_activity_key} to specifiy a different key.}
 
-\item{variant}{The variant of the discovery algorithm to be used. For Inductive Miner currently only \code{variant_inductive_only_dfg} is supported.}
+\item{variant}{The variant of the discovery algorithm to be used.
+For Inductive Miner currently only \code{variant_inductive_only_dfg} is supported.}
 
-\item{convert}{TRUE to automatically convert Python objects to their R equivalent. If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
+\item{convert}{TRUE to automatically convert Python objects to their R equivalent.
+If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
 }
 \value{
 A named list with elements \code{petrinet}, \code{initial_marking}, and \code{final_marking} or the original Python object.
@@ -37,6 +40,7 @@ PM4PY discovery algorithms that discover a Petri net and its initial and final m
 }
 \examples{
 \dontrun{
+library(eventdataR)
 data(patients)
 net <- discovery_inductive(patients)
 

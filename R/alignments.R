@@ -15,6 +15,8 @@
 #'
 #' @examples
 #' \dontrun{
+#' library(eventdataR)
+#' data(patients)
 #' net <- discovery_inductive(patients)
 #'
 #' a <- conformance_alignment(patients,
@@ -63,8 +65,8 @@ conformance_alignment <- function(eventlog,
       trace_df <- data.frame(align_lst, stringsAsFactors = FALSE)
       names(trace_df) <- c("logmove", "modelmove")
 
-      cbind(case_id, trace_df, trace[-1],  # add meta information by duplicating it since we don't have a trace object
-            stringsAsFactors = FALSE)
+      # add meta information by duplicating it since we don't have a trace object
+      as_tibble(cbind(case_id, trace_df, trace[-1], stringsAsFactors = FALSE))
     })
   } else {
     alignment

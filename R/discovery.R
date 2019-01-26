@@ -3,14 +3,18 @@
 #' PM4PY discovery algorithms that discover a Petri net and its initial and final marking. Currently the Inductive Miner and the Alpha Miner are implemented.
 #'
 #' @param eventlog A bupaR event log.
-#' @param parameters A named list of PM4PY parameters, by default the `activity_key` from the bupaR event log is used. Use \link{param_activity_key} to specifiy a different key.
-#' @param variant The variant of the discovery algorithm to be used. For Inductive Miner currently only `variant_inductive_only_dfg` is supported.
-#' @param convert TRUE to automatically convert Python objects to their R equivalent. If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
+#' @param parameters A named list of PM4PY parameters, by default the `activity_key` from the bupaR event log is used.
+#'  Use \link{param_activity_key} to specifiy a different key.
+#' @param variant The variant of the discovery algorithm to be used.
+#'  For Inductive Miner currently only `variant_inductive_only_dfg` is supported.
+#' @param convert TRUE to automatically convert Python objects to their R equivalent.
+#'  If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
 #'
 #' @return A named list with elements `petrinet`, `initial_marking`, and `final_marking` or the original Python object.
 #'
 #' @examples
 #' \dontrun{
+#' library(eventdataR)
 #' data(patients)
 #' net <- discovery_inductive(patients)
 #'
@@ -63,7 +67,7 @@ discovery_alpha <- function(eventlog,
   pm4py_alpha <- import("pm4py.algo.discovery.alpha.factory", convert = convert)
   model <- pm4py_alpha$apply(as_py_value(eventlog),
                              parameters = parameters,
-                             version = variant)
+                             variant = variant)
   prepare_pn_with_markings(model, convert)
 }
 

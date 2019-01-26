@@ -3,48 +3,33 @@
 r_to_py.eventlog <- function(x, convert = FALSE) {
 
   pm4py_log <- import("pm4py.objects.log", convert = convert)
-  conversion_factory <- import("pm4py.objects.conversion.log.factory", convert = convert)
+  pm4py_conversion <- import("pm4py.objects.conversion.log.versions.to_trace_log", convert = convert)
 
-  p_df <- r_to_py(as.data.frame(x), convert = convert)
+  # workaround for: https://github.com/pm4py/pm4py-source/issues/35
+  # TODO: check if attribute is not yet used / warn or workaround
+  x_ext <- x %>% mutate("case:concept:name" = !!as.symbol(bupaR::case_id(x)))
+
+  p_df <- r_to_py(as.data.frame(x_ext), convert = convert)
   p_eventlog <- pm4py_log$log$EventLog(p_df$to_dict('records'))
 
   case_glue <- py_to_r(pm4py_log$util$general$PARAMETER_KEY_CASE_GLUE)
-  conversion_factory$apply(p_eventlog,
-                           parameters = py_dict(case_glue, bupaR::case_id(x)),
-                           version = conversion_factory$TO_TRACE_LOG)
+  pm4py_conversion$transform_event_log_to_trace_log(p_eventlog,
+                                                    include_case_attributes = FALSE,
+                                                    enable_deepcopy = FALSE)
 }
 
 #' @export
 #' @importFrom reticulate py_to_r
 py_to_r.pm4py.objects.log.log.EventLog <- function(x) {
-  pm4py$objects$log$exporter$csv$versions$pandas_csv_exp$get_dataframe_from_log(x)
+  pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x) %>%
+    select(-"case:concept:name")
 }
 
 #' @export
 #' @importFrom reticulate py_to_r
 py_to_r.pm4py.objects.log.log.TraceLog <- function(x) {
-  pm4py$objects$log$exporter$csv$versions$pandas_csv_exp$get_dataframe_from_log(x)
-}
-
-#' @importFrom reticulate py_str
-#' @export
-py_str.pm4py.objects.log.log.TraceLog <- function(object, ...) {
-  pm4py_str_sequence("TraceLog", object, ...)
-}
-
-#' @importFrom reticulate py_str
-#' @export
-py_str.pm4py.objects.log.log.Trace <- function(object, ...) {
-  pm4py_str_sequence("Trace", object, ...)
-}
-
-pm4py_str_sequence <- function(name, x, ...) {
-  len <- py_len(x)
-  cat(name, " (", len, " items)", "\n",
-      paste0(lapply(1:(min(10,len)), function(i) py_str(x[i])), collapse = ",\n"), sep = "")
-  if (len > 10) {
-    cat("\n... with ", len-10," more items")
-  }
+  pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x) %>%
+    select(-"case:concept:name")
 }
 
 #' @export
