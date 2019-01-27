@@ -1,3 +1,6 @@
+PM4PY_VERSION <- "1.0.19"
+PM4PY_PACKAGE <- paste0("pm4py==", PM4PY_VERSION)
+
 #' Install PM4PY library
 #'
 #' Installs the `pm4py` package and its dependencies using `pip` since no
@@ -22,5 +25,12 @@
 #' }
 #'
 install_pm4py <- function(method = "auto", conda = "auto", ...) {
-  reticulate::py_install("pm4py==1.0.19", method = method, conda = conda, pip = TRUE, ...)
+  tryCatch({
+    reticulate::py_install(PM4PY_PACKAGE, method = method, conda = conda, pip = TRUE, ...)
+  },
+    error = function(e) {
+      # workaround for virtualenv not supporting `pip` parameter
+      reticulate::py_install(PM4PY_PACKAGE, method = method, conda = conda, ...)
+    }
+  )
 }
