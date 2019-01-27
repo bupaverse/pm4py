@@ -15,9 +15,8 @@ cache:
 
 before_script:
   - sudo apt-get update
-  - sudo apt-get install python3
-  - pip install --upgrade --ignore-installed --user travis virtualenv
-  - pip install --upgrade --ignore-installed --user travis numpy
+  - pip3 install --upgrade --ignore-installed --user travis virtualenv
+  - pip3 install --upgrade --ignore-installed --user travis numpy
   - R CMD INSTALL .
-  - R -e 'use_python("/usr/bin/python3", required = TRUE)'
+  - R -e 'reticulate::use_python("/usr/bin/python3", required = TRUE)'
   - R -e 'pm4py::install_pm4py()'
