@@ -3,7 +3,8 @@
 language: R
 sudo: required
 before_install:
-  - pip install numpy pm4py
+  - pip install numpy
+  - pip install pm4py
 r: release
 cache: packages
 latex: false
