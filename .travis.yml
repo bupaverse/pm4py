@@ -1,10 +1,21 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
+
+dist: trusty
 sudo: false
-before_install:
-  - pip install --user numpy
-  - pip install --user pm4py
+
 r: release
-cache: packages
 latex: false
+
+cache:
+  packages: true
+  directories:
+    - $HOME/.cache/pip
+
+before_script:
+  - sudo apt-get update
+  - sudo apt-get install python3
+  - pip install --upgrade --ignore-installed --user travis virtualenv
+  - R CMD INSTALL .
+  - R -e 'pm4py::install_pm4py()'
