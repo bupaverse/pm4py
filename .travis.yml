@@ -1,10 +1,10 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: required
+sudo: false
 before_install:
-  - pip install numpy
-  - pip install pm4py
+  - pip install --user numpy
+  - pip install --user pm4py
 r: release
 cache: packages
 latex: false
