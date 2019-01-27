@@ -15,6 +15,7 @@ cache:
 
 before_script:
   - sudo apt-get update
+  - sudo apt-get install python3-pip
   - pip3 install --upgrade --ignore-installed --user travis virtualenv
   - pip3 install --upgrade --ignore-installed --user travis numpy
   - R CMD INSTALL .
