@@ -24,5 +24,36 @@
 #' pm4py$`__version__`
 #' }
 #'
+#' @import reticulate
 #' @export
 pm4py <- NULL
+
+.onLoad <- function(libname, pkgname) {
+  # use superassignment to update global reference to pm4py
+  pm4py <<- import("pm4py", delay_load = TRUE)
+}
+
+pm4py_tools <- function() {
+  python_path <- system.file("python", package = "pm4py")
+  pm4py_tools <- import_from_path("pm4pytools", path = python_path)
+}
+
+constant_xes_traceid_key <- function() {
+  pm4py$objects$log$util$xes$DEFAULT_TRACEID_KEY
+}
+
+constant_xes_name_key <- function() {
+  pm4py$objects$log$util$xes$DEFAULT_NAME_KEY
+}
+
+constant_xes_timestamp_key <- function() {
+  pm4py$objects$log$util$xes$DEFAULT_TIMESTAMP_KEY
+}
+
+constant_xes_resource_key <- function() {
+  pm4py$objects$log$util$xes$DEFAULT_RESOURCE_KEY
+}
+
+constant_xes_transition_key <- function() {
+  pm4py$objects$log$util$xes$DEFAULT_RESOURCE_KEY
+}

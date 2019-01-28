@@ -25,8 +25,7 @@
 #'                            net$final_marking)
 #' }
 #'
-#' @import dplyr
-#' @importFrom magrittr "%>%"
+#' @import reticulate
 conformance_alignment <- function(eventlog,
                                   petrinet,
                                   initial_marking,
@@ -52,9 +51,7 @@ conformance_alignment <- function(eventlog,
 
   if (convert) {
 
-    case_ids <- eventlog %>% as.data.frame() %>%
-      distinct(!!as.symbol(bupaR::case_id(eventlog))) %>%
-      pull()
+    case_ids <- pm4py_tools()$log$get_trace_ids(py_log)
 
     purrr::map2_dfr(alignment, case_ids, function(trace, case_id) {
 
@@ -66,7 +63,9 @@ conformance_alignment <- function(eventlog,
       names(trace_df) <- c("logmove", "modelmove")
 
       # add meta information by duplicating it since we don't have a trace object
-      as_tibble(cbind(case_id, trace_df, trace[-1], stringsAsFactors = FALSE))
+      cbind(case_id,
+            trace_df,
+            trace[-1], stringsAsFactors = FALSE)
     })
   } else {
     alignment
@@ -79,5 +78,3 @@ conformance_alignment <- function(eventlog,
 variant_state_equation_a_star <- function() {
   pm4py$algo$conformance$alignments$factory$VERSION_STATE_EQUATION_A_STAR
 }
-
-

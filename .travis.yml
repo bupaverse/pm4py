@@ -13,10 +13,14 @@ cache:
   directories:
     - $HOME/.cache/pip
 
+env:
+  global:
+   - RETICULATE_PYTHON="/usr/bin/python3"
+
 before_script:
   - sudo apt-get update
   - sudo apt-get install python3-pip
   - pip3 install --upgrade --ignore-installed --user travis virtualenv
   - pip3 install --upgrade --ignore-installed --user travis numpy
   - R CMD INSTALL .
-  - R -e 'reticulate::use_python("/usr/bin/python3", required = TRUE); pm4py::install_pm4py()'
+  - R -e 'pm4py::install_pm4py()'

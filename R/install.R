@@ -1,4 +1,4 @@
-PM4PY_VERSION <- "1.0.19"
+PM4PY_VERSION <- "1.0.20"
 PM4PY_PACKAGE <- paste0("pm4py==", PM4PY_VERSION)
 
 #' Install PM4PY library

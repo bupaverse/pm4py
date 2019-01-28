@@ -5,31 +5,33 @@ r_to_py.eventlog <- function(x, convert = FALSE) {
   pm4py_log <- import("pm4py.objects.log", convert = convert)
   pm4py_conversion <- import("pm4py.objects.conversion.log.versions.to_trace_log", convert = convert)
 
-  # workaround for: https://github.com/pm4py/pm4py-source/issues/35
-  # TODO: check if attribute is not yet used / warn or workaround
-  x_ext <- x %>% mutate("case:concept:name" = !!as.symbol(bupaR::case_id(x)))
-
-  p_df <- r_to_py(as.data.frame(x_ext), convert = convert)
+  p_df <- r_to_py(as.data.frame(x), convert = convert)
   p_eventlog <- pm4py_log$log$EventLog(p_df$to_dict('records'))
 
   case_glue <- py_to_r(pm4py_log$util$general$PARAMETER_KEY_CASE_GLUE)
   pm4py_conversion$transform_event_log_to_trace_log(p_eventlog,
-                                                    include_case_attributes = FALSE,
-                                                    enable_deepcopy = FALSE)
+                                                    case_glue = bupaR::case_id(x),
+                                                    include_case_attributes = TRUE,
+                                                    enable_deepcopy = TRUE)
 }
 
 #' @export
 #' @importFrom reticulate py_to_r
 py_to_r.pm4py.objects.log.log.EventLog <- function(x) {
-  pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x) %>%
-    select(-"case:concept:name")
+  df <- pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x)
+  df[ , !names(df) %in% c("case:concept:name")]
 }
 
 #' @export
 #' @importFrom reticulate py_to_r
 py_to_r.pm4py.objects.log.log.TraceLog <- function(x) {
-  pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x) %>%
-    select(-"case:concept:name")
+  #TODO: recover the complete bupaR event log which requires:
+  # - case identifier (could come from 'case:concept:name')
+  # - activity identifier (classifier? but which one?)
+  # - activity instance identifier (auto generate?)
+  # ....
+  df <- pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x)
+  df[ , !names(df) %in% c("case:concept:name")]
 }
 
 #' @export

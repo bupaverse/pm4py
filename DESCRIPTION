@@ -12,11 +12,10 @@ Encoding: UTF-8
 LazyData: true
 Depends: 
   reticulate
-Imports: bupaR, 
-  dplyr, 
-  purrr, 
-  magrittr, 
-  stringr, 
+Imports: bupaR,
+  purrr,
+  magrittr,
+  stringr,
   petrinetR,
   rlang
 Roxygen: list(markdown = TRUE)
