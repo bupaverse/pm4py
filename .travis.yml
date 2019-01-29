@@ -22,4 +22,4 @@ before_script:
   - sudo apt-get install python3-pip
   - pip3 install --upgrade --ignore-installed --user virtualenv
   - pip3 install --upgrade --ignore-installed --user numpy
-  - R -e 'use_python(python = Sys.which("python3"), required = TRUE);py_config();pm4py::install_pm4py()'
+  - R -e 'reticulate::use_python(python = Sys.which("python3"), required = TRUE);reticulate::py_config();pm4py::install_pm4py()'
