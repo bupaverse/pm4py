@@ -1,6 +1,3 @@
-PM4PY_VERSION <- "1.0.20"
-PM4PY_PACKAGE <- paste0("pm4py==", PM4PY_VERSION)
-
 #' Install PM4PY library
 #'
 #' Installs the `pm4py` package and its dependencies using `pip` since no
@@ -25,6 +22,10 @@ PM4PY_PACKAGE <- paste0("pm4py==", PM4PY_VERSION)
 #' }
 #'
 install_pm4py <- function(method = "auto", conda = "auto", ...) {
+
+  PM4PY_VERSION <- "1.0.20"
+  PM4PY_PACKAGE <- paste0("pm4py==", PM4PY_VERSION)
+
   tryCatch({
     reticulate::py_install(PM4PY_PACKAGE, method = method, conda = conda, pip = TRUE, ...)
   },
