@@ -12,9 +12,9 @@ evaluation_token_replay <- function(eventlog,
   py_log <- as_py_value(eventlog)
 
   # bugfix for https://github.com/pm4py/pm4py-source/issues/42
-  if ("pm4py:param:activity_key" %in% names(parameters)) {
-    parameters <- c(parameters, list("activity_key" = parameters[["pm4py:param:activity_key"]]))
-  }
+  #if ("pm4py:param:activity_key" %in% names(parameters)) {
+  #  parameters <- c(parameters, list("activity_key" = parameters[["pm4py:param:activity_key"]]))
+  #}
 
   #bug in PM4PY
 

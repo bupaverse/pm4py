@@ -1,3 +1,11 @@
+#' @importFrom reticulate r_to_py
+#' @export
+reticulate::r_to_py
+
+#' @importFrom reticulate py_to_r
+#' @export
+reticulate::py_to_r
+
 #' @export
 #' @importFrom reticulate r_to_py
 r_to_py.eventlog <- function(x, convert = FALSE) {

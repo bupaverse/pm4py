@@ -3,8 +3,6 @@
 language: R
 
 dist: trusty
-sudo: false
-
 r: release
 latex: false
 
@@ -13,14 +11,20 @@ cache:
   directories:
     - $HOME/.cache/pip
 
-env:
-  global:
-   - RETICULATE_PYTHON="/usr/bin/python3"
-
-before_script:
+before_install:
   - sudo apt-get update
-  - sudo apt-get install python3-pip
-  - pip3 install --upgrade --ignore-installed --user virtualenv
-  - pip3 install --upgrade --ignore-installed --user numpy
-  - R CMD INSTALL .
-  - R -e 'reticulate::py_config();library(pm4py);pm4py::install_pm4py()'
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  # Useful for debugging any issues with conda
+  - conda info -a
+  # Replace dep1 dep2 ... with your dependencies
+  - conda create -q -n r-reticulate python=$TRAVIS_PYTHON_VERSION pip numpy
+  - source activate r-reticulate
+  - pip install pm4py==1.0.20
+
+# TODO somehow Travis / Reticulate does not use pip even if forced
+#  - R -e 'pm4py::install_pm4py(method = "conda")'

@@ -10,9 +10,9 @@ Description: Interface to 'PM4PY' <http://pm4py.org>, a process mining library
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: 
-  reticulate
-Imports: bupaR,
+Imports: 
+  reticulate,
+  bupaR,
   purrr,
   magrittr,
   stringr,
