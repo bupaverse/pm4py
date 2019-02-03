@@ -2,9 +2,9 @@
 #'
 #' PM4PY discovery algorithms that discover a Petri net and its initial and final marking. Currently the Inductive Miner and the Alpha Miner are implemented.
 #'
-#' @param eventlog A bupaR event log.
-#' @param parameters A named list of PM4PY parameters, by default the `activity_key` from the bupaR event log is used.
-#'  Use \link{param_activity_key} to specifiy a different key.
+#' @param eventlog A bupaR event log or an R data frame.
+#' @param parameters A named list of PM4PY parameters (see \link{parameters}) as required by the discovery method.
+#'  By default, if the `eventlog` is a bupaR event log, the `activity_key`, `timestamp_key`, and `caseid_key` are automatically determined.
 #' @param variant The variant of the discovery algorithm to be used.
 #'  For Inductive Miner currently only `variant_inductive_only_dfg` is supported.
 #' @param convert TRUE to automatically convert Python objects to their R equivalent.
@@ -38,13 +38,12 @@
 NULL
 
 #' @rdname discovery
-#' @import reticulate
 #' @export
 discovery_inductive <- function(eventlog,
-                                parameters = param_activity_key(bupaR::activity_id(eventlog)),
+                                parameters = default_parameters(eventlog),
                                 variant = variant_inductive_only_dfg(),
                                 convert = TRUE) {
-  pm4py_inductive <- import("pm4py.algo.discovery.inductive.factory", convert = convert)
+  pm4py_inductive <- reticulate::import("pm4py.algo.discovery.inductive.factory", convert = convert)
   model <- pm4py_inductive$apply(as_py_value(eventlog),
                                  parameters = parameters,
                                  variant = variant)
@@ -58,13 +57,12 @@ variant_inductive_only_dfg <- function() {
 }
 
 #' @rdname discovery
-#' @import reticulate
 #' @export
 discovery_alpha <- function(eventlog,
-                                parameters = param_activity_key(bupaR::activity_id(eventlog)),
+                                parameters = default_parameters(eventlog),
                                 variant = variant_alpha_classic(),
                                 convert = TRUE) {
-  pm4py_alpha <- import("pm4py.algo.discovery.alpha.factory", convert = convert)
+  pm4py_alpha <- reticulate::import("pm4py.algo.discovery.alpha.factory", convert = convert)
   model <- pm4py_alpha$apply(as_py_value(eventlog),
                              parameters = parameters,
                              variant = variant)

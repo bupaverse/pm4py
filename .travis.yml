@@ -24,7 +24,7 @@ before_install:
   # Replace dep1 dep2 ... with your dependencies
   - conda create -q -n r-reticulate python=$TRAVIS_PYTHON_VERSION pip numpy
   - source activate r-reticulate
-  - pip install pm4py==1.0.20
+  - pip install pm4py==1.0.21
 
 # TODO somehow Travis / Reticulate does not use pip even if forced
 #  - R -e 'pm4py::install_pm4py(method = "conda")'

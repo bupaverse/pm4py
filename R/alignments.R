@@ -13,6 +13,8 @@
 #' @return A `data.frame` describing the alignment in terms of log and model moves.
 #' @export
 #'
+#' @name conformance
+#'
 #' @examples
 #' \dontrun{
 #' library(eventdataR)
@@ -30,7 +32,7 @@ conformance_alignment <- function(eventlog,
                                   petrinet,
                                   initial_marking,
                                   final_marking,
-                                  parameters = param_activity_key(bupaR::activity_id(eventlog)),
+                                  parameters = default_parameters(eventlog),
                                   variant = variant_state_equation_a_star(),
                                   convert = TRUE) {
 
@@ -51,7 +53,7 @@ conformance_alignment <- function(eventlog,
 
   if (convert) {
 
-    case_ids <- pm4py_tools()$log$get_trace_ids(py_log)
+    case_ids <- pm4py_tools()$log$get_trace_ids(py_log, parameters)
 
     purrr::map2_dfr(alignment, case_ids, function(trace, case_id) {
 
@@ -72,8 +74,7 @@ conformance_alignment <- function(eventlog,
   }
 }
 
-#'A* search using the state equation as heuristic
-#'
+#' @rdname conformance
 #' @export
 variant_state_equation_a_star <- function() {
   pm4py$algo$conformance$alignments$factory$VERSION_STATE_EQUATION_A_STAR

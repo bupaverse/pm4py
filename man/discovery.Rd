@@ -8,23 +8,21 @@
 \alias{variant_alpha_classic}
 \title{Petri net discovery algorithms}
 \usage{
-discovery_inductive(eventlog,
-  parameters = param_activity_key(bupaR::activity_id(eventlog)),
+discovery_inductive(eventlog, parameters = default_parameters(eventlog),
   variant = variant_inductive_only_dfg(), convert = TRUE)
 
 variant_inductive_only_dfg()
 
-discovery_alpha(eventlog,
-  parameters = param_activity_key(bupaR::activity_id(eventlog)),
+discovery_alpha(eventlog, parameters = default_parameters(eventlog),
   variant = variant_alpha_classic(), convert = TRUE)
 
 variant_alpha_classic()
 }
 \arguments{
-\item{eventlog}{A bupaR event log.}
+\item{eventlog}{A bupaR event log or an R data frame.}
 
-\item{parameters}{A named list of PM4PY parameters, by default the \code{activity_key} from the bupaR event log is used.
-Use \link{param_activity_key} to specifiy a different key.}
+\item{parameters}{A named list of PM4PY parameters (see \link{parameters}) as required by the discovery method.
+By default, if the \code{eventlog} is a bupaR event log, the \code{activity_key}, \code{timestamp_key}, and \code{caseid_key} are automatically determined.}
 
 \item{variant}{The variant of the discovery algorithm to be used.
 For Inductive Miner currently only \code{variant_inductive_only_dfg} is supported.}

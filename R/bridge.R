@@ -9,24 +9,17 @@ reticulate::py_to_r
 #' @export
 #' @importFrom reticulate r_to_py
 r_to_py.eventlog <- function(x, convert = FALSE) {
-
-  pm4py_log <- import("pm4py.objects.log", convert = convert)
-  pm4py_conversion <- import("pm4py.objects.conversion.log.versions.to_trace_log", convert = convert)
-
-  p_df <- r_to_py(as.data.frame(x), convert = convert)
-  p_eventlog <- pm4py_log$log$EventLog(p_df$to_dict('records'))
-
-  case_glue <- py_to_r(pm4py_log$util$general$PARAMETER_KEY_CASE_GLUE)
-  pm4py_conversion$transform_event_log_to_trace_log(p_eventlog,
-                                                    case_glue = bupaR::case_id(x),
-                                                    include_case_attributes = TRUE,
-                                                    enable_deepcopy = TRUE)
+  df <- as.data.frame(x)
+  i <- sapply(df, is.factor)
+  df[i] <- lapply(df[i], as.character)
+  r_to_py(df, convert = convert)
 }
 
 #' @export
 #' @importFrom reticulate py_to_r
 py_to_r.pm4py.objects.log.log.EventLog <- function(x) {
-  df <- pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x)
+  variant_to_dataframe <- pm4py$objects$conversion$log$constants$TO_DATAFRAME
+  df <- pm4py$objects$conversion$log$factory$apply(x, variant = variant_to_dataframe)
   df[ , !names(df) %in% c("case:concept:name")]
 }
 
@@ -38,7 +31,8 @@ py_to_r.pm4py.objects.log.log.TraceLog <- function(x) {
   # - activity identifier (classifier? but which one?)
   # - activity instance identifier (auto generate?)
   # ....
-  df <- pm4py$objects$log$util$df_from_log$get_dataframe_from_log(x)
+  variant_to_dataframe <- pm4py$objects$conversion$log$constants$TO_DATAFRAME
+  df <- pm4py$objects$conversion$log$factory$apply(x, variant = variant_to_dataframe)
   df[ , !names(df) %in% c("case:concept:name")]
 }
 

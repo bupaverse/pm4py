@@ -25,7 +25,7 @@ install_pm4py <- function(method = "auto", conda = "auto", ...) {
 
   # also needs to be adjusted in .travis.yml
   #TODO figure out a way to centralise this or use this method to install in travis
-  PM4PY_VERSION <- "1.0.20"
+  PM4PY_VERSION <- "1.0.21"
   PM4PY_PACKAGE <- paste0("pm4py==", PM4PY_VERSION)
 
   tryCatch({

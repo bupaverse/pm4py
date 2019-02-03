@@ -1,7 +1,7 @@
 Package: pm4py
 Type: Package
 Title: R Interface to the PM4PY Process Mining library
-Version: 1.0.0.9000
+Version: 1.0.0.9001
 Authors@R: person("Felix", "Mannhardt", email = "felix.mannhardt@sintef.no",
   role = c("aut", "cre"))
 Description: Interface to 'PM4PY' <http://pm4py.org>, a process mining library 

@@ -49,6 +49,20 @@ param_resource_key <- function(value) {
   l
 }
 
+#' @param eventlog A bupaR or PM4PY event log.
+#'
+#' @rdname parameters
+#' @export
+default_parameters <- function(eventlog) {
+  if ("eventlog" %in% class(eventlog)) {
+    c(param_activity_key(bupaR::activity_id(eventlog)),
+      param_timestamp_key(bupaR::timestamp(eventlog)),
+      param_caseid_key(bupaR::case_id(eventlog)))
+  } else {
+    list()
+  }
+}
+
 pm4py_parameters <- list(
   activity_key = "pm4py:param:activity_key",
   attribute_key = "pm4py:param:attribute_key",

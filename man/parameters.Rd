@@ -7,6 +7,7 @@
 \alias{param_timestamp_key}
 \alias{param_caseid_key}
 \alias{param_resource_key}
+\alias{default_parameters}
 \title{PM4PY parameter keys}
 \usage{
 param_activity_key(value)
@@ -18,6 +19,8 @@ param_timestamp_key(value)
 param_caseid_key(value)
 
 param_resource_key(value)
+
+default_parameters(eventlog)
 }
 \arguments{
 \item{value}{The value to add to the list.}
