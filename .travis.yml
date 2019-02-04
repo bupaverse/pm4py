@@ -29,7 +29,5 @@ before_script:
   - set -a
   - source R/version.R
   - set +a
+  - if [ "$PM4PY_DEVELOPMENT" == "TRUE" ]; then; pip install -r $PM4PY_DEPENDENCIES; fi;
   - pip install $PM4PY_VERSION
-
-# TODO somehow Travis / Reticulate does not use pip even if forced
-#  - R -e 'pm4py::install_pm4py(method = "conda")'

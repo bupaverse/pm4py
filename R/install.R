@@ -24,6 +24,9 @@
 install_pm4py <- function(method = "auto", conda = "auto", ...) {
 
   tryCatch({
+    if (PM4PY_DEVELOPMENT) {
+      reticulate::py_install(paste0("-r", PM4PY_DEPENDENCIES), method = method, conda = conda, pip = TRUE, ...)
+    }
     reticulate::py_install(PM4PY_VERSION, method = method, conda = conda, pip = TRUE, ...)
   },
     error = function(e) {
