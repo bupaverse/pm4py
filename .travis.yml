@@ -23,7 +23,7 @@ before_install:
   - conda info -a
   - conda create -q -n r-reticulate python=$TRAVIS_PYTHON_VERSION pip
 
-before_Script:
+before_script:
   - source activate r-reticulate
   - ls
   - set -a
