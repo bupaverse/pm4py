@@ -1,4 +1,4 @@
-#' Evaluation measures for a Petri net regarding an Event Log
+#' Calculates evaluation measures for a Petri nets and an Event Log
 #'
 #' @param eventlog A bupaR or PM4PY event log.
 #' @param petrinet A bupaR or PM4PY Petri net.
@@ -10,17 +10,44 @@
 #' @param variant The evaluation variant to be used.
 #' @param convert `TRUE` to automatically convert Python objects to their R equivalent. If you pass `FALSE` you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
 #'
-#' @export
+#' @return A `list` with all available evaluation measures.
+#'
 #' @name evaluation
+NULL
+
+#' @rdname evaluation
 #' @import reticulate
-evaluation_token_replay <- function(eventlog,
-                                  petrinet,
-                                  initial_marking,
-                                  final_marking,
-                                  parameters = default_parameters(eventlog),
-                                  variant = variant_token_based(),
-                                  convert = TRUE) {
+#' @export
+evaluation_all <- function(eventlog,
+                           petrinet,
+                           initial_marking,
+                           final_marking,
+                           parameters = default_parameters(eventlog),
+                           convert = TRUE) {
   pm4py_evaluation <- import("pm4py.evaluation.factory", convert = convert)
+
+  py_pn <- as_py_value(petrinet)
+  py_log <- as_py_value(eventlog)
+
+  m <- pm4py_evaluation$apply(log = py_log,
+                              net = py_pn,
+                              initial_marking = as_pm4py_marking(initial_marking, py_pn),
+                              final_marking = as_pm4py_marking(final_marking, py_pn),
+                              parameters = parameters)
+  m
+}
+
+#' @rdname evaluation
+#' @import reticulate
+#' @export
+evaluation_precision <- function(eventlog,
+                               petrinet,
+                               initial_marking,
+                               final_marking,
+                               parameters = default_parameters(eventlog),
+                               variant = variant_precision_etconformance(),
+                               convert = TRUE) {
+  pm4py_evaluation <- import("pm4py.evaluation.precision.factory", convert = convert)
 
   py_pn <- as_py_value(petrinet)
   py_log <- as_py_value(eventlog)
@@ -36,7 +63,42 @@ evaluation_token_replay <- function(eventlog,
 
 #' @rdname evaluation
 #' @export
-variant_token_based <- function() {
-  pm4py$evaluation$factory$TOKEN_BASED
+variant_precision_etconformance <- function() {
+  pm4py$evaluation$precision$factory$ETCONFORMANCE_TOKEN
 }
 
+#' @rdname evaluation
+#' @import reticulate
+#' @export
+evaluation_fitesss <- function(eventlog,
+                               petrinet,
+                               initial_marking,
+                               final_marking,
+                               parameters = default_parameters(eventlog),
+                               variant = variant_fitness_token_based(),
+                               convert = TRUE) {
+  pm4py_evaluation <- import("pm4py.evaluation.replay_fitness.factory", convert = convert)
+
+  py_pn <- as_py_value(petrinet)
+  py_log <- as_py_value(eventlog)
+
+  m <- pm4py_evaluation$apply(log = py_log,
+                              net = py_pn,
+                              initial_marking = as_pm4py_marking(initial_marking, py_pn),
+                              final_marking = as_pm4py_marking(final_marking, py_pn),
+                              parameters = parameters,
+                              variant = variant)
+  m
+}
+
+#' @rdname evaluation
+#' @export
+variant_fitness_token_based <- function() {
+  pm4py$evaluation$replay_fitness$factory$TOKEN_BASED
+}
+
+#' @rdname evaluation
+#' @export
+variant_fitness_alignment_based <- function() {
+  pm4py$evaluation$replay_fitness$factory$ALIGNMENT_BASED
+}

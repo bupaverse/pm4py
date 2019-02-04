@@ -2,15 +2,30 @@
 % Please edit documentation in R/evaluation.R
 \name{evaluation}
 \alias{evaluation}
-\alias{evaluation_token_replay}
-\alias{variant_token_based}
-\title{Evaluation measures for a Petri net regarding an Event Log}
+\alias{evaluation_all}
+\alias{evaluation_precision}
+\alias{variant_precision_etconformance}
+\alias{evaluation_fitesss}
+\alias{variant_fitness_token_based}
+\alias{variant_fitness_alignment_based}
+\title{Calculates evaluation measures for a Petri nets and an Event Log}
 \usage{
-evaluation_token_replay(eventlog, petrinet, initial_marking, final_marking,
-  parameters = default_parameters(eventlog),
-  variant = variant_token_based(), convert = TRUE)
+evaluation_all(eventlog, petrinet, initial_marking, final_marking,
+  parameters = default_parameters(eventlog), convert = TRUE)
 
-variant_token_based()
+evaluation_precision(eventlog, petrinet, initial_marking, final_marking,
+  parameters = default_parameters(eventlog),
+  variant = variant_precision_etconformance(), convert = TRUE)
+
+variant_precision_etconformance()
+
+evaluation_fitesss(eventlog, petrinet, initial_marking, final_marking,
+  parameters = default_parameters(eventlog),
+  variant = variant_fitness_token_based(), convert = TRUE)
+
+variant_fitness_token_based()
+
+variant_fitness_alignment_based()
 }
 \arguments{
 \item{eventlog}{A bupaR or PM4PY event log.}
@@ -25,10 +40,13 @@ By default the initial marking of the bupaR Petri net will be used if available.
 \item{parameters}{PM4PY alignment parameter.
 By default the \code{activity_key} from the bupaR event log is specified using \link{param_activity_key}.}
 
-\item{variant}{The evaluation variant to be used.}
-
 \item{convert}{\code{TRUE} to automatically convert Python objects to their R equivalent. If you pass \code{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
+
+\item{variant}{The evaluation variant to be used.}
+}
+\value{
+A \code{list} with all available evaluation measures.
 }
 \description{
-Evaluation measures for a Petri net regarding an Event Log
+Calculates evaluation measures for a Petri nets and an Event Log
 }

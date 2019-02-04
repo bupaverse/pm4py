@@ -16,7 +16,11 @@
 #' \dontrun{
 #' library(eventdataR)
 #' data(patients)
-#' net <- discovery_inductive(patients)
+#'
+#' # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+#' patients_completes <- patients[patients$registration_type == "complete", ]
+#'
+#' net <- discovery_inductive(patients_completes)
 #'
 #' # Show details of the obtained bupaR Petri net
 #' print(net$petrinet)
@@ -31,7 +35,7 @@
 #' petrinetR::render_PN(net$petrinet)
 #'
 #' # Keep an unconverted PM4PY Petri net for use in other PM4PY functions
-#' py_net <- discovery_inductive(patients, convert = FALSE)
+#' py_net <- discovery_inductive(patients_completes, convert = FALSE)
 #' }
 #'
 #' @name discovery

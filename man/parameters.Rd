@@ -24,6 +24,8 @@ default_parameters(eventlog)
 }
 \arguments{
 \item{value}{The value to add to the list.}
+
+\item{eventlog}{A bupaR or PM4PY event log.}
 }
 \value{
 a list with the parameter key/value pair

@@ -10,8 +10,9 @@ reticulate::py_to_r
 #' @importFrom reticulate r_to_py
 r_to_py.eventlog <- function(x, convert = FALSE) {
   df <- as.data.frame(x)
-  i <- sapply(df, is.factor)
-  df[i] <- lapply(df[i], as.character)
+  # fix for https://github.com/rstudio/reticulate/issues/389
+  #i <- sapply(df, is.factor)
+  #df[i] <- lapply(df[i], as.character)
   r_to_py(df, convert = convert)
 }
 
