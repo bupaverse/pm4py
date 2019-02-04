@@ -39,39 +39,6 @@
 #'
 NULL
 
-#' @rdname conformance
-#' @export
-#' @import reticulate
-conformance_tokenreplay <- function(eventlog,
-                                    petrinet,
-                                    initial_marking,
-                                    final_marking,
-                                    parameters = default_parameters(eventlog),
-                                    variant = variant_tokenreplay(),
-                                    convert = TRUE) {
-
-  pm4py_tokenreplay <- import("pm4py.algo.conformance.tokenreplay.factory", convert = convert)
-  if (is.null(initial_marking) && inherits(petrinet, "petrinet")) {
-    initial_marking <- petrinet$marking
-  }
-
-  py_pn <- as_py_value(petrinet)
-  py_log <- as_py_value(eventlog)
-
-  pm4py_tokenreplay$apply(log = py_log,
-                          net = py_pn,
-                          initial_marking = as_pm4py_marking(initial_marking, py_pn),
-                          final_marking = as_pm4py_marking(final_marking, py_pn),
-                          parameters = parameters,
-                          variant = variant)
-
-}
-
-#' @rdname conformance
-#' @export
-variant_tokenreplay <- function() {
-  pm4py$algo$conformance$tokenreplay$factory$TOKEN_REPLAY
-}
 
 #' @rdname conformance
 #' @export
@@ -110,7 +77,7 @@ conformance_alignment <- function(eventlog,
 
     case_ids <- pm4py_tools()$log$get_trace_ids(py_log, parameters)
 
-    alignment < purrr::map2_dfr(alignment, case_ids, function(trace, case_id) {
+    df_alignment <- purrr::map2_dfr(alignment, case_ids, function(trace, case_id) {
 
       align_mat <- t(sapply(trace$alignment, function(x) {
           c(x[[1]], x[[2]])
@@ -126,9 +93,12 @@ conformance_alignment <- function(eventlog,
             trace_df,
             trace[-1], stringsAsFactors = FALSE)
 
-      class(alignment) <- c("alignment", class(alignment))
-
     })
+
+    class(df_alignment) <- c("alignment", class(df_alignment))
+
+    df_alignment
+
   } else {
     alignment
   }

@@ -2,18 +2,10 @@
 % Please edit documentation in R/conformance.R
 \name{conformance}
 \alias{conformance}
-\alias{conformance_tokenreplay}
-\alias{variant_tokenreplay}
 \alias{conformance_alignment}
 \alias{variant_state_equation_a_star}
 \title{Conformance between an Event Log and a Petri net}
 \usage{
-conformance_tokenreplay(eventlog, petrinet, initial_marking, final_marking,
-  parameters = default_parameters(eventlog),
-  variant = variant_tokenreplay(), convert = TRUE)
-
-variant_tokenreplay()
-
 conformance_alignment(eventlog, petrinet, initial_marking, final_marking,
   parameters = default_parameters(eventlog),
   variant = variant_state_equation_a_star(), convert = TRUE)
