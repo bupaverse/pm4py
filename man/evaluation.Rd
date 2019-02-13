@@ -5,7 +5,7 @@
 \alias{evaluation_all}
 \alias{evaluation_precision}
 \alias{variant_precision_etconformance}
-\alias{evaluation_fitesss}
+\alias{evaluation_fitness}
 \alias{variant_fitness_token_based}
 \alias{variant_fitness_alignment_based}
 \title{Calculates evaluation measures for a Petri nets and an Event Log}
@@ -19,7 +19,7 @@ evaluation_precision(eventlog, petrinet, initial_marking, final_marking,
 
 variant_precision_etconformance()
 
-evaluation_fitesss(eventlog, petrinet, initial_marking, final_marking,
+evaluation_fitness(eventlog, petrinet, initial_marking, final_marking,
   parameters = default_parameters(eventlog),
   variant = variant_fitness_token_based(), convert = TRUE)
 
@@ -49,4 +49,24 @@ A \code{list} with all available evaluation measures.
 }
 \description{
 Calculates evaluation measures for a Petri nets and an Event Log
+}
+\examples{
+\dontrun{
+library(eventdataR)
+data(patients)
+
+# As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+patients_completes <- patients[patients$registration_type == "complete", ]
+
+# Discover a Petri net
+net <- discovery_inductive(patients_completes)
+
+# Calculate evaluation measures for event log and Petri net
+evaluation_all(patients_completes,
+               net$petrinet,
+               net$initial_marking,
+               net$final_marking)
+
+}
+
 }

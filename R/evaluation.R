@@ -12,6 +12,25 @@
 #'
 #' @return A `list` with all available evaluation measures.
 #'
+#' @examples
+#' \dontrun{
+#' library(eventdataR)
+#' data(patients)
+#'
+#' # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+#' patients_completes <- patients[patients$registration_type == "complete", ]
+#'
+#' # Discover a Petri net
+#' net <- discovery_inductive(patients_completes)
+#'
+#' # Calculate evaluation measures for event log and Petri net
+#' evaluation_all(patients_completes,
+#'                net$petrinet,
+#'                net$initial_marking,
+#'                net$final_marking)
+#'
+#' }
+#'
 #' @name evaluation
 NULL
 
@@ -70,7 +89,7 @@ variant_precision_etconformance <- function() {
 #' @rdname evaluation
 #' @import reticulate
 #' @export
-evaluation_fitesss <- function(eventlog,
+evaluation_fitness <- function(eventlog,
                                petrinet,
                                initial_marking,
                                final_marking,
@@ -83,7 +102,7 @@ evaluation_fitesss <- function(eventlog,
   py_log <- as_py_value(eventlog)
 
   m <- pm4py_evaluation$apply(log = py_log,
-                              net = py_pn,
+                              petri_net = py_pn,
                               initial_marking = as_pm4py_marking(initial_marking, py_pn),
                               final_marking = as_pm4py_marking(final_marking, py_pn),
                               parameters = parameters,
