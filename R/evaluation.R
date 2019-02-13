@@ -73,7 +73,7 @@ evaluation_precision <- function(eventlog,
 
   m <- pm4py_evaluation$apply(log = py_log,
                               net = py_pn,
-                              initial_marking = as_pm4py_marking(initial_marking, py_pn),
+                              marking = as_pm4py_marking(initial_marking, py_pn), # TODO inconsistent naming upstream
                               final_marking = as_pm4py_marking(final_marking, py_pn),
                               parameters = parameters,
                               variant = variant)
@@ -102,7 +102,7 @@ evaluation_fitness <- function(eventlog,
   py_log <- as_py_value(eventlog)
 
   m <- pm4py_evaluation$apply(log = py_log,
-                              petri_net = py_pn,
+                              petri_net = py_pn, # TODO inconsistent naming upstream
                               initial_marking = as_pm4py_marking(initial_marking, py_pn),
                               final_marking = as_pm4py_marking(final_marking, py_pn),
                               parameters = parameters,
