@@ -114,3 +114,46 @@ py_to_r.pm4py.objects.petri.petrinet.PetriNet <- function(x) {
 py_to_r.pm4py.objects.petri.petrinet.Marking <- function(x) {
   iterate(x$elements(), function(p) ensure_str(p$name))
 }
+
+#' Convert to a PM4PY marking
+#'
+#' Converts a character vector of place identifiers to a PM4PY marking object.
+#'
+#' @param x A character vector with (possible duplicate) place identifiers.
+#' @param petrinet A PM4PY Petri net.
+#'
+#' @export
+as_pm4py_marking <- function(x, petrinet) {
+
+  if (inherits(x, "pm4py.objects.petri.petrinet.Marking")) {
+    return(x)
+  }
+
+  pm4py_petrinet <- import("pm4py.objects.petri.petrinet", convert = FALSE)
+  marking <- pm4py_petrinet$Marking()
+
+  found <- rep(FALSE, length(x))
+  py <- import_builtins()
+  iter <- py$iter(petrinet$places)
+
+  while (TRUE) {
+    item <- iter_next(iter)
+    if (is.null(item))
+      break
+
+    loc <- which(x == item$name)
+    if (any(loc)) {
+      found[loc] <- TRUE
+      marking[item] = length(loc)
+    }
+  }
+
+  if (all(found)) {
+    return(marking)
+  } else {
+    stop(paste0("Places ",
+                paste0(x[!found], collapse = ","),
+                " not found in ",
+                py_str(petrinet$places)))
+  }
+}

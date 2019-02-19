@@ -21,41 +21,6 @@ ensure_str <- function(x) {
   }
 }
 
-as_pm4py_marking <- function(x, petrinet) {
-
-  if (inherits(x, "pm4py.objects.petri.petrinet.Marking")) {
-    return(x)
-  }
-
-  pm4py_petrinet <- import("pm4py.objects.petri.petrinet", convert = FALSE)
-  marking <- pm4py_petrinet$Marking()
-
-  found <- rep(FALSE, length(x))
-  py <- import_builtins()
-  iter <- py$iter(petrinet$places)
-
-  while (TRUE) {
-    item <- iter_next(iter)
-    if (is.null(item))
-      break
-
-    loc <- which(x == item$name)
-    if (any(loc)) {
-      found[loc] <- TRUE
-      marking[item] = length(loc)
-    }
-  }
-
-  if (all(found)) {
-    return(marking)
-  } else {
-    stop(paste0("Places ",
-                paste0(x[!found], collapse = ","),
-                " not found in ",
-                py_str(petrinet$places)))
-  }
-}
-
 as_r_value <- function(x) {
 
   if (inherits(x, "python.builtin.object"))
