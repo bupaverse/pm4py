@@ -4,7 +4,7 @@
 \alias{write_pnml}
 \title{Write Petri net as PNML}
 \usage{
-write_pnml(petrinet, file, initial_marking = petrinet$marking,
+write_pnml(petrinet, file, initial_marking = NULL,
   final_marking = NULL)
 }
 \arguments{

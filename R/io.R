@@ -9,19 +9,23 @@
 #' @export
 write_pnml <- function(petrinet,
                        file,
-                       initial_marking = petrinet$marking,
+                       initial_marking = NULL,
                        final_marking = NULL) {
   pm4py_export <- import("pm4py.objects.petri.exporter.pnml", convert = FALSE)
 
+  if (is.null(initial_marking) && inherits(petrinet, "petrinet")) {
+    initial_marking <- petrinet$marking
+  }
+
   py_pn <- as_py_value(petrinet)
 
-  if (is.null(final_marking)) {
+  if (!is.null(final_marking)) {
     py_final <- as_pm4py_marking(final_marking, py_pn)
   } else {
     py_final <- NULL
   }
 
-  pm4py_export$export_net(petrinet = petrinet,
+  pm4py_export$export_net(petrinet = py_pn,
                           marking = as_pm4py_marking(initial_marking, py_pn),
                           output_filename = file,
                           final_marking = py_final)
