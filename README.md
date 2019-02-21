@@ -1,4 +1,4 @@
-# pm4py
+# R Interface to the PM4PY Process Mining Library
 
 The goal of pm4py is to provide a bridge to the Python library PM4PY developed at: http://pm4py.org/
 
@@ -15,7 +15,7 @@ Then, automatically install the pm4py package in a virtual or Conda environment:
 install_pm4py()
 ```
 
-See the `reticulate` documentation for more information on the available options or how to specifiy an existing Python environment: 
+See the `reticulate` documentation for more information on the available options or how to specify an existing Python environment: 
 https://rstudio.github.io/reticulate/
 
 ## Example
