@@ -6,6 +6,44 @@ reticulate::r_to_py
 #' @export
 reticulate::py_to_r
 
+#################################################################
+# fix for https://github.com/rstudio/reticulate/issues/389
+# until it is on CRAN
+
+#' @export
+py_to_r.pandas.core.arrays.categorical.Categorical <- function(x) {
+  disable_conversion_scope(x)
+  values <- py_to_r(x$get_values())
+  levels <- py_to_r(x$categories$values)
+  ordered <- py_to_r(x$dtype$ordered)
+  factor(values, levels = levels, ordered = ordered)
+}
+
+#' @importFrom utils head
+disable_conversion_scope <- function(object) {
+  if (!inherits(object, "python.builtin.object"))
+    return(FALSE)
+
+  envir <- as.environment(object)
+  if (exists("convert", envir = envir, inherits = FALSE)) {
+    convert <- get("convert", envir = envir)
+    assign("convert", FALSE, envir = envir)
+    defer(assign("convert", convert, envir = envir), envir = parent.frame())
+  }
+
+  TRUE
+}
+
+defer <- function(expr, envir = parent.frame()) {
+  call <- substitute(
+    evalq(expr, envir = envir),
+    list(expr = substitute(expr), envir = parent.frame())
+  )
+  do.call(base::on.exit, list(substitute(call), add = TRUE), envir = envir)
+}
+
+#################################################################
+
 #' @export
 #' @importFrom reticulate r_to_py
 r_to_py.eventlog <- function(x, convert = FALSE) {
