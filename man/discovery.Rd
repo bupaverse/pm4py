@@ -37,29 +37,29 @@ A named list with elements \code{petrinet}, \code{initial_marking}, and \code{fi
 PM4PY discovery algorithms that discover a Petri net and its initial and final marking. Currently the Inductive Miner and the Alpha Miner are implemented.
 }
 \examples{
-\dontrun{
-library(eventdataR)
-data(patients)
+if (pm4py_available()) {
+  library(eventdataR)
+  data(patients)
 
-# As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-patients_completes <- patients[patients$registration_type == "complete", ]
+  # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+  patients_completes <- patients[patients$registration_type == "complete", ]
 
-net <- discovery_inductive(patients_completes)
+  net <- discovery_inductive(patients_completes)
 
-# Show details of the obtained bupaR Petri net
-print(net$petrinet)
+  # Show details of the obtained bupaR Petri net
+  print(net$petrinet)
 
-# initial marking is a character vector
-print(net$initial_marking)
+  # initial marking is a character vector
+  print(net$initial_marking)
 
-# final marking is a character vector
-print(net$final_marking)
+  # final marking is a character vector
+  print(net$final_marking)
 
-# Petri net can be used with other bupaR functions
-petrinetR::render_PN(net$petrinet)
+  # Petri net can be used with other bupaR functions
+  petrinetR::render_PN(net$petrinet)
 
-# Keep an unconverted PM4PY Petri net for use in other PM4PY functions
-py_net <- discovery_inductive(patients_completes, convert = FALSE)
+  # Keep an unconverted PM4PY Petri net for use in other PM4PY functions
+  py_net <- discovery_inductive(patients_completes, convert = FALSE)
 }
 
 }

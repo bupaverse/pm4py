@@ -27,7 +27,7 @@ http://pm4py.pads.rwth-aachen.de/installation/
 }
 \examples{
 \dontrun{
-install_pm4py()
+  install_pm4py()
 }
 
 }

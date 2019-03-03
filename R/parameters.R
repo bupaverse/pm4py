@@ -1,10 +1,15 @@
-#' PM4PY parameter keys
+#' PM4Py parameter keys
 #'
-#' Convenience methods to use PM4PY parameter keys.
+#' Convenience methods to use as PM4Py parameter keys.
 #'
 #' @param value The value to add to the list.
-#'
 #' @return a list with the parameter key/value pair
+#' @examples
+#' param_activity_key("activity")
+#'
+#' library(eventdataR)
+#' data(patients)
+#' default_parameters(patients)
 #'
 #' @name parameters
 NULL

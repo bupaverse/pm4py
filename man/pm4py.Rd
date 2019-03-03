@@ -29,9 +29,9 @@ For parts of PM4PY wrapper functions are provided to transparently convert
 parameters and results to and from the corresponding bupaR S3 classes.
 }
 \examples{
-\dontrun{
 # Print the PM4PY version loaded
-pm4py$`__version__`
+if (pm4py_available()) {
+  print(pm4py$`__version__`)
 }
 
 }

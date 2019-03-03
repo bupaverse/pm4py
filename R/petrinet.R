@@ -1,3 +1,5 @@
+#' Synchronous product Petri net
+#'
 #' Constructs the synchronous product net of two given Petri nets.
 #'
 #' @param pn1 First Petri net
@@ -8,6 +10,25 @@
 #' @param fm2 Final marking of the second Petri net
 #' @param skip Symbol to be used as skip
 #' @param convert `TRUE` to automatically convert Python objects to their R equivalent. If you pass `FALSE` you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
+#'
+#' @return A Petri net.
+#'
+#' @examples
+#' if (pm4py_available()) {
+#'   library(eventdataR)
+#'   data(patients)
+#'
+#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+#'   patients_completes <- patients[patients$registration_type == "complete", ]
+#'
+#'   net <- discovery_inductive(patients_completes)
+#'   petrinet_synchronous_product(net$petrinet,
+#'                                net$initial_marking,
+#'                                net$final_marking,
+#'                                net$petrinet,
+#'                                net$initial_marking,
+#'                                net$final_marking)
+#' }
 #'
 #' @import reticulate
 #' @export

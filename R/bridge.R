@@ -115,12 +115,23 @@ py_to_r.pm4py.objects.petri.petrinet.Marking <- function(x) {
   iterate(x$elements(), function(p) ensure_str(p$name))
 }
 
-#' Convert to a PM4PY marking
+#' Convert to a PM4Py marking
 #'
-#' Converts a character vector of place identifiers to a PM4PY marking object.
+#' Converts a character vector of place identifiers to a PM4Py marking object.
 #'
 #' @param x A character vector with (possible duplicate) place identifiers.
-#' @param petrinet A PM4PY Petri net.
+#' @param petrinet A PM4Py Petri net.
+#' @examples
+#' if (pm4py_available()) {
+#'   library(eventdataR)
+#'   data(patients)
+#'
+#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+#'   patients_completes <- patients[patients$registration_type == "complete", ]
+#'
+#'   net <- discovery_inductive(patients_completes)
+#'   as_pm4py_marking(c("sink"), r_to_py(net$petrinet))
+#' }
 #'
 #' @export
 as_pm4py_marking <- function(x, petrinet) {

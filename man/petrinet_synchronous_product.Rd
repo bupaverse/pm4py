@@ -2,7 +2,7 @@
 % Please edit documentation in R/petrinet.R
 \name{petrinet_synchronous_product}
 \alias{petrinet_synchronous_product}
-\title{Constructs the synchronous product net of two given Petri nets.}
+\title{Synchronous product Petri net}
 \usage{
 petrinet_synchronous_product(pn1, im1, fm1, pn2, im2, fm2, skip = ">>",
   convert = TRUE)
@@ -24,6 +24,27 @@ petrinet_synchronous_product(pn1, im1, fm1, pn2, im2, fm2, skip = ">>",
 
 \item{convert}{\code{TRUE} to automatically convert Python objects to their R equivalent. If you pass \code{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
 }
+\value{
+A Petri net.
+}
 \description{
 Constructs the synchronous product net of two given Petri nets.
+}
+\examples{
+if (pm4py_available()) {
+  library(eventdataR)
+  data(patients)
+
+  # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+  patients_completes <- patients[patients$registration_type == "complete", ]
+
+  net <- discovery_inductive(patients_completes)
+  petrinet_synchronous_product(net$petrinet,
+                               net$initial_marking,
+                               net$final_marking,
+                               net$petrinet,
+                               net$initial_marking,
+                               net$final_marking)
+}
+
 }

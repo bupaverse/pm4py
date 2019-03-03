@@ -8,7 +8,7 @@
 \alias{param_caseid_key}
 \alias{param_resource_key}
 \alias{default_parameters}
-\title{PM4PY parameter keys}
+\title{PM4Py parameter keys}
 \usage{
 param_activity_key(value)
 
@@ -31,5 +31,13 @@ default_parameters(eventlog)
 a list with the parameter key/value pair
 }
 \description{
-Convenience methods to use PM4PY parameter keys.
+Convenience methods to use as PM4Py parameter keys.
+}
+\examples{
+param_activity_key("activity")
+
+library(eventdataR)
+data(patients)
+default_parameters(patients)
+
 }

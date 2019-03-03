@@ -2,15 +2,28 @@
 % Please edit documentation in R/bridge.R
 \name{as_pm4py_marking}
 \alias{as_pm4py_marking}
-\title{Convert to a PM4PY marking}
+\title{Convert to a PM4Py marking}
 \usage{
 as_pm4py_marking(x, petrinet)
 }
 \arguments{
 \item{x}{A character vector with (possible duplicate) place identifiers.}
 
-\item{petrinet}{A PM4PY Petri net.}
+\item{petrinet}{A PM4Py Petri net.}
 }
 \description{
-Converts a character vector of place identifiers to a PM4PY marking object.
+Converts a character vector of place identifiers to a PM4Py marking object.
+}
+\examples{
+if (pm4py_available()) {
+  library(eventdataR)
+  data(patients)
+
+  # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+  patients_completes <- patients[patients$registration_type == "complete", ]
+
+  net <- discovery_inductive(patients_completes)
+  as_pm4py_marking(c("sink"), r_to_py(net$petrinet))
+}
+
 }

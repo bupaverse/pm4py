@@ -51,22 +51,21 @@ A \code{list} with all available evaluation measures.
 Calculates evaluation measures for a Petri nets and an Event Log
 }
 \examples{
-\dontrun{
-library(eventdataR)
-data(patients)
+if (pm4py_available()) {
+  library(eventdataR)
+  data(patients)
 
-# As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-patients_completes <- patients[patients$registration_type == "complete", ]
+  # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+  patients_completes <- patients[patients$registration_type == "complete", ]
 
-# Discover a Petri net
-net <- discovery_inductive(patients_completes)
+  # Discover a Petri net
+  net <- discovery_inductive(patients_completes)
 
-# Calculate evaluation measures for event log and Petri net
-evaluation_all(patients_completes,
-               net$petrinet,
-               net$initial_marking,
-               net$final_marking)
+  # Calculate evaluation measures for event log and Petri net
+  evaluation_all(patients_completes,
+                 net$petrinet,
+                 net$initial_marking,
+                 net$final_marking)
 
 }
-
 }

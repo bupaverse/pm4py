@@ -18,7 +18,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' install_pm4py()
+#'   install_pm4py()
 #' }
 #'
 install_pm4py <- function(method = "auto", conda = "auto", ...) {

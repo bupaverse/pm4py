@@ -38,24 +38,24 @@ In case of \code{conformance_alignment} a data frame of log and model moves.
 Conformance between an Event Log and a Petri net
 }
 \examples{
-\dontrun{
-library(eventdataR)
-data(patients)
+if (pm4py_available()) {
+  library(eventdataR)
+  data(patients)
 
-# As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-patients_completes <- patients[patients$registration_type == "complete", ]
+  # As Inductive Miner of PM4Py is not life-cycle aware, keep only `complete` events:
+  patients_completes <- patients[patients$registration_type == "complete", ]
 
-# Discover a Petri net
-net <- discovery_inductive(patients_completes)
+  # Discover a Petri net
+  net <- discovery_inductive(patients_completes)
 
-# Alignment event log and Petri net
-a <- conformance_alignment(patients_completes,
-                           net$petrinet,
-                           net$initial_marking,
-                           net$final_marking)
+  # Align event log and Petri net
+  a <- conformance_alignment(patients_completes,
+                             net$petrinet,
+                             net$initial_marking,
+                             net$final_marking)
 
-# Alignment is returned in long format as data frame
-head(a)
+  # Alignment is returned as data frame
+  head(a)
 }
 
 }

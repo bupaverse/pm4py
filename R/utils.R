@@ -1,4 +1,3 @@
-
 prepare_pn_with_markings <- function(model, convert = FALSE) {
   if (convert) {
     if (inherits(model, "python.builtin.object")) {
@@ -38,7 +37,6 @@ as_py_value <- function(x) {
 }
 
 skip_if_no_pm4py <- function() {
-  have_pm4py <- py_module_available("pm4py")
-  if (!have_pm4py)
+  if (!pm4py_available())
     testthat::skip("pm4py not available for testing")
 }
