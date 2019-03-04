@@ -1,6 +1,6 @@
-# R Interface to the PM4PY Process Mining Library
+# R Interface to the PM4Py Process Mining Library
 
-The goal of pm4py is to provide a bridge to the Python library PM4PY developed at: http://pm4py.org/
+The goal of the R package 'pm4py' is to provide a bridge between [bupaR](https://www.bupar.net/) and the Python library [PM4Py](http://pm4py.org/).
 
 ## Installation
 
@@ -12,10 +12,10 @@ remotes::install_github("fmannhardt/pm4py")
 
 Then, automatically install the pm4py package in a virtual or Conda environment:
 ``` r
-install_pm4py()
+pm4py::install_pm4py()
 ```
 
-See the `reticulate` documentation for more information on the available options or how to specify an existing Python environment: 
+See the 'reticulate' documentation for more information on the available options or how to specify an existing Python environment: 
 https://rstudio.github.io/reticulate/
 
 ## Example
@@ -60,4 +60,3 @@ head(alignment)
 # Evaluate model quality
 quality <- evaluation_all(patients_completes, pn$petrinet, pn$initial_marking, pn$final_marking)
 ```
-

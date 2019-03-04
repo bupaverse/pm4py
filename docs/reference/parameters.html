@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PM4PY parameter keys — parameters • pm4py</title>
+<title>PM4Py parameter keys — parameters • pm4py</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="PM4PY parameter keys — parameters" />
+<meta property="og:title" content="PM4Py parameter keys — parameters" />
 
-<meta property="og:description" content="Convenience methods to use PM4PY parameter keys." />
+<meta property="og:description" content="Convenience methods to use as PM4Py parameter keys." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -102,14 +102,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>PM4PY parameter keys</h1>
+    <h1>PM4Py parameter keys</h1>
     <small class="dont-index">Source: <a href='https://github.com/fmannhardt/pm4py/blob/master/R/parameters.R'><code>R/parameters.R</code></a></small>
     <div class="hidden name"><code>parameters.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Convenience methods to use PM4PY parameter keys.</p>
+    <p>Convenience methods to use as PM4Py parameter keys.</p>
     
     </div>
 
@@ -143,6 +143,22 @@
     <p>a list with the parameter key/value pair</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>param_activity_key</span>(<span class='st'>"activity"</span>)</div><div class='output co'>#&gt; $`pm4py:param:activity_key`
+#&gt; [1] "activity"
+#&gt; </div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eventdataR</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>patients</span>)
+<span class='fu'>default_parameters</span>(<span class='no'>patients</span>)</div><div class='output co'>#&gt; $`pm4py:param:activity_key`
+#&gt; [1] "handling"
+#&gt; 
+#&gt; $`pm4py:param:timestamp_key`
+#&gt; [1] "time"
+#&gt; 
+#&gt; $case_id_glue
+#&gt; [1] "patient"
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -150,7 +166,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

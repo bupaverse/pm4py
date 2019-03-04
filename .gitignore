@@ -2,3 +2,4 @@
 .RData
 .Rproj.user
 cran-comments.md
+inst/python/pm4pytools/__pycache__/

@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R Interface to the PM4PY Process Mining Library • pm4py</title>
+<title>Interface to the 'PM4py' Process Mining Library • pm4py</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="R Interface to the PM4PY Process Mining Library">
-<meta property="og:description" content="Interface to 'PM4PY' &lt;http://pm4py.org&gt;, a process mining library 
-    in Python. This package uses the `reticulate` package to act as a bridge 
-    between PM4PY and bupaR.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Interface to the 'PM4py' Process Mining Library">
+<meta property="og:description" content="Interface to 'PM4py' &lt;http://pm4py.org&gt;, a process mining library 
+    in Python. This package uses the 'reticulate' package to act as a bridge 
+    between 'PM4Py' and 'bupaR'.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -71,16 +71,16 @@
   <div class="contents col-md-9">
 <div id="r-interface-to-the-pm4py-process-mining-library" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#r-interface-to-the-pm4py-process-mining-library" class="anchor"></a>R Interface to the PM4PY Process Mining Library</h1></div>
-<p>The goal of pm4py is to provide a bridge to the Python library PM4PY developed at: <a href="http://pm4py.org/" class="uri">http://pm4py.org/</a></p>
+<a href="#r-interface-to-the-pm4py-process-mining-library" class="anchor"></a>R Interface to the PM4Py Process Mining Library</h1></div>
+<p>The goal of the R package ‘pm4py’ is to provide a bridge between <a href="https://www.bupar.net/">bupaR</a> and the Python library <a href="http://pm4py.org/">PM4Py</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the development version of pm4py with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"fmannhardt/pm4py"</span>)</a></code></pre></div>
 <p>Then, automatically install the pm4py package in a virtual or Conda environment:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/install_pm4py.html">install_pm4py</a></span>()</a></code></pre></div>
-<p>See the <code>reticulate</code> documentation for more information on the available options or how to specify an existing Python environment: <a href="https://rstudio.github.io/reticulate/" class="uri">https://rstudio.github.io/reticulate/</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">pm4py<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/pm4py/topics/install_pm4py">install_pm4py</a></span>()</a></code></pre></div>
+<p>See the ‘reticulate’ documentation for more information on the available options or how to specify an existing Python environment: <a href="https://rstudio.github.io/reticulate/" class="uri">https://rstudio.github.io/reticulate/</a></p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">

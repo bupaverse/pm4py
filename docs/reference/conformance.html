@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -162,25 +162,45 @@ In case of <code>conformance_alignment</code> a data frame of log and model move
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eventdataR</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>patients</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='pm4py_available.html'>pm4py_available</a></span>()) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eventdataR</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>patients</span>)
 
-<span class='co'># As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:</span>
-<span class='no'>patients_completes</span> <span class='kw'>&lt;-</span> <span class='no'>patients</span>[<span class='no'>patients</span>$<span class='no'>registration_type</span> <span class='kw'>==</span> <span class='st'>"complete"</span>, ]
+  <span class='co'># As Inductive Miner of PM4Py is not life-cycle aware, keep only `complete` events:</span>
+  <span class='no'>patients_completes</span> <span class='kw'>&lt;-</span> <span class='no'>patients</span>[<span class='no'>patients</span>$<span class='no'>registration_type</span> <span class='kw'>==</span> <span class='st'>"complete"</span>, ]
 
-<span class='co'># Discover a Petri net</span>
-<span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='discovery.html'>discovery_inductive</a></span>(<span class='no'>patients_completes</span>)
+  <span class='co'># Discover a Petri net</span>
+  <span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='discovery.html'>discovery_inductive</a></span>(<span class='no'>patients_completes</span>)
 
-<span class='co'># Alignment event log and Petri net</span>
-<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>conformance_alignment</span>(<span class='no'>patients_completes</span>,
-                           <span class='no'>net</span>$<span class='no'>petrinet</span>,
-                           <span class='no'>net</span>$<span class='no'>initial_marking</span>,
-                           <span class='no'>net</span>$<span class='no'>final_marking</span>)
+  <span class='co'># Align event log and Petri net</span>
+  <span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>conformance_alignment</span>(<span class='no'>patients_completes</span>,
+                             <span class='no'>net</span>$<span class='no'>petrinet</span>,
+                             <span class='no'>net</span>$<span class='no'>initial_marking</span>,
+                             <span class='no'>net</span>$<span class='no'>final_marking</span>)
 
-<span class='co'># Alignment is returned in long format as data frame</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>a</span>)
-<span class='co'># }</span><div class='input'>
+  <span class='co'># Alignment is returned as data frame</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>a</span>)
+}</div><div class='output co'>#&gt;   case_id                    log_id              model_id             log_label
+#&gt; 1       1          t_Registration_0          Registration          Registration
+#&gt; 2       1 t_Triage and Assessment_1 Triage and Assessment Triage and Assessment
+#&gt; 3       1            t_Blood test_2            Blood test            Blood test
+#&gt; 4       1              t_MRI SCAN_3              MRI SCAN              MRI SCAN
+#&gt; 5       1       t_Discuss Results_4       Discuss Results       Discuss Results
+#&gt; 6       1             t_Check-out_5             Check-out             Check-out
+#&gt;             model_label cost visited_states queued_states traversed_arcs
+#&gt; 1          Registration    0              7            21             25
+#&gt; 2 Triage and Assessment    0              7            21             25
+#&gt; 3            Blood test    0              7            21             25
+#&gt; 4              MRI SCAN    0              7            21             25
+#&gt; 5       Discuss Results    0              7            21             25
+#&gt; 6             Check-out    0              7            21             25
+#&gt;   fitness
+#&gt; 1       1
+#&gt; 2       1
+#&gt; 3       1
+#&gt; 4       1
+#&gt; 5       1
+#&gt; 6       1</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

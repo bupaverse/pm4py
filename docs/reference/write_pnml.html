@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -139,12 +139,32 @@ By default the initial marking of the bupaR Petri net will be used if available.
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'># don't run automatically since this writes a file
+</div><span class='co'># NOT RUN {</span>
+<span class='kw'>if</span> (<span class='fu'><a href='pm4py_available.html'>pm4py_available</a></span>()) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eventdataR</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>patients</span>)
+
+  <span class='co'># As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:</span>
+  <span class='no'>patients_completes</span> <span class='kw'>&lt;-</span> <span class='no'>patients</span>[<span class='no'>patients</span>$<span class='no'>registration_type</span> <span class='kw'>==</span> <span class='st'>"complete"</span>, ]
+
+  <span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='discovery.html'>discovery_inductive</a></span>(<span class='no'>patients_completes</span>)
+  <span class='fu'>write_pnml</span>(<span class='no'>net</span>$<span class='no'>petrinet</span>,
+             <span class='st'>"test.pnml"</span>,
+             <span class='no'>net</span>$<span class='no'>initial_marking</span>,
+             <span class='no'>net</span>$<span class='no'>final_marking</span>)
+}
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

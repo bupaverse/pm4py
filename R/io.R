@@ -6,6 +6,24 @@
 #' By default the initial marking of the bupaR Petri net will be used if available.
 #' @param final_marking A R vector with the place identifiers of the final marking or a PM4PY marking.
 #'
+#' @examples
+#' # don't run automatically since this writes a file
+#' \dontrun{
+#' if (pm4py_available()) {
+#'   library(eventdataR)
+#'   data(patients)
+#'
+#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+#'   patients_completes <- patients[patients$registration_type == "complete", ]
+#'
+#'   net <- discovery_inductive(patients_completes)
+#'   write_pnml(net$petrinet,
+#'              "test.pnml",
+#'              net$initial_marking,
+#'              net$final_marking)
+#' }
+#' }
+#'
 #' @export
 write_pnml <- function(petrinet,
                        file,

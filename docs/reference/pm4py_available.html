@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Objects exported from other packages — reexports • pm4py</title>
+<title>Is the PM4Py module available — pm4py_available • pm4py</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,13 +30,9 @@
 
 
 
-<meta property="og:title" content="Objects exported from other packages — reexports" />
+<meta property="og:title" content="Is the PM4Py module available — pm4py_available" />
 
-<meta property="og:description" content="These objects are imported from other packages. Follow the links
-below to see their documentation.
-
-  reticulater_to_py, py_to_r
-" />
+<meta property="og:description" content="Is the PM4Py module available" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,28 +102,38 @@ below to see their documentation.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Objects exported from other packages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/fmannhardt/pm4py/blob/master/R/bridge.R'><code>R/bridge.R</code></a></small>
-    <div class="hidden name"><code>reexports.Rd</code></div>
+    <h1>Is the PM4Py module available</h1>
+    <small class="dont-index">Source: <a href='https://github.com/fmannhardt/pm4py/blob/master/R/package.R'><code>R/package.R</code></a></small>
+    <div class="hidden name"><code>pm4py_available.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>These objects are imported from other packages. Follow the links
-below to see their documentation.</p>
-<dl class='dl-horizontal'>
-  <dt>reticulate</dt><dd><p><code><a href='https://www.rdocumentation.org/packages/reticulate/topics/r-py-conversion'>r_to_py</a></code>, <code><a href='https://www.rdocumentation.org/packages/reticulate/topics/r-py-conversion'>py_to_r</a></code></p></dd>
-</dl>
+    <p>Is the PM4Py module available</p>
     
     </div>
 
+    <pre class="usage"><span class='fu'>pm4py_available</span>()</pre>
         
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p><code>TRUE</code> is PM4Py is installed</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'>pm4py_available</span>()) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='fu'><a href='version.html'>version</a></span>())
+}</div><div class='output co'>#&gt; [1] '1.1.1'</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

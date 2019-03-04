@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert to a PM4PY marking — as_pm4py_marking • pm4py</title>
+<title>Convert to a PM4Py marking — as_pm4py_marking • pm4py</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Convert to a PM4PY marking — as_pm4py_marking" />
+<meta property="og:title" content="Convert to a PM4Py marking — as_pm4py_marking" />
 
-<meta property="og:description" content="Converts a character vector of place identifiers to a PM4PY marking object." />
+<meta property="og:description" content="Converts a character vector of place identifiers to a PM4Py marking object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -102,14 +102,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert to a PM4PY marking</h1>
+    <h1>Convert to a PM4Py marking</h1>
     <small class="dont-index">Source: <a href='https://github.com/fmannhardt/pm4py/blob/master/R/bridge.R'><code>R/bridge.R</code></a></small>
     <div class="hidden name"><code>as_pm4py_marking.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Converts a character vector of place identifiers to a PM4PY marking object.</p>
+    <p>Converts a character vector of place identifiers to a PM4Py marking object.</p>
     
     </div>
 
@@ -124,17 +124,31 @@
     </tr>
     <tr>
       <th>petrinet</th>
-      <td><p>A PM4PY Petri net.</p></td>
+      <td><p>A PM4Py Petri net.</p></td>
     </tr>
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='pm4py_available.html'>pm4py_available</a></span>()) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eventdataR</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>patients</span>)
+
+  <span class='co'># As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:</span>
+  <span class='no'>patients_completes</span> <span class='kw'>&lt;-</span> <span class='no'>patients</span>[<span class='no'>patients</span>$<span class='no'>registration_type</span> <span class='kw'>==</span> <span class='st'>"complete"</span>, ]
+
+  <span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='discovery.html'>discovery_inductive</a></span>(<span class='no'>patients_completes</span>)
+  <span class='fu'>as_pm4py_marking</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"sink"</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/reticulate/topics/r-py-conversion'>r_to_py</a></span>(<span class='no'>net</span>$<span class='no'>petrinet</span>))
+}</div><div class='output co'>#&gt; ['sink:1']</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
