@@ -1,6 +1,6 @@
 #' PM4PY for R
 #'
-#' This package provides acces to the Python Process Mining library PM4PY in R
+#' This package provides access to the Python Process Mining library PM4PY in R
 #' and provides conversion between bupaR and PM4PY data structures.
 #'
 #' To use this package, you need to have a Python environment (Conda or virtualenv)

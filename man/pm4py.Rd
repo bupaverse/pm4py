@@ -9,7 +9,7 @@
 pm4py
 }
 \description{
-This package provides acces to the Python Process Mining library PM4PY in R
+This package provides access to the Python Process Mining library PM4PY in R
 and provides conversion between bupaR and PM4PY data structures.
 }
 \details{
