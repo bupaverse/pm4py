@@ -17,8 +17,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#'   install_pm4py()
+#' \donttest{
+#'   pm4py::install_pm4py()
 #' }
 #'
 install_pm4py <- function(method = "auto", conda = "auto", ...) {

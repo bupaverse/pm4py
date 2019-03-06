@@ -7,8 +7,8 @@
 #' @param final_marking A R vector with the place identifiers of the final marking or a PM4PY marking.
 #'
 #' @examples
-#' # don't run automatically since this writes a file
-#' \dontrun{
+#' # don't test automatically since this writes a file
+#' \donttest{
 #' if (pm4py_available()) {
 #'   library(eventdataR)
 #'   data(patients)

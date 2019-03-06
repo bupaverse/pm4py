@@ -21,8 +21,8 @@ By default the initial marking of the bupaR Petri net will be used if available.
 Write Petri net as PNML
 }
 \examples{
-# don't run automatically since this writes a file
-\dontrun{
+# don't test automatically since this writes a file
+\donttest{
 if (pm4py_available()) {
   library(eventdataR)
   data(patients)
