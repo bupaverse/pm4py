@@ -1,5 +1,8 @@
 # R Interface to the PM4Py Process Mining Library
 
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/pm4py)](https://cran.r-project.org/package=pm4py)
+[![Travis-CI Build Status](https://travis-ci.org/fmannhardt/pm4py.svg?branch=master)](https://travis-ci.org/fmannhardt/pm4py)
+
 The goal of the R package 'pm4py' is to provide a bridge between [bupaR](https://www.bupar.net/) and the Python library [PM4Py](http://pm4py.org/).
 
 ## Installation

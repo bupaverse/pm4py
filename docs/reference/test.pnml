@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pnml>
+  <net id="net1" type="http://www.pnml.org/version-2009/grammar/pnmlcoremodel">
+    <page id="n0">
+      <place id="p_7">
+        <name>
+          <text>p_7</text>
+        </name>
+      </place>
+      <place id="p_5">
+        <name>
+          <text>p_5</text>
+        </name>
+      </place>
+      <place id="p_6">
+        <name>
+          <text>p_6</text>
+        </name>
+      </place>
+      <place id="source">
+        <name>
+          <text>source</text>
+        </name>
+        <initialMarking>
+          <text>1</text>
+        </initialMarking>
+      </place>
+      <place id="p_3">
+        <name>
+          <text>p_3</text>
+        </name>
+      </place>
+      <place id="p_4">
+        <name>
+          <text>p_4</text>
+        </name>
+      </place>
+      <place id="sink">
+        <name>
+          <text>sink</text>
+        </name>
+      </place>
+      <transition id="MRI SCAN">
+        <name>
+          <text>MRI SCAN</text>
+        </name>
+      </transition>
+      <transition id="skip_6">
+        <name>
+          <text>skip_6</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="54d99cb7-6816-4f8e-b59a-b2ebfc964fd4"/>
+      </transition>
+      <transition id="Registration">
+        <name>
+          <text>Registration</text>
+        </name>
+      </transition>
+      <transition id="Discuss Results">
+        <name>
+          <text>Discuss Results</text>
+        </name>
+      </transition>
+      <transition id="skip_5">
+        <name>
+          <text>skip_5</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="03123dd0-8d4c-4b93-96dc-6f5a5c36de7d"/>
+      </transition>
+      <transition id="Triage and Assessment">
+        <name>
+          <text>Triage and Assessment</text>
+        </name>
+      </transition>
+      <transition id="skip_3">
+        <name>
+          <text>skip_3</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="6ad03e33-96af-468a-81d9-d38adbd93dcd"/>
+      </transition>
+      <transition id="skip_4">
+        <name>
+          <text>skip_4</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="997448cf-d830-46e4-8090-8392af701b33"/>
+      </transition>
+      <transition id="Check-out">
+        <name>
+          <text>Check-out</text>
+        </name>
+      </transition>
+      <transition id="skip_2">
+        <name>
+          <text>skip_2</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="3744f191-fc19-440d-8b5a-c982955b77d4"/>
+      </transition>
+      <transition id="skip_1">
+        <name>
+          <text>skip_1</text>
+        </name>
+        <toolspecific tool="ProM" version="6.4" activity="$invisible$" localNodeID="e53f42c3-2724-454a-9334-afd52852d80a"/>
+      </transition>
+      <transition id="X-Ray">
+        <name>
+          <text>X-Ray</text>
+        </name>
+      </transition>
+      <transition id="Blood test">
+        <name>
+          <text>Blood test</text>
+        </name>
+      </transition>
+      <arc id="-9223372036749930878" source="skip_2" target="p_7"/>
+      <arc id="-9223372036749930864" source="p_3" target="skip_1"/>
+      <arc id="104844948" source="p_6" target="Discuss Results"/>
+      <arc id="104844829" source="p_4" target="Blood test"/>
+      <arc id="-9223372036749930850" source="Triage and Assessment" target="p_4"/>
+      <arc id="-9223372036749930843" source="skip_4" target="p_6"/>
+      <arc id="-9223372036749930969" source="Discuss Results" target="p_5"/>
+      <arc id="104844969" source="p_4" target="skip_4"/>
+      <arc id="-9223372036749930836" source="p_5" target="Check-out"/>
+      <arc id="104844976" source="p_6" target="skip_5"/>
+      <arc id="-9223372036749930955" source="skip_1" target="p_4"/>
+      <arc id="-9223372036749930948" source="p_5" target="skip_6"/>
+      <arc id="104844864" source="p_7" target="skip_3"/>
+      <arc id="-9223372036749930815" source="source" target="Registration"/>
+      <arc id="-9223372036749930941" source="Blood test" target="p_7"/>
+      <arc id="104844997" source="p_4" target="skip_2"/>
+      <arc id="-9223372036749930934" source="X-Ray" target="p_6"/>
+      <arc id="-9223372036749930927" source="p_3" target="Triage and Assessment"/>
+      <arc id="-9223372036749930920" source="Check-out" target="sink"/>
+      <arc id="104844892" source="p_4" target="X-Ray"/>
+      <arc id="-9223372036749930913" source="skip_3" target="p_6"/>
+      <arc id="104844899" source="skip_5" target="p_5"/>
+      <arc id="104844906" source="MRI SCAN" target="p_6"/>
+      <arc id="-9223372036749930899" source="Registration" target="p_3"/>
+      <arc id="-9223372036749930885" source="skip_6" target="sink"/>
+      <arc id="104844927" source="p_7" target="MRI SCAN"/>
+    </page>
+    <finalmarkings>
+      <marking>
+        <place idref="sink">
+          <text>1</text>
+        </place>
+      </marking>
+    </finalmarkings>
+  </net>
+</pnml>
