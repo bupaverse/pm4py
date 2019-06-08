@@ -45,7 +45,7 @@ NULL
 #' @export
 discovery_inductive <- function(eventlog,
                                 parameters = default_parameters(eventlog),
-                                variant = variant_inductive_only_dfg(),
+                                variant = variant_inductive_imdfb(),
                                 convert = TRUE) {
   pm4py_inductive <- reticulate::import("pm4py.algo.discovery.inductive.factory", convert = convert)
   model <- pm4py_inductive$apply(as_py_value(eventlog),
@@ -56,8 +56,16 @@ discovery_inductive <- function(eventlog,
 
 #' @rdname discovery
 #' @export
+variant_inductive_imdfb <- function() {
+  pm4py$algo$discovery$inductive$factory$IMDFB
+}
+
+
+#' @rdname discovery
+#' @export
 variant_inductive_only_dfg <- function() {
-  pm4py$algo$discovery$inductive$factory$INDUCTIVE_ONLY_DFG
+  .Deprecated("variant_inductive_imdfb")
+  pm4py$algo$discovery$inductive$factory$IMDFB
 }
 
 #' @rdname discovery
@@ -77,4 +85,10 @@ discovery_alpha <- function(eventlog,
 #' @export
 variant_alpha_classic <- function() {
   pm4py$algo$discovery$alpha$factory$ALPHA_VERSION_CLASSIC
+}
+
+#' @rdname discovery
+#' @export
+variant_alpha_classic <- function() {
+  pm4py$algo$discovery$alpha$factory$ALPHA_VERSION_PLUS
 }

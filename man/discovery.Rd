@@ -3,6 +3,7 @@
 \name{discovery}
 \alias{discovery}
 \alias{discovery_inductive}
+\alias{variant_inductive_imdfb}
 \alias{variant_inductive_only_dfg}
 \alias{discovery_alpha}
 \alias{variant_alpha_classic}
@@ -11,10 +12,14 @@
 discovery_inductive(eventlog, parameters = default_parameters(eventlog),
   variant = variant_inductive_only_dfg(), convert = TRUE)
 
+variant_inductive_imdfb()
+
 variant_inductive_only_dfg()
 
 discovery_alpha(eventlog, parameters = default_parameters(eventlog),
   variant = variant_alpha_classic(), convert = TRUE)
+
+variant_alpha_classic()
 
 variant_alpha_classic()
 }

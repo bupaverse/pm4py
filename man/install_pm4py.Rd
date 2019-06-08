@@ -19,6 +19,7 @@ Installs the \code{pm4py} package and its dependencies using \code{pip} since no
 Conda package is available. Further information on the parameters can
 be found in the \code{reticulate} package documentation:
 https://rstudio.github.io/reticulate/
+In some cases (multiple Python versions installed) it might be useful to specify the exact path to the \code{conda} binary.
 }
 \details{
 Additional requirements (a C++ compiler and GraphViz) of PM4PY might
@@ -28,6 +29,9 @@ http://pm4py.pads.rwth-aachen.de/installation/
 \examples{
 \donttest{
   pm4py::install_pm4py()
+
+  # Specify path to conda
+  pm4py::install_pm4py(method = "conda", conda = "/home/user/miniconda3/bin/conda")
 }
 
 }
