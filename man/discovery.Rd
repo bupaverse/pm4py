@@ -10,7 +10,7 @@
 \title{Petri net discovery algorithms}
 \usage{
 discovery_inductive(eventlog, parameters = default_parameters(eventlog),
-  variant = variant_inductive_only_dfg(), convert = TRUE)
+  variant = variant_inductive_imdfb(), convert = TRUE)
 
 variant_inductive_imdfb()
 
