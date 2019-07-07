@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.19</span>
       </span>
     </div>
 
@@ -185,15 +185,15 @@ In case of <code>conformance_alignment</code> a data frame of log and model move
 #&gt; 2       1 t_Triage and Assessment_1 Triage and Assessment Triage and Assessment
 #&gt; 3       1            t_Blood test_2            Blood test            Blood test
 #&gt; 4       1              t_MRI SCAN_3              MRI SCAN              MRI SCAN
-#&gt; 5       1       t_Discuss Results_4       Discuss Results       Discuss Results
-#&gt; 6       1             t_Check-out_5             Check-out             Check-out
+#&gt; 5       1                        &gt;&gt;                skip_3                    &gt;&gt;
+#&gt; 6       1       t_Discuss Results_4       Discuss Results       Discuss Results
 #&gt;             model_label cost visited_states queued_states traversed_arcs
-#&gt; 1          Registration    0              7            23             25
-#&gt; 2 Triage and Assessment    0              7            23             25
-#&gt; 3            Blood test    0              7            23             25
-#&gt; 4              MRI SCAN    0              7            23             25
-#&gt; 5       Discuss Results    0              7            23             25
-#&gt; 6             Check-out    0              7            23             25
+#&gt; 1          Registration    1              8            21             23
+#&gt; 2 Triage and Assessment    1              8            21             23
+#&gt; 3            Blood test    1              8            21             23
+#&gt; 4              MRI SCAN    1              8            21             23
+#&gt; 5                  &lt;NA&gt;    1              8            21             23
+#&gt; 6       Discuss Results    1              8            21             23
 #&gt;   fitness
 #&gt; 1       1
 #&gt; 2       1

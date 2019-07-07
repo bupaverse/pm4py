@@ -35,7 +35,8 @@
 <meta property="og:description" content="Installs the pm4py package and its dependencies using pip since no
 Conda package is available. Further information on the parameters can
 be found in the reticulate package documentation:
-https://rstudio.github.io/reticulate/" />
+https://rstudio.github.io/reticulate/
+In some cases (multiple Python versions installed) it might be useful to specify the exact path to the conda binary." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +67,7 @@ https://rstudio.github.io/reticulate/" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.19</span>
       </span>
     </div>
 
@@ -115,7 +116,8 @@ https://rstudio.github.io/reticulate/" />
     <p>Installs the <code>pm4py</code> package and its dependencies using <code>pip</code> since no
 Conda package is available. Further information on the parameters can
 be found in the <code>reticulate</code> package documentation:
-https://rstudio.github.io/reticulate/</p>
+https://rstudio.github.io/reticulate/
+In some cases (multiple Python versions installed) it might be useful to specify the exact path to the <code>conda</code> binary.</p>
     
     </div>
 
@@ -148,6 +150,11 @@ http://pm4py.pads.rwth-aachen.de/installation/</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>  <span class='kw pkg'>pm4py</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/pm4py/topics/install_pm4py'>install_pm4py</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Could not find `conda` environment, falling back to virtualenv ... </span></div><div class='output co'>#&gt; <span class='error'>Error: Error 1 occurred installing packages into conda environment r-reticulate</span></div><div class='input'>
+  <span class='co'># Specify path to conda</span>
+  <span class='kw pkg'>pm4py</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/pm4py/topics/install_pm4py'>install_pm4py</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"conda"</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"/home/user/miniconda3/bin/conda"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Could not find `conda` environment, falling back to virtualenv ... </span></div><div class='output co'>#&gt; <span class='error'>Error: Windows Conda installation failed (no conda binary found)</span>
+#&gt; <span class='error'></span>
+#&gt; <span class='error'>Install Anaconda 3.x for Windows (https://www.anaconda.com/download/#windows)</span>
+#&gt; <span class='error'>before proceeding</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
