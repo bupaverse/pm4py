@@ -3,7 +3,6 @@ prepare_pn_with_markings <- function(model, convert = FALSE) {
     if (inherits(model, "python.builtin.object")) {
       model <- py_to_r(model) # Python tuple was not auto-converted
     }
-    model <- lapply(model, py_to_r)
     names(model) <- c("petrinet","initial_marking", "final_marking")
     model$petrinet$marking <- model$initial_marking
   }
