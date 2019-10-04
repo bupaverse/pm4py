@@ -89,6 +89,6 @@ variant_alpha_classic <- function() {
 
 #' @rdname discovery
 #' @export
-variant_alpha_classic <- function() {
+variant_alpha_plus <- function() {
   pm4py$algo$discovery$alpha$factory$ALPHA_VERSION_PLUS
 }

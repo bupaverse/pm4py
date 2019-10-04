@@ -7,6 +7,7 @@
 \alias{variant_inductive_only_dfg}
 \alias{discovery_alpha}
 \alias{variant_alpha_classic}
+\alias{variant_alpha_plus}
 \title{Petri net discovery algorithms}
 \usage{
 discovery_inductive(eventlog, parameters = default_parameters(eventlog),
@@ -21,7 +22,7 @@ discovery_alpha(eventlog, parameters = default_parameters(eventlog),
 
 variant_alpha_classic()
 
-variant_alpha_classic()
+variant_alpha_plus()
 }
 \arguments{
 \item{eventlog}{A bupaR event log or an R data frame.}
