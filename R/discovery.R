@@ -6,7 +6,7 @@
 #' @param parameters A named list of PM4PY parameters (see \link{parameters}) as required by the discovery method.
 #'  By default, if the `eventlog` is a bupaR event log, the `activity_key`, `timestamp_key`, and `caseid_key` are automatically determined.
 #' @param variant The variant of the discovery algorithm to be used.
-#'  For Inductive Miner currently only `variant_inductive_only_dfg` is supported.
+#'  For Inductive Miner currently only `variant_inductive_imdfb` is supported.
 #' @param convert TRUE to automatically convert Python objects to their R equivalent.
 #'  If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
 #'
@@ -89,6 +89,6 @@ variant_alpha_classic <- function() {
 
 #' @rdname discovery
 #' @export
-variant_alpha_classic <- function() {
+variant_alpha_plus <- function() {
   pm4py$algo$discovery$alpha$factory$ALPHA_VERSION_PLUS
 }

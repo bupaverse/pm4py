@@ -7,6 +7,7 @@
 \alias{variant_inductive_only_dfg}
 \alias{discovery_alpha}
 \alias{variant_alpha_classic}
+\alias{variant_alpha_plus}
 \title{Petri net discovery algorithms}
 \usage{
 discovery_inductive(eventlog, parameters = default_parameters(eventlog),
@@ -21,7 +22,7 @@ discovery_alpha(eventlog, parameters = default_parameters(eventlog),
 
 variant_alpha_classic()
 
-variant_alpha_classic()
+variant_alpha_plus()
 }
 \arguments{
 \item{eventlog}{A bupaR event log or an R data frame.}
@@ -30,7 +31,7 @@ variant_alpha_classic()
 By default, if the \code{eventlog} is a bupaR event log, the \code{activity_key}, \code{timestamp_key}, and \code{caseid_key} are automatically determined.}
 
 \item{variant}{The variant of the discovery algorithm to be used.
-For Inductive Miner currently only \code{variant_inductive_only_dfg} is supported.}
+For Inductive Miner currently only \code{variant_inductive_imdfb} is supported.}
 
 \item{convert}{TRUE to automatically convert Python objects to their R equivalent.
 If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
