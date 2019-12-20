@@ -1,7 +1,7 @@
 # R Interface to the PM4Py Process Mining Library
 
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/pm4py)](https://cran.r-project.org/package=pm4py)
-[![Travis-CI Build Status](https://travis-ci.org/fmannhardt/pm4py.svg?branch=master)](https://travis-ci.org/fmannhardt/pm4py)
+[![Travis-CI Build Status](https://travis-ci.org/bupaverse/pm4py.svg?branch=master)](https://travis-ci.org/bupaverse/pm4py)
 
 The goal of the R package 'pm4py' is to provide a bridge between [bupaR](https://www.bupar.net/) and the Python library [PM4Py](http://pm4py.org/).
 
@@ -10,7 +10,7 @@ The goal of the R package 'pm4py' is to provide a bridge between [bupaR](https:/
 You can install the development version of pm4py with:
 
 ``` r
-remotes::install_github("fmannhardt/pm4py")
+remotes::install_github("bupaverse/pm4py")
 ```
 
 Then, automatically install the pm4py package in a virtual or Conda environment:
@@ -20,6 +20,11 @@ pm4py::install_pm4py()
 
 See the 'reticulate' documentation for more information on the available options or how to specify an existing Python environment: 
 https://rstudio.github.io/reticulate/
+
+## PM4Py Version
+
+To help reproducibility and reduce the number of regressions due to API changes in PM4Py, this package is built against a fixed PM4Py version that is defined in the file `R/version.R`. We also adopt the versioning schema of the PM4Py project for this R package. So, the R package version `1.1.19` will install the PM4Py version `1.1.19`. In case of fixes required to the R package itself, for example, for bugs or adopting new features, we will add a suffix `-rev` to the version to indicate the change. Of course, nothing prevents you from manually overriding the synchronisation between the PM4Py version and the R PM4Py package version.
+
 
 ## Example
 

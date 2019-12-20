@@ -1,7 +1,7 @@
 Package: pm4py
 Type: Package
 Title: Interface to the 'PM4py' Process Mining Library
-Version: 1.1.19
+Version: 1.2.6
 Authors@R: person("Felix", "Mannhardt", email = "felix.mannhardt@sintef.no",
   role = c("aut", "cre"))
 Description: Interface to 'PM4py' <http://pm4py.org>, a process mining library 
@@ -19,7 +19,7 @@ Imports:
   purrr,
   stringr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Suggests: 
     testthat,
     eventdataR

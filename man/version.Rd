@@ -2,7 +2,7 @@
 % Please edit documentation in R/package.R
 \name{version}
 \alias{version}
-\title{Returns PM4Py version used}
+\title{THis function is deprecated, please use \code{\link{pm4py_version}}.}
 \usage{
 version()
 }
@@ -10,10 +10,5 @@ version()
 package_version S3 class
 }
 \description{
-Returns PM4Py version used
-}
-\examples{
-if (pm4py_available()) {
-  print(version())
-}
+THis function is deprecated, please use \code{\link{pm4py_version}}.
 }

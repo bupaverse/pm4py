@@ -29,8 +29,10 @@
 pm4py <- NULL
 
 .onLoad <- function(libname, pkgname) {
-  # use superassignment to update global reference to pm4py
-  pm4py <<- import("pm4py", delay_load = TRUE)
+  if (pm4py_available()) {
+    # use superassignment to update global reference to pm4py
+    pm4py <<- import("pm4py", delay_load = TRUE)
+  }
 }
 
 pm4py_tools <- function() {

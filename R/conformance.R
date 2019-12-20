@@ -109,3 +109,9 @@ conformance_alignment <- function(eventlog,
 variant_state_equation_a_star <- function() {
   pm4py$algo$conformance$alignments$factory$VERSION_STATE_EQUATION_A_STAR
 }
+
+#' @rdname conformance
+#' @export
+variant_dijkstra_no_heuristics <- function() {
+  pm4py$algo$conformance$alignments$factory$VERSION_DIJKSTRA_NO_HEURISTICS
+}

@@ -10,18 +10,36 @@
 \alias{variant_fitness_alignment_based}
 \title{Calculates evaluation measures for a Petri nets and an Event Log}
 \usage{
-evaluation_all(eventlog, petrinet, initial_marking, final_marking,
-  parameters = default_parameters(eventlog), convert = TRUE)
-
-evaluation_precision(eventlog, petrinet, initial_marking, final_marking,
+evaluation_all(
+  eventlog,
+  petrinet,
+  initial_marking,
+  final_marking,
   parameters = default_parameters(eventlog),
-  variant = variant_precision_etconformance(), convert = TRUE)
+  convert = TRUE
+)
+
+evaluation_precision(
+  eventlog,
+  petrinet,
+  initial_marking,
+  final_marking,
+  parameters = default_parameters(eventlog),
+  variant = variant_precision_etconformance(),
+  convert = TRUE
+)
 
 variant_precision_etconformance()
 
-evaluation_fitness(eventlog, petrinet, initial_marking, final_marking,
+evaluation_fitness(
+  eventlog,
+  petrinet,
+  initial_marking,
+  final_marking,
   parameters = default_parameters(eventlog),
-  variant = variant_fitness_token_based(), convert = TRUE)
+  variant = variant_fitness_token_based(),
+  convert = TRUE
+)
 
 variant_fitness_token_based()
 

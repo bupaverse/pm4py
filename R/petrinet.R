@@ -56,3 +56,83 @@ petrinet_synchronous_product <- function(pn1,
 
   prepare_pn_with_markings(sync_net, convert)
 }
+
+#' Check Workflow net property
+#'
+#' Checks if the Petri net is a Workflow net
+#'
+#'
+#' @param pn Petri net
+#' @param convert `TRUE` to automatically convert Python objects to their R equivalent. If you pass `FALSE` you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
+#'
+#' @return A single logical
+#'
+#' @examples
+#' if (pm4py_available()) {
+#'   library(eventdataR)
+#'   data(patients)
+#'
+#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+#'   patients_completes <- patients[patients$registration_type == "complete", ]
+#'
+#'   net <- discovery_inductive(patients_completes)
+#'   petrinet_check_wfnet(net$petrinet)
+#'
+#' }
+#' @import reticulate
+#' @export
+petrinet_check_wfnet <- function(pn,
+                                 convert = TRUE) {
+
+  pm4py_soundness <- import("pm4py.objects.petri.check_soundness", convert = convert)
+
+  pn <- as_py_value(pn)
+
+  pm4py_soundness$check_wfnet(pn)
+}
+
+#' Check Relaxed soundness property
+#'
+#' Checks if the Petri net is relaxed sound
+#'
+#' @param pn Petri net
+#' @param im Initial marking of the Petri net (optional for workflow nets)
+#' @param fm Final marking of the Petri net (optional for workflow nets)
+#' @param convert `TRUE` to automatically convert Python objects to their R equivalent. If you pass `FALSE` you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
+#'
+#' @return A single logical
+#'
+#' @examples
+#' if (pm4py_available()) {
+#'   library(eventdataR)
+#'   data(patients)
+#'
+#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
+#'   patients_completes <- patients[patients$registration_type == "complete", ]
+#'
+#'   net <- discovery_inductive(patients_completes)
+#'   petrinet_check_relaxed_soundness(net$petrinet)
+#'
+#' }
+#' @import reticulate
+#' @export
+petrinet_check_relaxed_soundness <- function(pn,
+                                             im = NULL,
+                                             fm = NULL,
+                                             convert = TRUE) {
+
+  pm4py_soundness <- import("pm4py.objects.petri.check_soundness", convert = convert)
+
+  pn <- as_py_value(pn)
+
+  if (petrinet_check_wfnet(pn)) {
+    pm4py_soundness$check_relaxed_soundness_of_wfnet(pn)
+  } else {
+    stopifnot(!is.null(im))
+    stopifnot(!is.null(fm))
+    pm4py_soundness$check_relaxed_soundness_net_in_fin_marking(pn,
+                                                               as_pm4py_marking(im, pn),
+                                                               as_pm4py_marking(fm, pn))
+  }
+
+}

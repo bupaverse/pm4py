@@ -4,8 +4,16 @@
 \alias{petrinet_synchronous_product}
 \title{Synchronous product Petri net}
 \usage{
-petrinet_synchronous_product(pn1, im1, fm1, pn2, im2, fm2, skip = ">>",
-  convert = TRUE)
+petrinet_synchronous_product(
+  pn1,
+  im1,
+  fm1,
+  pn2,
+  im2,
+  fm2,
+  skip = ">>",
+  convert = TRUE
+)
 }
 \arguments{
 \item{pn1}{First Petri net}

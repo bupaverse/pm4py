@@ -4,13 +4,22 @@
 \alias{conformance}
 \alias{conformance_alignment}
 \alias{variant_state_equation_a_star}
+\alias{variant_dijkstra_no_heuristics}
 \title{Conformance between an Event Log and a Petri net}
 \usage{
-conformance_alignment(eventlog, petrinet, initial_marking, final_marking,
+conformance_alignment(
+  eventlog,
+  petrinet,
+  initial_marking,
+  final_marking,
   parameters = default_parameters(eventlog),
-  variant = variant_state_equation_a_star(), convert = TRUE)
+  variant = variant_state_equation_a_star(),
+  convert = TRUE
+)
 
 variant_state_equation_a_star()
+
+variant_dijkstra_no_heuristics()
 }
 \arguments{
 \item{eventlog}{A bupaR or PM4PY event log.}

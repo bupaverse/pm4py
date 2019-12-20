@@ -10,15 +10,23 @@
 \alias{variant_alpha_plus}
 \title{Petri net discovery algorithms}
 \usage{
-discovery_inductive(eventlog, parameters = default_parameters(eventlog),
-  variant = variant_inductive_imdfb(), convert = TRUE)
+discovery_inductive(
+  eventlog,
+  parameters = default_parameters(eventlog),
+  variant = variant_inductive_imdfb(),
+  convert = TRUE
+)
 
 variant_inductive_imdfb()
 
 variant_inductive_only_dfg()
 
-discovery_alpha(eventlog, parameters = default_parameters(eventlog),
-  variant = variant_alpha_classic(), convert = TRUE)
+discovery_alpha(
+  eventlog,
+  parameters = default_parameters(eventlog),
+  variant = variant_alpha_classic(),
+  convert = TRUE
+)
 
 variant_alpha_classic()
 
