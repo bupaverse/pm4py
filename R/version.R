@@ -10,7 +10,7 @@ PM4PY_DEVELOPMENT=FALSE
 #  pm4py==1.0.21
 # or a Github link to a specific branch/tag/hash:
 #  https://github.com/pm4py/pm4py-source/archive/develop.zip
-PM4PY_VERSION="pm4py==1.2.6"
+PM4PY_VERSION="pm4py==1.2.7"
 
 # PM4PY dependencies for development versions
-PM4PY_DEPENDENCIES="https://raw.githubusercontent.com/pm4py/pm4py-source/1.2.6/requirements.txt"
+PM4PY_DEPENDENCIES="https://raw.githubusercontent.com/pm4py/pm4py-source/1.2.7/requirements.txt"

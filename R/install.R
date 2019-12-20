@@ -33,14 +33,14 @@ install_pm4py <- function(method = "auto", conda = "auto", ...) {
     }
     reticulate::py_install(PM4PY_VERSION, method = method, conda = conda, pip = TRUE, ...)
     # workaround for issue with PM4Py dependencies
-    reticulate::py_install("ortools", method = method, conda = conda, pip = TRUE, ...)
+    #reticulate::py_install("ortools", method = method, conda = conda, pip = TRUE, ...)
   },
     error = function(e) {
       # workaround for virtualenv not supporting `pip` parameter
       warning("Could not find `conda` environment, falling back to virtualenv ... ")
       reticulate::py_install(PM4PY_VERSION, method = method, conda = conda, ...)
       # workaround for issue with PM4Py dependencies
-      reticulate::py_install("ortools", method = method, conda = conda, ...)
+      #reticulate::py_install("ortools", method = method, conda = conda, ...)
     }
   )
 }
