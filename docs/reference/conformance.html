@@ -8,21 +8,25 @@
 
 <title>Conformance between an Event Log and a Petri net — conformance • pm4py</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +34,11 @@
 
 
 
-<meta property="og:title" content="Conformance between an Event Log and a Petri net — conformance" />
 
+<meta property="og:title" content="Conformance between an Event Log and a Petri net — conformance" />
 <meta property="og:description" content="Conformance between an Event Log and a Petri net" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -45,6 +50,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -63,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.7</span>
       </span>
     </div>
 
@@ -71,7 +77,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -82,11 +88,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/fmannhardt/pm4py">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,6 +102,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -108,17 +114,23 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Conformance between an Event Log and a Petri net</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>conformance_alignment</span>(<span class='no'>eventlog</span>, <span class='no'>petrinet</span>, <span class='no'>initial_marking</span>, <span class='no'>final_marking</span>,
+    <pre class="usage"><span class='fu'>conformance_alignment</span>(
+  <span class='no'>eventlog</span>,
+  <span class='no'>petrinet</span>,
+  <span class='no'>initial_marking</span>,
+  <span class='no'>final_marking</span>,
   <span class='kw'>parameters</span> <span class='kw'>=</span> <span class='fu'><a href='parameters.html'>default_parameters</a></span>(<span class='no'>eventlog</span>),
-  <span class='kw'>variant</span> <span class='kw'>=</span> <span class='fu'>variant_state_equation_a_star</span>(), <span class='kw'>convert</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>variant</span> <span class='kw'>=</span> <span class='fu'>variant_state_equation_a_star</span>(),
+  <span class='kw'>convert</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
-<span class='fu'>variant_state_equation_a_star</span>()</pre>
-    
+<span class='fu'>variant_state_equation_a_star</span>()
+
+<span class='fu'>variant_dijkstra_no_heuristics</span>()</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -151,20 +163,19 @@ By default the <code>activity_key</code> from the bupaR event log is specified u
     <tr>
       <th>convert</th>
       <td><p><code>TRUE</code> to automatically convert Python objects to their R equivalent.
-If you pass <code>FALSE</code> you can do manual conversion using the <a href='https://www.rdocumentation.org/packages/reticulate/topics/r-py-conversion'>r-py-conversion</a> function.</p></td>
+If you pass <code>FALSE</code> you can do manual conversion using the <a href='https://rdrr.io/pkg/reticulate/man/r-py-conversion.html'>r-py-conversion</a> function.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A data frame describing the conformance result.
 In case of <code>conformance_alignment</code> a data frame of log and model moves.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='pm4py_available.html'>pm4py_available</a></span>()) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>eventdataR</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>patients</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>eventdataR</span>)
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>patients</span>)
 
   <span class='co'># As Inductive Miner of PM4Py is not life-cycle aware, keep only `complete` events:</span>
   <span class='no'>patients_completes</span> <span class='kw'>&lt;-</span> <span class='no'>patients</span>[<span class='no'>patients</span>$<span class='no'>registration_type</span> <span class='kw'>==</span> <span class='st'>"complete"</span>, ]
@@ -179,42 +190,41 @@ In case of <code>conformance_alignment</code> a data frame of log and model move
                              <span class='no'>net</span>$<span class='no'>final_marking</span>)
 
   <span class='co'># Alignment is returned as data frame</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>a</span>)
-}</div><div class='output co'>#&gt;   case_id                    log_id              model_id             log_label
-#&gt; 1       1          t_Registration_0          Registration          Registration
-#&gt; 2       1 t_Triage and Assessment_1 Triage and Assessment Triage and Assessment
-#&gt; 3       1            t_Blood test_2            Blood test            Blood test
-#&gt; 4       1              t_MRI SCAN_3              MRI SCAN              MRI SCAN
-#&gt; 5       1                        &gt;&gt;                skip_3                    &gt;&gt;
-#&gt; 6       1       t_Discuss Results_4       Discuss Results       Discuss Results
-#&gt;             model_label cost visited_states queued_states traversed_arcs
-#&gt; 1          Registration    1              8            21             23
-#&gt; 2 Triage and Assessment    1              8            21             23
-#&gt; 3            Blood test    1              8            21             23
-#&gt; 4              MRI SCAN    1              8            21             23
-#&gt; 5                  &lt;NA&gt;    1              8            21             23
-#&gt; 6       Discuss Results    1              8            21             23
-#&gt;   fitness
-#&gt; 1       1
-#&gt; 2       1
-#&gt; 3       1
-#&gt; 4       1
-#&gt; 5       1
-#&gt; 6       1</div><div class='input'>
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>a</span>)
+}</div><div class='output co'>#&gt;   case_id                    log_id                             model_id
+#&gt; 1       1          t_Registration_0 2b18c63f-fbb9-438a-af28-b122a02c5e7b
+#&gt; 2       1 t_Triage and Assessment_1 75fa68a2-212f-4a2d-8fa5-1f13f2226694
+#&gt; 3       1            t_Blood test_2 035a1874-c560-4497-8c6f-629df2da7c17
+#&gt; 4       1              t_MRI SCAN_3 cb29c64f-f5ff-4307-ad82-c94e5075ac25
+#&gt; 5       1                        &gt;&gt;                               skip_3
+#&gt; 6       1       t_Discuss Results_4 e5c500c6-e987-416e-8c25-f9b43ad1bd7a
+#&gt;               log_label           model_label cost visited_states queued_states
+#&gt; 1          Registration          Registration    1              7            23
+#&gt; 2 Triage and Assessment Triage and Assessment    1              7            23
+#&gt; 3            Blood test            Blood test    1              7            23
+#&gt; 4              MRI SCAN              MRI SCAN    1              7            23
+#&gt; 5                    &gt;&gt;                  &lt;NA&gt;    1              7            23
+#&gt; 6       Discuss Results       Discuss Results    1              7            23
+#&gt;   traversed_arcs fitness
+#&gt; 1             23       1
+#&gt; 2             23       1
+#&gt; 3             23       1
+#&gt; 4             23       1
+#&gt; 5             23       1
+#&gt; 6             23       1</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -222,13 +232,16 @@ In case of <code>conformance_alignment</code> a data frame of log and model move
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
