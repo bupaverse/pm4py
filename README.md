@@ -23,7 +23,7 @@ https://rstudio.github.io/reticulate/
 
 ## PM4Py Version
 
-To help reproducibility and reduce the number of regressions due to API changes in PM4Py, this package is built against a fixed PM4Py version that is defined in the file `R/version.R`. We also adopt the versioning schema of the PM4Py project for this R package. So, the R package version `1.1.19` will install the PM4Py version `1.1.19`. In case of fixes required to the R package itself, for example, for bugs or adopting new features, we will add a suffix `-rev` to the version to indicate the change. Of course, nothing prevents you from manually overriding the synchronisation between the PM4Py version and the R PM4Py package version.
+To facilitate getting stable results and to reduce the number of regressions due to API changes in PM4Py, this package is built against a fixed PM4Py version that is defined in the file `R/version.R`. We also adopt the versioning schema of the PM4Py project for this R package. So, the R package version `1.1.19` will install the PM4Py version `1.1.19`. In case of fixes required to the R package itself, for example, for bugs or adopting new features, we will add a suffix `-rev` to the version to indicate the change. Of course, nothing prevents you from manually overriding the synchronisation between the PM4Py version and the R PM4Py package version.
 
 
 ## Example

@@ -17,7 +17,7 @@ pm4py_version <- function() {
   }
 }
 
-#' THis function is deprecated, please use \code{\link{pm4py_version}}.
+#' This function is deprecated, please use \code{\link{pm4py_version}}.
 #'
 #' @return package_version S3 class
 #' @export
