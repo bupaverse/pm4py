@@ -3,7 +3,10 @@
 language: R
 
 dist: trusty
-r: release
+r:
+  - oldrel
+  - release
+  - devel
 latex: false
 
 cache:
@@ -29,5 +32,5 @@ before_script:
   - set -a
   - source R/version.R
   - set +a
-  - if [ "$PM4PY_DEVELOPMENT" == "TRUE" ]; then pip install -r $PM4PY_DEPENDENCIES; else echo "Skipping"; fi
-  - pip install $PM4PY_VERSION
+  - if [ "$PM4PY_DEVELOPMENT" == "TRUE" ]; then pip install -r $PM4PY_DEVELOPMENT_DEPENDENCIES; else echo "Skipping"; fi
+  - pip install $PM4PY_PIP

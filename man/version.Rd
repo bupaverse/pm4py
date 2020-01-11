@@ -2,7 +2,7 @@
 % Please edit documentation in R/package.R
 \name{version}
 \alias{version}
-\title{THis function is deprecated, please use \code{\link{pm4py_version}}.}
+\title{This function is deprecated, please use \code{\link{pm4py_version}}.}
 \usage{
 version()
 }
@@ -10,5 +10,5 @@ version()
 package_version S3 class
 }
 \description{
-THis function is deprecated, please use \code{\link{pm4py_version}}.
+This function is deprecated, please use \code{\link{pm4py_version}}.
 }

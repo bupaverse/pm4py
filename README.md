@@ -1,5 +1,6 @@
 # R Interface to the PM4Py Process Mining Library
 
+[![](https://cranlogs.r-pkg.org/badges/pm4py)](https://cran.r-project.org/package=pm4py)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/pm4py)](https://cran.r-project.org/package=pm4py)
 [![Travis-CI Build Status](https://travis-ci.org/bupaverse/pm4py.svg?branch=master)](https://travis-ci.org/bupaverse/pm4py)
 
