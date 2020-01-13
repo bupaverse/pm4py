@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.8.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.8</span>
       </span>
     </div>
 
@@ -80,58 +80,62 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the development version of pm4py with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"bupaverse/pm4py"</span>)</a></code></pre></div>
+<p>You can install the released CRAN version of pm4py with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"pm4py"</span>)</a></code></pre></div>
+<p>You can install the development version of pm4py from the <code>dev</code> branch with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"bupaverse/pm4py@dev"</span>)</a></code></pre></div>
 <p>Then, automatically install the pm4py package in a virtual or Conda environment:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">pm4py<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pm4py/man/install_pm4py.html">install_pm4py</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">pm4py<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pm4py/man/install_pm4py.html">install_pm4py</a></span>()</a></code></pre></div>
 <p>See the ‘reticulate’ documentation for more information on the available options or how to specify an existing Python environment: <a href="https://rstudio.github.io/reticulate/" class="uri">https://rstudio.github.io/reticulate/</a></p>
 </div>
 <div id="pm4py-version" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pm4py-version" class="anchor"></a>PM4Py Version</h2>
-<p>To facilitate getting stable results and to reduce the number of regressions due to API changes in PM4Py, this package is built against a fixed PM4Py version that is defined in the file <code>R/version.R</code>. We also adopt the versioning schema of the PM4Py project for this R package. So, the R package version <code>1.1.19</code> will install the PM4Py version <code>1.1.19</code>. In case of fixes required to the R package itself, for example, for bugs or adopting new features, we will add a suffix <code>-rev</code> to the version to indicate the change. Of course, nothing prevents you from manually overriding the synchronisation between the PM4Py version and the R PM4Py package version.</p>
+<p>To facilitate getting stable results and to reduce the number of regressions due to API changes in PM4Py, this package is built against a fixed PM4Py version that is defined in the file <code>R/version.R</code>. We also adopt the versioning schema of the PM4Py project for this R package. So, the R package version <code>1.1.19</code> will install the PM4Py version <code>1.1.19</code>.</p>
+<p>In case of fixes required to the R package itself, for example, for bugs or adopting new features, we will add a suffix <code>-rev</code> to the version to indicate the change. Of course, nothing prevents you from manually overriding the synchronisation between the PM4Py version and the R PM4Py package version using the parameter <code>version</code> as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">pm4py<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pm4py/man/install_pm4py.html">install_pm4py</a></span>(<span class="dt">version =</span> <span class="st">"1.2.7"</span>)</a></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(pm4py)</a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co"># Most of the data structures are converted in their bupaR equivalents</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bupaR)</a>
-<a class="sourceLine" id="cb3-5" title="5"></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co"># As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:</span></a>
-<a class="sourceLine" id="cb3-7" title="7">patients_completes &lt;-<span class="st"> </span>patients[patients<span class="op">$</span>registration_type <span class="op">==</span><span class="st"> "complete"</span>, ]</a>
-<a class="sourceLine" id="cb3-8" title="8"></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co"># Discovery with Inductive Miner</span></a>
-<a class="sourceLine" id="cb3-10" title="10">pn &lt;-<span class="st"> </span><span class="kw"><a href="reference/discovery.html">discovery_inductive</a></span>(patients_completes)</a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co"># This results in an auto-converted bupaR Petri net and markings</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(pn)</a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(pn<span class="op">$</span>petrinet)</a>
-<a class="sourceLine" id="cb3-15" title="15"></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co"># Render with bupaR</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="kw">render_PN</span>(pn<span class="op">$</span>petrinet)</a>
-<a class="sourceLine" id="cb3-18" title="18"></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co"># Render with  PM4PY and DiagrammeR</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DiagrammeR)</a>
-<a class="sourceLine" id="cb3-21" title="21">viz &lt;-<span class="st"> </span>reticulate<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/reticulate/man/import.html">import</a></span>(<span class="st">"pm4py.visualization.petrinet"</span>)</a>
-<a class="sourceLine" id="cb3-22" title="22"></a>
-<a class="sourceLine" id="cb3-23" title="23"><span class="co"># Convert back to Python</span></a>
-<a class="sourceLine" id="cb3-24" title="24">py_pn &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span>(pn<span class="op">$</span>petrinet)</a>
-<a class="sourceLine" id="cb3-25" title="25"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(py_pn)</a>
-<a class="sourceLine" id="cb3-26" title="26"></a>
-<a class="sourceLine" id="cb3-27" title="27"><span class="co"># Render to DOT with PMP4Y</span></a>
-<a class="sourceLine" id="cb3-28" title="28">dot &lt;-<span class="st"> </span>viz<span class="op">$</span>factory<span class="op">$</span><span class="kw"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(py_pn)<span class="op">$</span>source</a>
-<a class="sourceLine" id="cb3-29" title="29"><span class="kw">grViz</span>(<span class="dt">diagram =</span> dot)</a>
-<a class="sourceLine" id="cb3-30" title="30"></a>
-<a class="sourceLine" id="cb3-31" title="31"><span class="co"># Compute alignment</span></a>
-<a class="sourceLine" id="cb3-32" title="32">alignment &lt;-<span class="st"> </span><span class="kw"><a href="reference/conformance.html">conformance_alignment</a></span>(patients_completes, pn<span class="op">$</span>petrinet, pn<span class="op">$</span>initial_marking, pn<span class="op">$</span>final_marking)</a>
-<a class="sourceLine" id="cb3-33" title="33"></a>
-<a class="sourceLine" id="cb3-34" title="34"><span class="co"># # Alignment is returned in long format as data frame</span></a>
-<a class="sourceLine" id="cb3-35" title="35"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(alignment)</a>
-<a class="sourceLine" id="cb3-36" title="36"></a>
-<a class="sourceLine" id="cb3-37" title="37"><span class="co"># Evaluate model quality</span></a>
-<a class="sourceLine" id="cb3-38" title="38">quality &lt;-<span class="st"> </span><span class="kw"><a href="reference/evaluation.html">evaluation_all</a></span>(patients_completes, pn<span class="op">$</span>petrinet, pn<span class="op">$</span>initial_marking, pn<span class="op">$</span>final_marking)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(pm4py)</a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co"># Most of the data structures are converted in their bupaR equivalents</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(bupaR)</a>
+<a class="sourceLine" id="cb5-5" title="5"></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co"># As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:</span></a>
+<a class="sourceLine" id="cb5-7" title="7">patients_completes &lt;-<span class="st"> </span>patients[patients<span class="op">$</span>registration_type <span class="op">==</span><span class="st"> "complete"</span>, ]</a>
+<a class="sourceLine" id="cb5-8" title="8"></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co"># Discovery with Inductive Miner</span></a>
+<a class="sourceLine" id="cb5-10" title="10">pn &lt;-<span class="st"> </span><span class="kw"><a href="reference/discovery.html">discovery_inductive</a></span>(patients_completes)</a>
+<a class="sourceLine" id="cb5-11" title="11"></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co"># This results in an auto-converted bupaR Petri net and markings</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(pn)</a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(pn<span class="op">$</span>petrinet)</a>
+<a class="sourceLine" id="cb5-15" title="15"></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co"># Render with bupaR</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="kw">render_PN</span>(pn<span class="op">$</span>petrinet)</a>
+<a class="sourceLine" id="cb5-18" title="18"></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co"># Render with  PM4PY and DiagrammeR</span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DiagrammeR)</a>
+<a class="sourceLine" id="cb5-21" title="21">viz &lt;-<span class="st"> </span>reticulate<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/reticulate/man/import.html">import</a></span>(<span class="st">"pm4py.visualization.petrinet"</span>)</a>
+<a class="sourceLine" id="cb5-22" title="22"></a>
+<a class="sourceLine" id="cb5-23" title="23"><span class="co"># Convert back to Python</span></a>
+<a class="sourceLine" id="cb5-24" title="24">py_pn &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span>(pn<span class="op">$</span>petrinet)</a>
+<a class="sourceLine" id="cb5-25" title="25"><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(py_pn)</a>
+<a class="sourceLine" id="cb5-26" title="26"></a>
+<a class="sourceLine" id="cb5-27" title="27"><span class="co"># Render to DOT with PMP4Y</span></a>
+<a class="sourceLine" id="cb5-28" title="28">dot &lt;-<span class="st"> </span>viz<span class="op">$</span>factory<span class="op">$</span><span class="kw"><a href="https://rdrr.io/r/base/apply.html">apply</a></span>(py_pn)<span class="op">$</span>source</a>
+<a class="sourceLine" id="cb5-29" title="29"><span class="kw">grViz</span>(<span class="dt">diagram =</span> dot)</a>
+<a class="sourceLine" id="cb5-30" title="30"></a>
+<a class="sourceLine" id="cb5-31" title="31"><span class="co"># Compute alignment</span></a>
+<a class="sourceLine" id="cb5-32" title="32">alignment &lt;-<span class="st"> </span><span class="kw"><a href="reference/conformance.html">conformance_alignment</a></span>(patients_completes, pn<span class="op">$</span>petrinet, pn<span class="op">$</span>initial_marking, pn<span class="op">$</span>final_marking)</a>
+<a class="sourceLine" id="cb5-33" title="33"></a>
+<a class="sourceLine" id="cb5-34" title="34"><span class="co"># # Alignment is returned in long format as data frame</span></a>
+<a class="sourceLine" id="cb5-35" title="35"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(alignment)</a>
+<a class="sourceLine" id="cb5-36" title="36"></a>
+<a class="sourceLine" id="cb5-37" title="37"><span class="co"># Evaluate model quality</span></a>
+<a class="sourceLine" id="cb5-38" title="38">quality &lt;-<span class="st"> </span><span class="kw"><a href="reference/evaluation.html">evaluation_all</a></span>(patients_completes, pn<span class="op">$</span>petrinet, pn<span class="op">$</span>initial_marking, pn<span class="op">$</span>final_marking)</a></code></pre></div>
 </div>
 </div>
   </div>
@@ -165,6 +169,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=pm4py"><img src="https://cranlogs.r-pkg.org/badges/pm4py"></a></li>
 <li><a href="https://cran.r-project.org/package=pm4py"><img src="https://www.r-pkg.org/badges/version/pm4py" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://travis-ci.org/bupaverse/pm4py"><img src="https://travis-ci.org/bupaverse/pm4py.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 </ul>

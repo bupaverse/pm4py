@@ -73,7 +73,7 @@ In some cases (multiple Python versions installed) it might be useful to specify
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pm4py</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.8.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.8</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ https://rstudio.github.io/reticulate/
 In some cases (multiple Python versions installed) it might be useful to specify the exact path to the <code>conda</code> binary.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>install_pm4py</span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>install_pm4py</span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,6 +140,10 @@ Change the default to force a specific installation method. Note that the "virtu
       <td><p>Path to conda executable (or "auto" to find conda using the PATH and other conventional install locations).</p></td>
     </tr>
     <tr>
+      <th>version</th>
+      <td><p>Optional parameter overriding the PM4Py version that will be installed. Note that the R pm4py package was only tested against the default PM4Py version that will be installed.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments passed to py_install().</p></td>
     </tr>
@@ -147,9 +151,9 @@ Change the default to force a specific installation method. Note that the "virtu
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Additional requirements (a C++ compiler and GraphViz) of PM4PY might
-need to be installed to leverage all functionality;
-http://pm4py.pads.rwth-aachen.de/installation/</p>
+    <p>Additional requirements, for example, a C++ compiler and GraphViz might
+need to be installed to leverage all functionality. Please refer to the PM4Py documentation for details:
+https://pm4py.fit.fraunhofer.de/install</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -157,6 +161,9 @@ http://pm4py.pads.rwth-aachen.de/installation/</p>
 
   <span class='co'># Specify path to conda</span>
   <span class='kw pkg'>pm4py</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/pm4py/man/install_pm4py.html'>install_pm4py</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"conda"</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"/home/user/miniconda3/bin/conda"</span>)
+
+  <span class='co'># Install specific version of PM4Py</span>
+  <span class='kw pkg'>pm4py</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/pm4py/man/install_pm4py.html'>install_pm4py</a></span>(<span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"1.2.7"</span>)
 <span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

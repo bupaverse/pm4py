@@ -8,10 +8,15 @@ The goal of the R package 'pm4py' is to provide a bridge between [bupaR](https:/
 
 ## Installation
 
-You can install the development version of pm4py with:
+You can install the released CRAN version of pm4py with:
+``` r
+install.packages("pm4py")
+```
+
+You can install the development version of pm4py from the `dev` branch with:
 
 ``` r
-remotes::install_github("bupaverse/pm4py")
+remotes::install_github("bupaverse/pm4py@dev")
 ```
 
 Then, automatically install the pm4py package in a virtual or Conda environment:
@@ -24,9 +29,13 @@ https://rstudio.github.io/reticulate/
 
 ## PM4Py Version
 
-To facilitate getting stable results and to reduce the number of regressions due to API changes in PM4Py, this package is built against a fixed PM4Py version that is defined in the file `R/version.R`. We also adopt the versioning schema of the PM4Py project for this R package. So, the R package version `1.1.19` will install the PM4Py version `1.1.19`. In case of fixes required to the R package itself, for example, for bugs or adopting new features, we will add a suffix `-rev` to the version to indicate the change. Of course, nothing prevents you from manually overriding the synchronisation between the PM4Py version and the R PM4Py package version.
+To facilitate getting stable results and to reduce the number of regressions due to API changes in PM4Py, this package is built against a fixed PM4Py version that is defined in the file `R/version.R`. We also adopt the versioning schema of the PM4Py project for this R package. So, the R package version `1.1.19` will install the PM4Py version `1.1.19`. 
 
-
+In case of fixes required to the R package itself, for example, for bugs or adopting new features, we will add a suffix `-rev` to the version to indicate the change. Of course, nothing prevents you from manually overriding the synchronisation between the PM4Py version and the R PM4Py package version using the parameter `version` as follows:
+``` r
+pm4py::install_pm4py(version = "1.2.7")
+```
+ 
 ## Example
 
 ``` r
