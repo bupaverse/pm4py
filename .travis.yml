@@ -2,7 +2,7 @@
 
 language: R
 
-dist: trusty
+dist: xenial
 r:
   - oldrel
   - release
