@@ -24,7 +24,7 @@ before_install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - conda create -q -n r-reticulate python=$TRAVIS_PYTHON_VERSION pip numpy
+  - conda create -q -n r-reticulate pip numpy
 
 before_script:
   - source activate r-reticulate
@@ -33,4 +33,4 @@ before_script:
   - source R/version.R
   - set +a
   - if [ "$PM4PY_DEVELOPMENT" == "TRUE" ]; then pip install -r $PM4PY_DEVELOPMENT_DEPENDENCIES; else echo "Skipping"; fi
-  - pip install --no-cache-dir -U $PM4PY_PIP
+  - pip install $PM4PY_PIP
