@@ -33,4 +33,4 @@ before_script:
   - source R/version.R
   - set +a
   - if [ "$PM4PY_DEVELOPMENT" == "TRUE" ]; then pip install -r $PM4PY_DEVELOPMENT_DEPENDENCIES; else echo "Skipping"; fi
-  - pip install $PM4PY_PIP
+  - pip install --no-cache-dir -U $PM4PY_PIP
