@@ -12,4 +12,4 @@ PM4PY_DEVELOPMENT_DEPENDENCIES="https://raw.githubusercontent.com/pm4py/pm4py-so
 #  pm4py==1.0.21
 # or a Github link to a specific branch/tag/hash:
 #  https://github.com/pm4py/pm4py-source/archive/develop.zip
-PM4PY_PIP="pm4py==1.2.10"
+PM4PY_PIP="pm4py==2.4.1"

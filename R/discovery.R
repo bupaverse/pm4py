@@ -44,14 +44,21 @@ NULL
 #' @rdname discovery
 #' @export
 discovery_inductive <- function(eventlog,
-                                parameters = default_parameters(eventlog),
-                                variant = variant_inductive_imdfb(),
                                 convert = TRUE) {
-  pm4py_inductive <- reticulate::import("pm4py.algo.discovery.inductive.factory", convert = convert)
-  model <- pm4py_inductive$apply(as_py_value(eventlog),
-                                 parameters = parameters,
-                                 variant = variant)
-  prepare_pn_with_markings(model, convert)
+  pm4py_inductive <- reticulate::import("pm4py.discovery", convert = convert)
+
+  model <- pm4py_inductive$discover_petri_net_inductive(r_to_py(eventlog),
+                                                        activity_key = "handling",
+                                                        timestamp_key = "time",
+                                                        case_id_key = "patient")
+
+  # model[[1]]$transitions %>% names -> nested_list_elements
+  # model[[1]]$transitions[nested_list_elements != "label"] %>% unlist() -> id
+  # model[[1]]$transitions[nested_list_elements == "label"] %>% unlist() -> label
+
+
+
+  create_marked_PN(model)
 }
 
 #' @rdname discovery

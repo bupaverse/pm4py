@@ -12,6 +12,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{reticulate}{\code{\link[reticulate]{py_to_r}}, \code{\link[reticulate]{r_to_py}}}
+  \item{reticulate}{\code{\link[reticulate:r-py-conversion]{py_to_r}}, \code{\link[reticulate:r-py-conversion]{r_to_py}}}
 }}
 

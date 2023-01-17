@@ -87,7 +87,7 @@ r_to_py.petrinet <- function(x, convert = FALSE) {
 #' @export
 #' @importFrom reticulate iterate
 #' @importFrom reticulate py_to_r
-py_to_r.pm4py.objects.petri.petrinet.PetriNet <- function(x) {
+py_to_r.pm4py.objects.petri_net.obj.PetriNet <- function(x) {
 
   places <- unlist(iterate(x$places, function(p) ensure_str(p$name)))
   transitions <- unlist(iterate(x$transitions, function(t) ensure_str(t$name)))
@@ -97,13 +97,13 @@ py_to_r.pm4py.objects.petri.petrinet.PetriNet <- function(x) {
 
   flows <- data.frame(from = arcs_from, to = arcs_to,
                       stringsAsFactors = F)
+  transitions <- data.frame(label = iterate(x$transitions, function(t) ensure_str(t$label)),
+                            id = transitions)
 
-  pn <- petrinetR::create_PN(places, transitions, flows,
-                             c()) # pm4py Petri net does not know about marking
+  pn <- petrinetR::create_PN(places, transitions, flows) # pm4py Petri net does not know about marking
 
   # Make sure that labels are strings since PM4PY sometimes uses tuples or other objects
   # Also, replace NULL by NA to avoid issues with R removing elements
-  pn$transitions$label <- iterate(x$transitions, function(t) ensure_str(t$label))
 
   pn
 }
@@ -111,7 +111,7 @@ py_to_r.pm4py.objects.petri.petrinet.PetriNet <- function(x) {
 #' @export
 #' @importFrom reticulate iterate
 #' @importFrom reticulate py_to_r
-py_to_r.pm4py.objects.petri.petrinet.Marking <- function(x) {
+py_to_r.pm4py.objects.petri_net.obj.Marking <- function(x) {
   iterate(x$elements(), function(p) ensure_str(p$name))
 }
 
