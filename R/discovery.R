@@ -52,9 +52,6 @@ discovery_inductive <- function(eventlog,
                                                         timestamp_key = "time",
                                                         case_id_key = "patient")
 
-  # model[[1]]$transitions %>% names -> nested_list_elements
-  # model[[1]]$transitions[nested_list_elements != "label"] %>% unlist() -> id
-  # model[[1]]$transitions[nested_list_elements == "label"] %>% unlist() -> label
 
 
 
