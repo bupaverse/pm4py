@@ -41,7 +41,7 @@ py_to_r.pm4py.objects.log.log.TraceLog <- function(x) {
 #' @importFrom reticulate r_to_py
 r_to_py.petrinet <- function(x, convert = FALSE) {
 
-  pm4py_petrinet <- import("pm4py.objects.petri.petrinet", convert = convert)
+  pm4py_petrinet <- import("pm4py.objects.petri_net.obj", convert = convert)
   py_builtins <- import_builtins(convert = convert)
 
   if ("label" %in% names(x$transitions)) {
@@ -136,11 +136,11 @@ py_to_r.pm4py.objects.petri_net.obj.Marking <- function(x) {
 #' @export
 as_pm4py_marking <- function(x, petrinet) {
 
-  if (inherits(x, "pm4py.objects.petri.petrinet.Marking")) {
+  if (inherits(x, "pm4py.objects.petri_net.data_petri_nets.data_marking.DataMarking")) {
     return(x)
   }
 
-  pm4py_petrinet <- import("pm4py.objects.petri.petrinet", convert = FALSE)
+  pm4py_petrinet <- import("pm4py.objects.petri_net.obj", convert = FALSE)
   marking <- pm4py_petrinet$Marking()
 
   found <- rep(FALSE, length(x))

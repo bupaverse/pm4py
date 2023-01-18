@@ -53,7 +53,7 @@ if (pm4py_available()) {
   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
   patients_completes <- patients[patients$registration_type == "complete", ]
 
-  net <- discovery_inductive(patients_completes)
+  net <- discovery_inductive(patients_completes, convert = T)
 
   # Show details of the obtained bupaR Petri net
   print(net$petrinet)

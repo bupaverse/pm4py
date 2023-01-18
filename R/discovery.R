@@ -20,7 +20,7 @@
 #'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
 #'   patients_completes <- patients[patients$registration_type == "complete", ]
 #'
-#'   net <- discovery_inductive(patients_completes)
+#'   net <- discovery_inductive(patients_completes, convert = T)
 #'
 #'   # Show details of the obtained bupaR Petri net
 #'   print(net$petrinet)
@@ -47,6 +47,7 @@ discovery_inductive <- function(eventlog,
                                 convert = TRUE) {
   pm4py_inductive <- reticulate::import("pm4py.discovery", convert = convert)
 
+  eventlog[[bupaR:::activity_id_(eventlog)]] <- as.character(eventlog[[bupaR:::activity_id_(eventlog)]])
   model <- pm4py_inductive$discover_petri_net_inductive(r_to_py(eventlog),
                                                         activity_key = "handling",
                                                         timestamp_key = "time",

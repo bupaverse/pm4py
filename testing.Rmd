@@ -1,0 +1,67 @@
+---
+title: "test"
+author: "Ivan"
+date: "2023-01-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(eventdataR)
+library(magrittr)
+library(tidyverse)
+library(reticulate)
+```
+
+```{r}
+library(pm4py)
+library(dplyr)
+library(eventdataR)
+patients_completes <- patients[patients$registration_type == "complete", ]
+patients_completes %>% mutate(handling = as.character(handling)) -> patients_completes
+
+pm4py::discovery_inductive(patients_completes) -> tmp
+
+# doesnt work
+conformance_diagnostics_alignments_111(eventlog = patients_completes, 
+                                       petrinet = tmp$marked_pn,
+                                       initial_marking = tmp$initial_marking,
+                                       final_marking = tmp$final_marking,
+                                       activity_key = "handling",
+                                       timestamp_key = "time",
+                                       case_id_key = "patient")
+
+# works
+fitness_alignments(eventlog = patients_completes, 
+                                       petrinet = tmp$marked_pn, 
+                                       initial_marking = tmp$initial_marking,
+                                       final_marking = tmp$final_marking,
+                                       activity_key = "handling",
+                                       timestamp_key = "time",
+                                       case_id_key = "patient")
+# works
+precision_alignments(eventlog = patients_completes, 
+                                       petrinet = tmp$marked_pn, 
+                                       initial_marking = tmp$initial_marking,
+                                       final_marking = tmp$final_marking,
+                                       activity_key = "handling",
+                                       timestamp_key = "time",
+                                       case_id_key = "patient")
+# works
+conformance_token_based_replay(eventlog = patients_completes, 
+                                       petrinet = tmp$marked_pn, 
+                                       initial_marking = tmp$initial_marking,
+                                       final_marking = tmp$final_marking,
+                                       activity_key = "handling",
+                                       timestamp_key = "time",
+                                       case_id_key = "patient")
+
+```
+
+
+
+
+
