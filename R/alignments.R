@@ -39,7 +39,6 @@
 #' @export
 conformance_diagnostics_alignments <- function(eventlog,
                                                marked_petrinet_list,
-                                               marked_petrinet_list,
                                                multi_processing = FALSE,
                                                convert = TRUE, ...) {
   UseMethod("conformance_diagnostics_alignments")
