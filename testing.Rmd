@@ -26,38 +26,18 @@ patients_completes %>% mutate(handling = as.character(handling)) -> patients_com
 pm4py::discovery_inductive(patients_completes) -> tmp
 
 # doesnt work
-conformance_diagnostics_alignments_111(eventlog = patients_completes, 
-                                       petrinet = tmp$marked_pn,
-                                       initial_marking = tmp$initial_marking,
-                                       final_marking = tmp$final_marking,
-                                       activity_key = "handling",
-                                       timestamp_key = "time",
-                                       case_id_key = "patient")
+conformance_diagnostics_alignments(eventlog = patients_completes, 
+                                       tmp)
 
 # works
 fitness_alignments(eventlog = patients_completes, 
-                                       petrinet = tmp$marked_pn, 
-                                       initial_marking = tmp$initial_marking,
-                                       final_marking = tmp$final_marking,
-                                       activity_key = "handling",
-                                       timestamp_key = "time",
-                                       case_id_key = "patient")
+                   tmp)
 # works
 precision_alignments(eventlog = patients_completes, 
-                                       petrinet = tmp$marked_pn, 
-                                       initial_marking = tmp$initial_marking,
-                                       final_marking = tmp$final_marking,
-                                       activity_key = "handling",
-                                       timestamp_key = "time",
-                                       case_id_key = "patient")
+                     tmp)
 # works
 conformance_token_based_replay(eventlog = patients_completes, 
-                                       petrinet = tmp$marked_pn, 
-                                       initial_marking = tmp$initial_marking,
-                                       final_marking = tmp$final_marking,
-                                       activity_key = "handling",
-                                       timestamp_key = "time",
-                                       case_id_key = "patient")
+                               tmp)
 
 ```
 

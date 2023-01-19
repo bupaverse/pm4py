@@ -6,6 +6,8 @@
 #' @param parameters A named list of PM4PY parameters (see \link{parameters}) as required by the discovery method.
 #'  By default, if the `eventlog` is a bupaR event log, the `activity_key`, `timestamp_key`, and `caseid_key` are automatically determined.
 #' @param variant The variant of the discovery algorithm to be used.
+#' @param multi_processing [lgl] (default [`FALSE`]): Disables if `FALSE`, enables if `TRUE` multiprocessing in inductive miner.
+#' @param noise_threshold [num] (default: 0): noise threshold.
 #'  For Inductive Miner currently only `variant_inductive_imdfb` is supported.
 #' @param convert TRUE to automatically convert Python objects to their R equivalent.
 #'  If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
@@ -43,15 +45,32 @@ NULL
 
 #' @rdname discovery
 #' @export
-discovery_inductive <- function(eventlog,
+discovery_inductive <- function(eventlog, # currently not for activitylog
+                                multi_processing = FALSE,
+                                noise_threshold = 0,
                                 convert = TRUE) {
+  UseMethod("discovery_inductive")
+}
+#' @export
+discovery_inductive.eventlog <- function(eventlog, # currently not for activitylog
+                                         multi_processing = FALSE,
+                                         noise_threshold = 0,
+                                         convert = TRUE) {
   pm4py_inductive <- reticulate::import("pm4py.discovery", convert = convert)
 
   eventlog[[bupaR:::activity_id_(eventlog)]] <- as.character(eventlog[[bupaR:::activity_id_(eventlog)]])
+
+  multi_processing <- r_to_py(multi_processing)
+  noise_threshold <- r_to_py(noise_threshold)
+  activity_key <- bupaR::activity_id(eventlog)
+  timestamp_key <- bupaR::timestamp(eventlog)
+  case_id_key <- bupaR::case_id(eventlog)
   model <- pm4py_inductive$discover_petri_net_inductive(r_to_py(eventlog),
-                                                        activity_key = "handling",
-                                                        timestamp_key = "time",
-                                                        case_id_key = "patient")
+                                                        multi_processing = multi_processing,
+                                                        noise_threshold = noise_threshold,
+                                                        activity_key = activity_key,
+                                                        timestamp_key = timestamp_key,
+                                                        case_id_key = case_id_key)
 
 
 

@@ -6,10 +6,15 @@
 \usage{
 conformance_diagnostics_alignments(
   eventlog,
+<<<<<<< Updated upstream:man/conformance_diagnostics_alignments.Rd
   marked_petrinet,
   activity_key,
   timestamp_key,
   case_id_key,
+=======
+  marked_petrinet_list,
+  multi_processing = FALSE,
+>>>>>>> Stashed changes:man/conformance_diagnostics_alignments_111.Rd
   convert = TRUE,
   ...
 )
@@ -17,21 +22,17 @@ conformance_diagnostics_alignments(
 \arguments{
 \item{eventlog}{A bupaR or PM4PY event log.}
 
-\item{activity_key}{An activity name/identifier.}
+\item{marked_petrinet_list}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
+\itemize{
+\item petri net (list of places, transitions, flows)
+\item initial marking: place identifier of the initial marking.
+\item final marking: place identifier of the final marking.
+}}
 
-\item{timestamp_key}{A timestamp.}
-
-\item{case_id_key}{A unique case identifier.}
+\item{multi_processing}{\link{lgl} (default \code{\link{FALSE}}): Disables if \code{FALSE}, enables if \code{TRUE} multiprocessing in inductive miner.}
 
 \item{convert}{\code{TRUE} to automatically convert Python objects to their R equivalent.
 If you pass \code{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
-
-\item{petrinet}{A bupaR or PM4PY Petri net.}
-
-\item{initial_marking}{A R vector with the place identifiers of the initial marking or a PM4PY marking.
-By default the initial marking of the bupaR Petri net will be used if available.}
-
-\item{final_marking}{A R vector with the place identifiers of the final marking or a PM4PY marking.}
 }
 \value{
 alignment diagnostics.

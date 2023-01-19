@@ -6,30 +6,22 @@
 \usage{
 conformance_token_based_replay(
   eventlog,
-  petrinet,
-  initial_marking,
-  final_marking,
-  activity_key,
-  timestamp_key,
-  case_id_key,
+  marked_petrinet_list,
+  multi_processing = FALSE,
   convert = TRUE
 )
 }
 \arguments{
 \item{eventlog}{A bupaR or PM4PY event log.}
 
-\item{petrinet}{A bupaR or PM4PY Petri net.}
+\item{marked_petrinet_list}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
+\itemize{
+\item petri net (list of places, transitions, flows)
+\item initial marking: place identifier of the initial marking.
+\item final marking: place identifier of the final marking.
+}}
 
-\item{initial_marking}{A R vector with the place identifiers of the initial marking or a PM4PY marking.
-By default the initial marking of the bupaR Petri net will be used if available.}
-
-\item{final_marking}{A R vector with the place identifiers of the final marking or a PM4PY marking.}
-
-\item{activity_key}{An activity name/identifier.}
-
-\item{timestamp_key}{A timestamp.}
-
-\item{case_id_key}{A unique case identifier.}
+\item{multi_processing}{\link{lgl} (default \code{\link{FALSE}}): Disables if \code{FALSE}, enables if \code{TRUE} multiprocessing in inductive miner.}
 
 \item{convert}{\code{TRUE} to automatically convert Python objects to their R equivalent.
 If you pass \code{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
@@ -39,4 +31,7 @@ The methods return the full token-based-replay diagnostics.
 }
 \description{
 Apply token-based replay for conformance checking analysis. The methods return the full token-based-replay diagnostics.
+}
+\seealso{
+\url{https://pm4py.fit.fraunhofer.de/static/assets/api/2.3.0/generated/pm4py.conformance.conformance_diagnostics_token_based_replay.html}
 }

@@ -10,7 +10,12 @@
 \alias{variant_alpha_plus}
 \title{Petri net discovery algorithms}
 \usage{
-discovery_inductive(eventlog, convert = TRUE)
+discovery_inductive(
+  eventlog,
+  multi_processing = FALSE,
+  noise_threshold = 0,
+  convert = TRUE
+)
 
 variant_inductive_imdfb()
 
@@ -30,14 +35,18 @@ variant_alpha_plus()
 \arguments{
 \item{eventlog}{A bupaR event log or an R data frame.}
 
+\item{multi_processing}{\link{lgl} (default \code{\link{FALSE}}): Disables if \code{FALSE}, enables if \code{TRUE} multiprocessing in inductive miner.}
+
+\item{noise_threshold}{\link{num} (default: 0): noise threshold.
+For Inductive Miner currently only \code{variant_inductive_imdfb} is supported.}
+
 \item{convert}{TRUE to automatically convert Python objects to their R equivalent.
 If you pass FALSE you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
 
 \item{parameters}{A named list of PM4PY parameters (see \link{parameters}) as required by the discovery method.
 By default, if the \code{eventlog} is a bupaR event log, the \code{activity_key}, \code{timestamp_key}, and \code{caseid_key} are automatically determined.}
 
-\item{variant}{The variant of the discovery algorithm to be used.
-For Inductive Miner currently only \code{variant_inductive_imdfb} is supported.}
+\item{variant}{The variant of the discovery algorithm to be used.}
 }
 \value{
 A named list with elements \code{petrinet}, \code{initial_marking}, and \code{final_marking} or the original Python object.
