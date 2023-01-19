@@ -6,7 +6,7 @@
 #' @description Alignment-based replay aims to find one of the best alignment between the trace and the model.
 #'
 #' @param eventlog A bupaR or PM4PY event log.
-#' @param marked_petrinet_list [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
+#' @param marked_petrinet [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
 #' * petri net (list of places, transitions, flows)
 #' * initial marking: place identifier of the initial marking.
 #' * final marking: place identifier of the final marking.
@@ -38,14 +38,14 @@
 #'
 #' @export
 conformance_diagnostics_alignments <- function(eventlog,
-                                               marked_petrinet_list,
+                                               marked_petrinet,
                                                multi_processing = FALSE,
                                                convert = TRUE, ...) {
   UseMethod("conformance_diagnostics_alignments")
 }
 #' @export
 conformance_diagnostics_alignments.eventlog <- function(eventlog,
-                                                        marked_petrinet_list,
+                                                        marked_petrinet,
                                                         multi_processing = FALSE,
                                                         # petrinet,
                                                         # initial_marking,
@@ -60,9 +60,9 @@ conformance_diagnostics_alignments.eventlog <- function(eventlog,
 
   # prepare arguments for pm4py module
   py_log <- r_to_py(eventlog)
-  py_pn <- as_py_value(marked_petrinet_list$petrinet)
-  im <- as_pm4py_marking(marked_petrinet_list$initial_marking, py_pn)
-  fm <- as_pm4py_marking(marked_petrinet_list$final_marking, py_pn)
+  py_pn <- as_py_value(marked_petrinet$petrinet)
+  im <- as_pm4py_marking(marked_petrinet$initial_marking, py_pn)
+  fm <- as_pm4py_marking(marked_petrinet$final_marking, py_pn)
   activity_key <- bupaR::activity_id(eventlog)
   timestamp_key <- bupaR::timestamp(eventlog)
   case_id_key <- bupaR::case_id(eventlog)
@@ -131,7 +131,7 @@ conformance_diagnostics_alignments.eventlog <- function(eventlog,
 #' @description The calculation of the replay fitness aim to calculate how much of the behavior in the log is admitted by the process model.
 #'
 #' @param eventlog A bupaR or PM4PY event log.
-#' @param marked_petrinet_list [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
+#' @param marked_petrinet [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
 #' * petri net (list of places, transitions, flows)
 #' * initial marking: place identifier of the initial marking.
 #' * final marking: place identifier of the final marking.
@@ -144,7 +144,7 @@ conformance_diagnostics_alignments.eventlog <- function(eventlog,
 #'
 #' @export
 fitness_alignments <- function(eventlog,
-                               marked_petrinet_list,
+                               marked_petrinet,
                                multi_processing = FALSE,
                                convert = TRUE) {
   UseMethod("fitness_alignments")
@@ -152,7 +152,7 @@ fitness_alignments <- function(eventlog,
 
 #' @export
 fitness_alignments.eventlog <- function(eventlog,
-                                        marked_petrinet_list,
+                                        marked_petrinet,
                                         multi_processing = FALSE,
                                         # petrinet,
                                         # initial_marking,
@@ -168,9 +168,9 @@ fitness_alignments.eventlog <- function(eventlog,
 
   # prepare arguments for pm4py module
   py_log <- r_to_py(eventlog)
-  py_pn <- as_py_value(marked_petrinet_list$petrinet)
-  im <- as_pm4py_marking(marked_petrinet_list$initial_marking, py_pn)
-  fm <- as_pm4py_marking(marked_petrinet_list$final_marking, py_pn)
+  py_pn <- as_py_value(marked_petrinet$petrinet)
+  im <- as_pm4py_marking(marked_petrinet$initial_marking, py_pn)
+  fm <- as_pm4py_marking(marked_petrinet$final_marking, py_pn)
   activity_key <- bupaR::activity_id(eventlog)
   timestamp_key <- bupaR::timestamp(eventlog)
   case_id_key <- bupaR::case_id(eventlog)
@@ -192,7 +192,7 @@ fitness_alignments.eventlog <- function(eventlog,
 #' @description Calculates the precision of the model w.r.t. the event log using alignments.
 #'
 #' @param eventlog A bupaR or PM4PY event log.
-#' @param marked_petrinet_list [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
+#' @param marked_petrinet [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
 #' * petri net (list of places, transitions, flows)
 #' * initial marking: place identifier of the initial marking.
 #' * final marking: place identifier of the final marking.
@@ -205,14 +205,14 @@ fitness_alignments.eventlog <- function(eventlog,
 #'
 #' @export
 precision_alignments <- function(eventlog,
-                                 marked_petrinet_list,
+                                 marked_petrinet,
                                  multi_processing = FALSE,
                                  convert = TRUE) {
   UseMethod("precision_alignments")
 }
 #' @export
 precision_alignments.eventlog <- function(eventlog,
-                                          marked_petrinet_list,
+                                          marked_petrinet,
                                           multi_processing = FALSE,
                                           # petrinet,
                                           # initial_marking,
@@ -225,9 +225,9 @@ precision_alignments.eventlog <- function(eventlog,
 
   # prepare arguments for pm4py module
   py_log <- r_to_py(eventlog)
-  py_pn <- as_py_value(marked_petrinet_list$petrinet)
-  im <- as_pm4py_marking(marked_petrinet_list$initial_marking, py_pn)
-  fm <- as_pm4py_marking(marked_petrinet_list$final_marking, py_pn)
+  py_pn <- as_py_value(marked_petrinet$petrinet)
+  im <- as_pm4py_marking(marked_petrinet$initial_marking, py_pn)
+  fm <- as_pm4py_marking(marked_petrinet$final_marking, py_pn)
   activity_key <- bupaR::activity_id(eventlog)
   timestamp_key <- bupaR::timestamp(eventlog)
   case_id_key <- bupaR::case_id(eventlog)
@@ -250,7 +250,7 @@ precision_alignments.eventlog <- function(eventlog,
 #' @description Apply token-based replay for conformance checking analysis. The methods return the full token-based-replay diagnostics.
 #'
 #' @param eventlog A bupaR or PM4PY event log.
-#' @param marked_petrinet_list [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
+#' @param marked_petrinet [`list`]: An object of type `list` returned by [`discovery_inductive()`] and containing 3 elements:
 #' * petri net (list of places, transitions, flows)
 #' * initial marking: place identifier of the initial marking.
 #' * final marking: place identifier of the final marking.
@@ -263,14 +263,14 @@ precision_alignments.eventlog <- function(eventlog,
 #'
 #' @export
 conformance_token_based_replay <- function(eventlog,
-                                           marked_petrinet_list,
+                                           marked_petrinet,
                                            convert = TRUE) {
   UseMethod("conformance_token_based_replay")
 }
 
 #' @export
 conformance_token_based_replay <- function(eventlog,
-                                           marked_petrinet_list,
+                                           marked_petrinet,
                                            # petrinet,
                                            # initial_marking,
                                            # final_marking,
@@ -282,9 +282,9 @@ conformance_token_based_replay <- function(eventlog,
 
   # prepare arguments for pm4py module
   py_log <- r_to_py(eventlog)
-  py_pn <- as_py_value(marked_petrinet_list$petrinet)
-  im <- as_pm4py_marking(marked_petrinet_list$initial_marking, py_pn)
-  fm <- as_pm4py_marking(marked_petrinet_list$final_marking, py_pn)
+  py_pn <- as_py_value(marked_petrinet$petrinet)
+  im <- as_pm4py_marking(marked_petrinet$initial_marking, py_pn)
+  fm <- as_pm4py_marking(marked_petrinet$final_marking, py_pn)
   activity_key <- bupaR::activity_id(eventlog)
   timestamp_key <- bupaR::timestamp(eventlog)
   case_id_key <- bupaR::case_id(eventlog)
