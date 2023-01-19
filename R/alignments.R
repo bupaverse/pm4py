@@ -58,12 +58,7 @@ conformance_diagnostics_alignments.eventlog <- function(eventlog,
 
   pm4py_conformance <- reticulate::import("pm4py.conformance", convert = convert)
 
-<<<<<<< Updated upstream
-  py_log <- as_py_value(eventlog)
-  py_pn <- as_py_value(marked_petrinet$marked_pn)
-  im <- as_pm4py_marking(marked_petrinet$initial_marking, py_pn)
-  fm <- as_pm4py_marking(marked_petrinet$final_marking, py_pn)
-=======
+
   # prepare arguments for pm4py module
   py_log <- r_to_py(eventlog)
   py_pn <- as_py_value(marked_petrinet_list$petrinet)
@@ -73,7 +68,6 @@ conformance_diagnostics_alignments.eventlog <- function(eventlog,
   timestamp_key <- bupaR::timestamp(eventlog)
   case_id_key <- bupaR::case_id(eventlog)
   multi_processing <- r_to_py(multi_processing)
->>>>>>> Stashed changes
 
   # specs_list <- list(...)
   # specs <- list()
