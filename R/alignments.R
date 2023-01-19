@@ -39,10 +39,8 @@
 #' @import reticulate
 #'
 #' @export
-conformance_diagnostics_alignments_111 <- function(eventlog,
-                                               # petrinet,
-                                               # initial_marking,
-                                               # final_marking,
+conformance_diagnostics_alignments <- function(eventlog,
+                                               marked_petrinet,
                                                activity_key,
                                                timestamp_key,
                                                case_id_key,
@@ -51,9 +49,9 @@ conformance_diagnostics_alignments_111 <- function(eventlog,
   pm4py_conformance <- reticulate::import("pm4py.conformance", convert = convert)
 
   py_log <- as_py_value(eventlog)
-  py_pn <- as_py_value(petrinet)
-  im <- as_pm4py_marking(initial_marking, py_pn)
-  fm <- as_pm4py_marking(final_marking, py_pn)
+  py_pn <- as_py_value(marked_petrinet$marked_pn)
+  im <- as_pm4py_marking(marked_petrinet$initial_marking, py_pn)
+  fm <- as_pm4py_marking(marked_petrinet$final_marking, py_pn)
 
   # specs_list <- list(...)
   # specs <- list()
@@ -70,8 +68,7 @@ conformance_diagnostics_alignments_111 <- function(eventlog,
   # names(specs) <- c("py_pn", "im", "fm")
 
 
-  pm4py_conformance$conformance_diagnostics_alignments(py_pn, im, fm, # specs
-                                                       log = py_log,
+  pm4py_conformance$conformance_diagnostics_alignments(py_log, py_pn, im, fm, # specs
                                                        activity_key = activity_key,
                                                        timestamp_key = timestamp_key,
                                                        case_id_key = case_id_key)
