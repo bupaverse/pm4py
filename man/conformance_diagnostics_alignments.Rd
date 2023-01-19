@@ -6,15 +6,8 @@
 \usage{
 conformance_diagnostics_alignments(
   eventlog,
-<<<<<<< Updated upstream:man/conformance_diagnostics_alignments.Rd
   marked_petrinet,
-  activity_key,
-  timestamp_key,
-  case_id_key,
-=======
-  marked_petrinet_list,
   multi_processing = FALSE,
->>>>>>> Stashed changes:man/conformance_diagnostics_alignments_111.Rd
   convert = TRUE,
   ...
 )
@@ -22,7 +15,7 @@ conformance_diagnostics_alignments(
 \arguments{
 \item{eventlog}{A bupaR or PM4PY event log.}
 
-\item{marked_petrinet_list}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
+\item{marked_petrinet}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
 \itemize{
 \item petri net (list of places, transitions, flows)
 \item initial marking: place identifier of the initial marking.

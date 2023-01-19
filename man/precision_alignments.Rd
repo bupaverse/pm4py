@@ -6,7 +6,7 @@
 \usage{
 precision_alignments(
   eventlog,
-  marked_petrinet_list,
+  marked_petrinet,
   multi_processing = FALSE,
   convert = TRUE
 )
@@ -14,7 +14,7 @@ precision_alignments(
 \arguments{
 \item{eventlog}{A bupaR or PM4PY event log.}
 
-\item{marked_petrinet_list}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
+\item{marked_petrinet}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
 \itemize{
 \item petri net (list of places, transitions, flows)
 \item initial marking: place identifier of the initial marking.

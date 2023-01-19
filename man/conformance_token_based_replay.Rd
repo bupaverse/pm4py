@@ -4,27 +4,22 @@
 \alias{conformance_token_based_replay}
 \title{Apply \strong{the token-based replay} algorithm between a log and a process model}
 \usage{
-conformance_token_based_replay(
-  eventlog,
-  marked_petrinet_list,
-  multi_processing = FALSE,
-  convert = TRUE
-)
+conformance_token_based_replay(eventlog, marked_petrinet, convert = TRUE)
 }
 \arguments{
 \item{eventlog}{A bupaR or PM4PY event log.}
 
-\item{marked_petrinet_list}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
+\item{marked_petrinet}{\code{\link{list}}: An object of type \code{list} returned by \code{\link[=discovery_inductive]{discovery_inductive()}} and containing 3 elements:
 \itemize{
 \item petri net (list of places, transitions, flows)
 \item initial marking: place identifier of the initial marking.
 \item final marking: place identifier of the final marking.
 }}
 
-\item{multi_processing}{\link{lgl} (default \code{\link{FALSE}}): Disables if \code{FALSE}, enables if \code{TRUE} multiprocessing in inductive miner.}
-
 \item{convert}{\code{TRUE} to automatically convert Python objects to their R equivalent.
 If you pass \code{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
+
+\item{multi_processing}{\link{lgl} (default \code{\link{FALSE}}): Disables if \code{FALSE}, enables if \code{TRUE} multiprocessing in inductive miner.}
 }
 \value{
 The methods return the full token-based-replay diagnostics.
