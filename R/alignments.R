@@ -83,43 +83,36 @@ conformance_diagnostics_alignments.eventlog <- function(eventlog,
   # names(specs) <- c("py_pn", "im", "fm")
 
 
-  pm4py_conformance$conformance_diagnostics_alignments(py_log, py_pn, im, fm, # specs
-                                                       activity_key = activity_key,
-                                                       timestamp_key = timestamp_key,
-                                                       case_id_key = case_id_key,
-                                                       multi_processing = multi_processing)
-                                                       # py_pn, im, fm)
+  alignments <- pm4py_conformance$conformance_diagnostics_alignments(py_log, py_pn, im, fm, # specs
+                                                                     activity_key = activity_key,
+                                                                     timestamp_key = timestamp_key,
+                                                                     case_id_key = case_id_key,
+                                                                     multi_processing = multi_processing)
+  # py_pn, im, fm)
+  cases <- cases(eventlog)
 
-#   if (convert) {
-#
-#     case_ids <- pm4py_tools()$log$get_trace_ids(py_log, parameters)
-#
-#     df_alignment <- purrr::map2_dfr(alignment, case_ids, function(trace, case_id) {
-#
-#       align_mat <- t(sapply(trace$alignment, function(x) {
-#         c(x[[1]], x[[2]])
-#       })) # convert nested lists to matrix
-#       align_mat[vapply(align_mat, is.null, TRUE)] <- NA_character_
-#       align_lst <- apply(align_mat, 2, unlist) # remove wrapper lists from elements
-#
-#       trace_df <- data.frame(align_lst, stringsAsFactors = FALSE)
-#       names(trace_df) <- c("log_id", "model_id", "log_label", "model_label")
-#
-#       # add meta information by duplicating it since we don't have a trace object
-#       cbind(case_id,
-#             trace_df,
-#             trace[-1], stringsAsFactors = FALSE)
-#
-#     })
-#
-#     class(df_alignment) <- c("alignment", class(df_alignment))
-#
-#     df_alignment
-#
-#   } else {
-#     alignment
-#   }
-# }
+  if(convert) {
+    alignments %>%
+      map(~.x[names(.x) != "alignment"]) %>%
+      map(as_tibble) %>%
+      bind_rows() -> costs
+
+    move_to_tibble <- function(x) {
+      x %>%
+        map(~if(is.null(.x)) NA else .x) %>%
+        as_tibble(.name_repair = function(names) c("log","model"))
+    }
+
+    alignments %>%
+      map(~.x$alignment) %>% map(~
+                                   map(.x, move_to_tibble) %>%
+                                   bind_rows()) -> alignments
+    costs[[case_id(eventlog)]] <- cases[[case_id(eventlog)]]
+
+    costs %>%
+      select(case_id(eventlog), everything()) %>%
+      mutate(alignment = alignments) -> results
+  }
 
 
 }
