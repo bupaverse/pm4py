@@ -85,6 +85,80 @@ r_to_py.petrinet <- function(x, convert = FALSE) {
 }
 
 #' @export
+#' @importFrom reticulate r_to_py
+r_to_py.bpmn <- function(x, convert = F) {
+
+  pm4py_bpmn <- reticulate::import("pm4py.objects.bpmn.obj", convert = convert)
+
+  # gateways
+  Map(function(id, name, gateway_direction) {
+    pm4py_bpmn$BPMN$Gateway(id, name, gateway_direction)
+  }, x$gateways$id, x$gateways$name, x$gateways$gatewayDirection) -> gateways
+
+  # tasks
+  Map(function(id, name) {
+    pm4py_bpmn$BPMN$Task(id, name)
+  }, x$tasks$id, x$task$name) -> tasks
+
+  # startEvent
+  Map(function(id, name) {
+    pm4py_bpmn$BPMN$StartEvent(id, name)
+  }, x$startEvent$id, x$startEvent$name) -> startEvent
+
+  # endEvent
+  Map(function(id, name) {
+    pm4py_bpmn$BPMN$EndEvent(id, name)
+  }, x$endEvent$id, x$endEvent$name) -> endEvent
+
+  # sequenceFlows
+  Map(function(sourceRef, targetRef, id, name) {
+
+    # find source
+    if(sourceRef %in% names(gateways))
+      source <- gateways[[sourceRef]]
+    else if (sourceRef %in% names(startEvent)) {
+      source <- startEvent[[sourceRef]]
+    }
+    else if(sourceRef %in% names(endEvent)) {
+      source <- endEvent[[sourceRef]]
+    }
+    else {
+      source <- tasks[[sourceRef]]
+    }
+
+    # find target
+    if(targetRef %in% names(gateways))
+      target <- gateways[[targetRef]]
+    else if (targetRef %in% names(startEvent)) {
+      target <- startEvent[[targetRef]]
+    }
+    else if(targetRef %in% names(endEvent)) {
+      target <- endEvent[[targetRef]]
+    }
+    else {
+      target <- tasks[[targetRef]]
+    }
+
+    # map
+    pm4py_bpmn$BPMN$SequenceFlow(source = source, target = target, id = id, name = name)
+  }, x$sequenceFlows$sourceRef, x$sequenceFlows$targetRef, x$sequenceFlows$id, x$sequenceFlows$name) -> sequenceFlows
+
+  unname(unlist(tasks)) -> tasks
+  unname(unlist(sequenceFlows)) -> flows
+  unname(unlist(gateways)) -> gateways
+  unname(unlist(startEvent)) -> startEvent
+  unname(unlist(endEvent)) -> endEvent
+  c(tasks, gateways, startEvent, endEvent) -> nodes
+
+  pm4py_bpmn$BPMN(#process_id = "1", name = "A",
+    nodes = nodes,
+    flows = flows) -> py_x
+
+  return(py_x)
+  # return(list(tasks = tasks, gateways = gateways, sequenceFlows = sequence_flows, startEvent = start_events, endEvent = end_events))
+}
+
+#' @export
 #' @importFrom reticulate iterate
 #' @importFrom reticulate py_to_r
 py_to_r.pm4py.objects.petri_net.obj.PetriNet <- function(x) {
