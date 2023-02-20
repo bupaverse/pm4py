@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="definitions-7cfb0317-51d8-43ce-bb0e-0d09f61ddd53" targetNamespace="http://bupar.net" exporter="bupaR-suite bpmnR, https://github.com/bupaverse/bpmnR" exporterVersion="0.0.1">
+  <bpmn:process id="process-4bf45e5c-f62d-4115-b1c0-8bac42c3b541">
+    <bpmn:task id="Create_Fine" name="Create Fine">
+      <bpmn:incoming>START__Create_Fine</bpmn:incoming>
+      <bpmn:outgoing>Create_Fine__XOR__SPLIT__Create_Fine__1666694537.90526</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Payment" name="Payment">
+      <bpmn:incoming>XOR__SPLIT____1666694535.80562__Payment</bpmn:incoming>
+      <bpmn:outgoing>Payment__XOR__MERGE____1666694535.80684</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Send_Fine" name="Send Fine">
+      <bpmn:incoming>XOR__SPLIT____1666694537.51813__Send_Fine</bpmn:incoming>
+      <bpmn:outgoing>Send_Fine__XOR__SPLIT__Send_Fine__1666694537.07787</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Insert_Fine_Notification" name="Insert Fine Notification">
+      <bpmn:incoming>XOR__SPLIT__Send_Fine__1666694537.07787__Insert_Fine_Notification</bpmn:incoming>
+      <bpmn:outgoing>Insert_Fine_Notification__Insert_Date_Appeal_to_Prefecture</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Insert_Date_Appeal_to_Prefecture" name="Insert Date Appeal to Prefecture">
+      <bpmn:incoming>Insert_Fine_Notification__Insert_Date_Appeal_to_Prefecture</bpmn:incoming>
+      <bpmn:outgoing>Insert_Date_Appeal_to_Prefecture__Add_penalty</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Add_penalty" name="Add penalty">
+      <bpmn:incoming>Insert_Date_Appeal_to_Prefecture__Add_penalty</bpmn:incoming>
+      <bpmn:outgoing>Add_penalty__Send_Appeal_to_Prefecture</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Send_Appeal_to_Prefecture" name="Send Appeal to Prefecture">
+      <bpmn:incoming>Add_penalty__Send_Appeal_to_Prefecture</bpmn:incoming>
+      <bpmn:outgoing>Send_Appeal_to_Prefecture__XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Payment_REP_1" name="Payment_REP_1">
+      <bpmn:incoming>XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172__Payment_REP_1</bpmn:incoming>
+      <bpmn:outgoing>Payment_REP_1__END_1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Send_for_Credit_Collection" name="Send for Credit Collection">
+      <bpmn:incoming>XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__Send_for_Credit_Collection</bpmn:incoming>
+      <bpmn:outgoing>Send_for_Credit_Collection__XOR__MERGE____1666694533.05852</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Receive_Result_Appeal_from_Prefecture" name="Receive Result Appeal from Prefecture">
+      <bpmn:incoming>XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture</bpmn:incoming>
+      <bpmn:outgoing>Receive_Result_Appeal_from_Prefecture__Notify_Result_Appeal_to_Offender</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Notify_Result_Appeal_to_Offender" name="Notify Result Appeal to Offender">
+      <bpmn:incoming>Receive_Result_Appeal_from_Prefecture__Notify_Result_Appeal_to_Offender</bpmn:incoming>
+      <bpmn:outgoing>Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender" name="Receive Result Appeal from Prefecture &gt;&gt; Notify Result Appeal to Offender">
+      <bpmn:incoming>XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender</bpmn:incoming>
+      <bpmn:outgoing>Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Appeal_to_Judge" name="Appeal to Judge">
+      <bpmn:incoming>XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__Appeal_to_Judge</bpmn:incoming>
+      <bpmn:outgoing>Appeal_to_Judge__XOR__MERGE____1666694534.06513</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="START__Create_Fine" name="" sourceRef="START" targetRef="Create_Fine"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__Create_Fine__1666694537.90526__XOR__MERGE____1666694537.90626" name="" sourceRef="NEW_GW__1675419880.52439" targetRef="NEW_GW__1675419881.39202"/>
+    <bpmn:sequenceFlow id="Create_Fine__XOR__SPLIT__Create_Fine__1666694537.90526" name="" sourceRef="Create_Fine" targetRef="NEW_GW__1675419880.52439"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT____1666694535.80562__XOR__MERGE____1666694535.80684" name="" sourceRef="XOR__SPLIT____1666694535.80562" targetRef="NEW_GW__1675419881.39202"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT____1666694535.80562__Payment" name="" sourceRef="XOR__SPLIT____1666694535.80562" targetRef="Payment"/>
+    <bpmn:sequenceFlow id="Payment__XOR__MERGE____1666694535.80684" name="" sourceRef="Payment" targetRef="NEW_GW__1675419881.39202"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT____1666694537.51813__XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908" name="" sourceRef="NEW_GW__1675419880.52439" targetRef="NEW_GW__1675419881.2286"/>
+    <bpmn:sequenceFlow id="XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908__XOR__SPLIT____1666694535.80562" name="" sourceRef="NEW_GW__1675419881.2286" targetRef="XOR__SPLIT____1666694535.80562"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT____1666694537.51813__Send_Fine" name="" sourceRef="NEW_GW__1675419880.52439" targetRef="Send_Fine"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__Send_Fine__1666694537.07787__XOR__MERGE____1666694537.07888" name="" sourceRef="XOR__SPLIT__Send_Fine__1666694537.07787" targetRef="NEW_GW__1675419881.2286"/>
+    <bpmn:sequenceFlow id="Send_Fine__XOR__SPLIT__Send_Fine__1666694537.07787" name="" sourceRef="Send_Fine" targetRef="XOR__SPLIT__Send_Fine__1666694537.07787"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__Send_Fine__1666694537.07787__Insert_Fine_Notification" name="" sourceRef="XOR__SPLIT__Send_Fine__1666694537.07787" targetRef="Insert_Fine_Notification"/>
+    <bpmn:sequenceFlow id="Insert_Date_Appeal_to_Prefecture__Add_penalty" name="" sourceRef="Insert_Date_Appeal_to_Prefecture" targetRef="Add_penalty"/>
+    <bpmn:sequenceFlow id="Insert_Fine_Notification__Insert_Date_Appeal_to_Prefecture" name="" sourceRef="Insert_Fine_Notification" targetRef="Insert_Date_Appeal_to_Prefecture"/>
+    <bpmn:sequenceFlow id="Add_penalty__Send_Appeal_to_Prefecture" name="" sourceRef="Add_penalty" targetRef="Send_Appeal_to_Prefecture"/>
+    <bpmn:sequenceFlow id="Send_Appeal_to_Prefecture__XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172" name="" sourceRef="Send_Appeal_to_Prefecture" targetRef="NEW_GW__1675419880.68476"/>
+    <bpmn:sequenceFlow id="Payment_REP_1__END_1" name="" sourceRef="Payment_REP_1" targetRef="END_1"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172__Payment_REP_1" name="" sourceRef="NEW_GW__1675419880.68476" targetRef="Payment_REP_1"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__XOR__MERGE____1666694533.05852" name="" sourceRef="NEW_GW__1675419880.68476" targetRef="XOR__MERGE____1666694533.05852"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__Send_for_Credit_Collection" name="" sourceRef="NEW_GW__1675419880.68476" targetRef="Send_for_Credit_Collection"/>
+    <bpmn:sequenceFlow id="Send_for_Credit_Collection__XOR__MERGE____1666694533.05852" name="" sourceRef="Send_for_Credit_Collection" targetRef="XOR__MERGE____1666694533.05852"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447__XOR__MERGE____1666694535.02542" name="" sourceRef="NEW_GW__1675419880.82192" targetRef="NEW_GW__1675419881.2286"/>
+    <bpmn:sequenceFlow id="XOR__MERGE____1666694533.05852__XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447" name="" sourceRef="XOR__MERGE____1666694533.05852" targetRef="NEW_GW__1675419880.82192"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT____1666694534.0267__XOR__MERGE____1666694534.02758" name="" sourceRef="NEW_GW__1675419880.82192" targetRef="XOR__MERGE____1666694534.02758"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture" name="" sourceRef="NEW_GW__1675419880.82192" targetRef="Receive_Result_Appeal_from_Prefecture"/>
+    <bpmn:sequenceFlow id="Receive_Result_Appeal_from_Prefecture__Notify_Result_Appeal_to_Offender" name="" sourceRef="Receive_Result_Appeal_from_Prefecture" targetRef="Notify_Result_Appeal_to_Offender"/>
+    <bpmn:sequenceFlow id="Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758" name="" sourceRef="Notify_Result_Appeal_to_Offender" targetRef="XOR__MERGE____1666694534.02758"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender" name="" sourceRef="NEW_GW__1675419880.82192" targetRef="Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender"/>
+    <bpmn:sequenceFlow id="Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758" name="" sourceRef="Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender" targetRef="XOR__MERGE____1666694534.02758"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__XOR__MERGE____1666694534.06513" name="" sourceRef="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415" targetRef="NEW_GW__1675419881.2286"/>
+    <bpmn:sequenceFlow id="XOR__MERGE____1666694534.02758__XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415" name="" sourceRef="XOR__MERGE____1666694534.02758" targetRef="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415"/>
+    <bpmn:sequenceFlow id="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__Appeal_to_Judge" name="" sourceRef="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415" targetRef="Appeal_to_Judge"/>
+    <bpmn:sequenceFlow id="Appeal_to_Judge__XOR__MERGE____1666694534.06513" name="" sourceRef="Appeal_to_Judge" targetRef="NEW_GW__1675419881.2286"/>
+    <bpmn:sequenceFlow id="XOR__MERGE____1666694537.90626__END_2" name="" sourceRef="NEW_GW__1675419881.39202" targetRef="END_2"/>
+    <bpmn:ExclusiveGateway id="NEW_GW__1675419880.52439" name="SPLIT" gatewayDirection="diverging">
+      <bpmn:incoming>Create_Fine__XOR__SPLIT__Create_Fine__1666694537.90526</bpmn:incoming>
+      <bpmn:outgoing>XOR__SPLIT__Create_Fine__1666694537.90526__XOR__MERGE____1666694537.90626</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT____1666694537.51813__XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT____1666694537.51813__Send_Fine</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="NEW_GW__1675419881.39202" name="MERGE" gatewayDirection="converging">
+      <bpmn:incoming>XOR__SPLIT__Create_Fine__1666694537.90526__XOR__MERGE____1666694537.90626</bpmn:incoming>
+      <bpmn:incoming>XOR__SPLIT____1666694535.80562__XOR__MERGE____1666694535.80684</bpmn:incoming>
+      <bpmn:incoming>Payment__XOR__MERGE____1666694535.80684</bpmn:incoming>
+      <bpmn:outgoing>XOR__MERGE____1666694537.90626__END_2</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="XOR__SPLIT____1666694535.80562" name="SPLIT" gatewayDirection="diverging">
+      <bpmn:incoming>XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908__XOR__SPLIT____1666694535.80562</bpmn:incoming>
+      <bpmn:outgoing>XOR__SPLIT____1666694535.80562__XOR__MERGE____1666694535.80684</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT____1666694535.80562__Payment</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="NEW_GW__1675419881.2286" name="MERGE" gatewayDirection="converging">
+      <bpmn:incoming>XOR__SPLIT____1666694537.51813__XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908</bpmn:incoming>
+      <bpmn:incoming>XOR__SPLIT__Send_Fine__1666694537.07787__XOR__MERGE____1666694537.07888</bpmn:incoming>
+      <bpmn:incoming>XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447__XOR__MERGE____1666694535.02542</bpmn:incoming>
+      <bpmn:incoming>XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__XOR__MERGE____1666694534.06513</bpmn:incoming>
+      <bpmn:incoming>Appeal_to_Judge__XOR__MERGE____1666694534.06513</bpmn:incoming>
+      <bpmn:outgoing>XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908__XOR__SPLIT____1666694535.80562</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="XOR__SPLIT__Send_Fine__1666694537.07787" name="SPLIT" gatewayDirection="diverging">
+      <bpmn:incoming>Send_Fine__XOR__SPLIT__Send_Fine__1666694537.07787</bpmn:incoming>
+      <bpmn:outgoing>XOR__SPLIT__Send_Fine__1666694537.07787__XOR__MERGE____1666694537.07888</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT__Send_Fine__1666694537.07787__Insert_Fine_Notification</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="NEW_GW__1675419880.68476" name="SPLIT" gatewayDirection="diverging">
+      <bpmn:incoming>Send_Appeal_to_Prefecture__XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172</bpmn:incoming>
+      <bpmn:outgoing>XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172__Payment_REP_1</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__XOR__MERGE____1666694533.05852</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__Send_for_Credit_Collection</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="XOR__MERGE____1666694533.05852" name="MERGE" gatewayDirection="converging">
+      <bpmn:incoming>XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__XOR__MERGE____1666694533.05852</bpmn:incoming>
+      <bpmn:incoming>Send_for_Credit_Collection__XOR__MERGE____1666694533.05852</bpmn:incoming>
+      <bpmn:outgoing>XOR__MERGE____1666694533.05852__XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="NEW_GW__1675419880.82192" name="SPLIT" gatewayDirection="diverging">
+      <bpmn:incoming>XOR__MERGE____1666694533.05852__XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447</bpmn:incoming>
+      <bpmn:outgoing>XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447__XOR__MERGE____1666694535.02542</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT____1666694534.0267__XOR__MERGE____1666694534.02758</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="XOR__MERGE____1666694534.02758" name="MERGE" gatewayDirection="converging">
+      <bpmn:incoming>XOR__SPLIT____1666694534.0267__XOR__MERGE____1666694534.02758</bpmn:incoming>
+      <bpmn:incoming>Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758</bpmn:incoming>
+      <bpmn:incoming>Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758</bpmn:incoming>
+      <bpmn:outgoing>XOR__MERGE____1666694534.02758__XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:ExclusiveGateway id="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415" name="SPLIT" gatewayDirection="diverging">
+      <bpmn:incoming>XOR__MERGE____1666694534.02758__XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415</bpmn:incoming>
+      <bpmn:outgoing>XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__XOR__MERGE____1666694534.06513</bpmn:outgoing>
+      <bpmn:outgoing>XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__Appeal_to_Judge</bpmn:outgoing>
+    </bpmn:ExclusiveGateway>
+    <bpmn:startEvent id="START" name="START">
+      <bpmn:outgoing>START__Create_Fine</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="END_1" name="END">
+      <bpmn:incoming>Payment_REP_1__END_1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="END_2" name="END">
+      <bpmn:incoming>XOR__MERGE____1666694537.90626__END_2</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram-ff392d22-8652-453c-b7d2-d3f44fa409d1">
+    <bpmndi:BPMNPlane bpmnElement="process-4bf45e5c-f62d-4115-b1c0-8bac42c3b541" id="BPMNPlane-a4e3176c-bbc4-4562-84dd-7e6415f494b2">
+      <bpmndi:BPMNShape bpmnElement="Create_Fine">
+        <dc:Bounds height="80" width="100" x="119" y="324"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Payment">
+        <dc:Bounds height="80" width="100" x="2855" y="432"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Send_Fine">
+        <dc:Bounds height="80" width="100" x="407" y="432"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Insert_Fine_Notification">
+        <dc:Bounds height="80" width="100" x="695" y="324"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Insert_Date_Appeal_to_Prefecture">
+        <dc:Bounds height="80" width="100" x="839" y="324"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Add_penalty">
+        <dc:Bounds height="80" width="100" x="983" y="324"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Send_Appeal_to_Prefecture">
+        <dc:Bounds height="80" width="100" x="1127" y="324"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Payment_REP_1">
+        <dc:Bounds height="80" width="100" x="1415" y="0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Send_for_Credit_Collection">
+        <dc:Bounds height="80" width="100" x="1415" y="216"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Receive_Result_Appeal_from_Prefecture">
+        <dc:Bounds height="80" width="100" x="1847" y="324"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Notify_Result_Appeal_to_Offender">
+        <dc:Bounds height="80" width="100" x="1991" y="324"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender">
+        <dc:Bounds height="80" width="100" x="1991" y="108"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="Appeal_to_Judge">
+        <dc:Bounds height="80" width="100" x="2423" y="0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="START__Create_Fine">
+        <di:waypoint x="43" y="364"/>
+        <di:waypoint x="119" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__Create_Fine__1666694537.90526__XOR__MERGE____1666694537.90626">
+        <di:waypoint x="313" y="389"/>
+        <di:waypoint x="313" y="796"/>
+        <di:waypoint x="3024" y="796"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Create_Fine__XOR__SPLIT__Create_Fine__1666694537.90526">
+        <di:waypoint x="219" y="364"/>
+        <di:waypoint x="288" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT____1666694535.80562__XOR__MERGE____1666694535.80684">
+        <di:waypoint x="2761" y="713"/>
+        <di:waypoint x="2761" y="796"/>
+        <di:waypoint x="3024" y="796"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT____1666694535.80562__Payment">
+        <di:waypoint x="2761" y="663"/>
+        <di:waypoint x="2761" y="472"/>
+        <di:waypoint x="2855" y="472"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Payment__XOR__MERGE____1666694535.80684">
+        <di:waypoint x="2955" y="472"/>
+        <di:waypoint x="3049" y="472"/>
+        <di:waypoint x="3049" y="771"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT____1666694537.51813__XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908">
+        <di:waypoint x="313" y="389"/>
+        <di:waypoint x="313" y="688"/>
+        <di:waypoint x="2592" y="688"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__MERGE__XOR__SPLIT____1666694535.80562__1666694537.51908__XOR__SPLIT____1666694535.80562">
+        <di:waypoint x="2642" y="688"/>
+        <di:waypoint x="2736" y="688"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT____1666694537.51813__Send_Fine">
+        <di:waypoint x="313" y="389"/>
+        <di:waypoint x="313" y="472"/>
+        <di:waypoint x="407" y="472"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__Send_Fine__1666694537.07787__XOR__MERGE____1666694537.07888">
+        <di:waypoint x="601" y="497"/>
+        <di:waypoint x="601" y="688"/>
+        <di:waypoint x="2592" y="688"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Send_Fine__XOR__SPLIT__Send_Fine__1666694537.07787">
+        <di:waypoint x="507" y="472"/>
+        <di:waypoint x="576" y="472"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__Send_Fine__1666694537.07787__Insert_Fine_Notification">
+        <di:waypoint x="601" y="447"/>
+        <di:waypoint x="601" y="364"/>
+        <di:waypoint x="695" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Insert_Date_Appeal_to_Prefecture__Add_penalty">
+        <di:waypoint x="939" y="364"/>
+        <di:waypoint x="983" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Insert_Fine_Notification__Insert_Date_Appeal_to_Prefecture">
+        <di:waypoint x="795" y="364"/>
+        <di:waypoint x="839" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Add_penalty__Send_Appeal_to_Prefecture">
+        <di:waypoint x="1083" y="364"/>
+        <di:waypoint x="1127" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Send_Appeal_to_Prefecture__XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172">
+        <di:waypoint x="1227" y="364"/>
+        <di:waypoint x="1296" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Payment_REP_1__END_1">
+        <di:waypoint x="1515" y="40"/>
+        <di:waypoint x="1591" y="40"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__Send_Appeal_to_Prefecture__1666694532.31172__Payment_REP_1">
+        <di:waypoint x="1321" y="339"/>
+        <di:waypoint x="1321" y="40"/>
+        <di:waypoint x="1415" y="40"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__XOR__MERGE____1666694533.05852">
+        <di:waypoint x="1321" y="339"/>
+        <di:waypoint x="1321" y="256"/>
+        <di:waypoint x="1584" y="256"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__XOR__MERGE____1666694532.31287__1666694533.05739__Send_for_Credit_Collection">
+        <di:waypoint x="1321" y="339"/>
+        <di:waypoint x="1321" y="256"/>
+        <di:waypoint x="1415" y="256"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Send_for_Credit_Collection__XOR__MERGE____1666694533.05852">
+        <di:waypoint x="1515" y="256"/>
+        <di:waypoint x="1584" y="256"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447__XOR__MERGE____1666694535.02542">
+        <di:waypoint x="1753" y="281"/>
+        <di:waypoint x="1753" y="688"/>
+        <di:waypoint x="2592" y="688"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__MERGE____1666694533.05852__XOR__SPLIT__XOR__MERGE____1666694533.05852__1666694535.02447">
+        <di:waypoint x="1634" y="256"/>
+        <di:waypoint x="1728" y="256"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT____1666694534.0267__XOR__MERGE____1666694534.02758">
+        <di:waypoint x="1753" y="231"/>
+        <di:waypoint x="1753" y="148"/>
+        <di:waypoint x="2160" y="148"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture">
+        <di:waypoint x="1753" y="281"/>
+        <di:waypoint x="1753" y="364"/>
+        <di:waypoint x="1847" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Receive_Result_Appeal_from_Prefecture__Notify_Result_Appeal_to_Offender">
+        <di:waypoint x="1947" y="364"/>
+        <di:waypoint x="1991" y="364"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758">
+        <di:waypoint x="2091" y="364"/>
+        <di:waypoint x="2185" y="364"/>
+        <di:waypoint x="2185" y="173"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT____1666694534.0267__Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender">
+        <di:waypoint x="1753" y="231"/>
+        <di:waypoint x="1753" y="148"/>
+        <di:waypoint x="1991" y="148"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Receive_Result_Appeal_from_Prefecture_&gt;&gt;_Notify_Result_Appeal_to_Offender__XOR__MERGE____1666694534.02758">
+        <di:waypoint x="2091" y="148"/>
+        <di:waypoint x="2160" y="148"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__XOR__MERGE____1666694534.06513">
+        <di:waypoint x="2329" y="173"/>
+        <di:waypoint x="2329" y="688"/>
+        <di:waypoint x="2592" y="688"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__MERGE____1666694534.02758__XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415">
+        <di:waypoint x="2210" y="148"/>
+        <di:waypoint x="2304" y="148"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415__Appeal_to_Judge">
+        <di:waypoint x="2329" y="123"/>
+        <di:waypoint x="2329" y="40"/>
+        <di:waypoint x="2423" y="40"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="Appeal_to_Judge__XOR__MERGE____1666694534.06513">
+        <di:waypoint x="2523" y="40"/>
+        <di:waypoint x="2617" y="40"/>
+        <di:waypoint x="2617" y="663"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="XOR__MERGE____1666694537.90626__END_2">
+        <di:waypoint x="3074" y="796"/>
+        <di:waypoint x="3175" y="796"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="NEW_GW__1675419880.52439" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="288" y="339"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="NEW_GW__1675419881.39202" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="3024" y="771"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="XOR__SPLIT____1666694535.80562" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="2736" y="663"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="NEW_GW__1675419881.2286" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="2592" y="663"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="XOR__SPLIT__Send_Fine__1666694537.07787" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="576" y="447"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="NEW_GW__1675419880.68476" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="1296" y="339"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="XOR__MERGE____1666694533.05852" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="1584" y="231"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="NEW_GW__1675419880.82192" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="1728" y="231"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="XOR__MERGE____1666694534.02758" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="2160" y="123"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="XOR__SPLIT__XOR__MERGE____1666694534.02758__1666694534.06415" isMarkerVisible="true">
+        <dc:Bounds height="50" width="50" x="2304" y="123"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="START">
+        <dc:Bounds height="36" width="36" x="7" y="346"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="END_1">
+        <dc:Bounds height="36" width="36" x="1591" y="22"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="END_2">
+        <dc:Bounds height="36" width="36" x="3175" y="778"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
