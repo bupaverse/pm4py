@@ -44,18 +44,12 @@ r_to_py.petrinet <- function(x, convert = FALSE) {
   pm4py_petrinet <- import("pm4py.objects.petri_net.obj", convert = convert)
   py_builtins <- import_builtins(convert = convert)
 
-  if ("label" %in% names(x$transitions)) {
-    t_labels <- x$transitions$label
-  } else {
-    t_labels <- rep(NA, nrow(x$transitions))
-  }
-
   t_list <- Map(function(name, label) {
     if (is.na(label)) {
       label <- NULL
     }
     pm4py_petrinet$PetriNet$Transition(name, label)
-  }, x$transitions$id, t_labels)
+  }, x$transitions$id, x$transitions$label)
 
   p_list <- Map(function(p) pm4py_petrinet$PetriNet$Place(p), x$places$id)
 
@@ -173,6 +167,8 @@ py_to_r.pm4py.objects.petri_net.obj.PetriNet <- function(x) {
                       stringsAsFactors = F)
   transitions <- data.frame(label = iterate(x$transitions, function(t) ensure_str(t$label)),
                             id = transitions)
+  places <- data.frame(id = places,
+                       label = places)
 
   pn <- petrinetR::create_PN(places, transitions, flows) # pm4py Petri net does not know about marking
 

@@ -3,6 +3,7 @@
 \name{discovery}
 \alias{discovery}
 \alias{discovery_inductive}
+\alias{discovery_inductive_bpmn}
 \alias{variant_inductive_imdfb}
 \alias{variant_inductive_only_dfg}
 \alias{discovery_alpha}
@@ -11,6 +12,13 @@
 \title{Petri net discovery algorithms}
 \usage{
 discovery_inductive(
+  eventlog,
+  multi_processing = FALSE,
+  noise_threshold = 0,
+  convert = TRUE
+)
+
+discovery_inductive_bpmn(
   eventlog,
   multi_processing = FALSE,
   noise_threshold = 0,

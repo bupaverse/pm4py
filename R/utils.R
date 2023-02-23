@@ -1,3 +1,8 @@
+
+#' @importFrom dplyr tibble
+#' @importFrom stringr str_remove
+#' @importFrom purrr map map_chr
+
 prepare_pn_with_markings <- function(model, convert = FALSE) {
   if (convert) {
     if (inherits(model, "python.builtin.object")) {
