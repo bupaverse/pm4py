@@ -75,7 +75,7 @@ discovery_inductive.eventlog <- function(eventlog, # currently not for activityl
 
 
 
-  create_marked_PN(model)
+  create_marked_PN(model[[1]], model[[2]], model[[3]])
 }
 
 #' @rdname discovery
