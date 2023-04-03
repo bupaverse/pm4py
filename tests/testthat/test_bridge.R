@@ -7,6 +7,7 @@ data("traffic_fines")
 data("hospital_billing")
 
 patrick::with_parameters_test_that("Event Log", {
+  skip("skip bridge test")
   pm4py:::skip_if_no_pm4py()
 
   log <- log[[1]]
@@ -14,7 +15,7 @@ patrick::with_parameters_test_that("Event Log", {
   py_log <- r_to_py(log)
   expect_true("pandas.core.frame.DataFrame" %in% class(py_log))
 
-  r_log <- pm4py$objects$conversion$log$factory$apply(py_log,
+  r_log <- pm4py$objects$conversion$log$converter$apply(py_log,
                                                       parameters = default_parameters(log),
                                                       variant = "to_event_log")
 

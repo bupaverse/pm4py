@@ -1,0 +1,47 @@
+---
+title: "test"
+author: "Ivan"
+date: "2023-01-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(eventdataR)
+library(magrittr)
+library(tidyverse)
+library(reticulate)
+```
+
+```{r}
+library(pm4py)
+library(dplyr)
+library(eventdataR)
+patients_completes <- patients[patients$registration_type == "complete", ]
+patients_completes %>% mutate(handling = as.character(handling)) -> patients_completes
+
+pm4py::discovery_inductive(patients_completes) -> tmp
+
+# doesnt work
+conformance_diagnostics_alignments(eventlog = patients_completes, 
+                                       tmp)
+
+# works
+fitness_alignments(eventlog = patients_completes, 
+                   tmp)
+# works
+precision_alignments(eventlog = patients_completes, 
+                     tmp)
+# works
+conformance_token_based_replay(eventlog = patients_completes, 
+                               tmp)
+
+```
+
+
+
+
+

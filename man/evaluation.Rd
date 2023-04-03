@@ -55,35 +55,16 @@ By default the initial marking of the bupaR Petri net will be used if available.
 
 \item{final_marking}{A R vector with the place identifiers of the final marking or a PM4PY marking.}
 
-\item{parameters}{PM4PY alignment parameter.
-By default the \code{activity_key} from the bupaR event log is specified using \link{param_activity_key}.}
+\item{parameters}{PM4PY alignment parameter.}
 
 \item{convert}{\code{TRUE} to automatically convert Python objects to their R equivalent. If you pass \code{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
 
-\item{variant}{The evaluation variant to be used.}
+\item{variant}{Variant used
+By default the \code{activity_key} from the bupaR event log is specified using \link{param_activity_key}.}
 }
 \value{
 A \code{list} with all available evaluation measures.
 }
 \description{
 Calculates evaluation measures for a Petri nets and an Event Log
-}
-\examples{
-if (pm4py_available()) {
-  library(eventdataR)
-  data(patients)
-
-  # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-  patients_completes <- patients[patients$registration_type == "complete", ]
-
-  # Discover a Petri net
-  net <- discovery_inductive(patients_completes)
-
-  # Calculate evaluation measures for event log and Petri net
-  evaluation_all(patients_completes,
-                 net$petrinet,
-                 net$initial_marking,
-                 net$final_marking)
-
-}
 }

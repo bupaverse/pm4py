@@ -18,16 +18,6 @@
 #'
 #' @export
 #'
-#' @examples
-#' \donttest{
-#'   pm4py::install_pm4py()
-#'
-#'   # Specify path to conda
-#'   pm4py::install_pm4py(method = "conda", conda = "/home/user/miniconda3/bin/conda")
-#'
-#'   # Install specific version of PM4Py
-#'   pm4py::install_pm4py(version = "1.2.7")
-#' }
 #'
 install_pm4py <- function(method = "auto", conda = "auto", version = NULL, ...) {
 

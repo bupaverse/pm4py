@@ -16,26 +16,6 @@
 #'
 #' @name conformance
 #'
-#' @examples
-#' if (pm4py_available()) {
-#'   library(eventdataR)
-#'   data(patients)
-#'
-#'   # As Inductive Miner of PM4Py is not life-cycle aware, keep only `complete` events:
-#'   patients_completes <- patients[patients$registration_type == "complete", ]
-#'
-#'   # Discover a Petri net
-#'   net <- discovery_inductive(patients_completes)
-#'
-#'   # Align event log and Petri net
-#'   a <- conformance_alignment(patients_completes,
-#'                              net$petrinet,
-#'                              net$initial_marking,
-#'                              net$final_marking)
-#'
-#'   # Alignment is returned as data frame
-#'   head(a)
-#' }
 #'
 NULL
 
@@ -50,6 +30,8 @@ conformance_alignment <- function(eventlog,
                                   parameters = default_parameters(eventlog),
                                   variant = variant_state_equation_a_star(),
                                   convert = TRUE) {
+
+  lifecycle::deprecate_warn(when = "2.0.0", "conformance_alignment()",with = "fitness_alignments()")
 
   pm4py_alignments <- import("pm4py.algo.conformance.alignments.factory", convert = convert)
   if (is.null(initial_marking) && inherits(petrinet, "petrinet")) {

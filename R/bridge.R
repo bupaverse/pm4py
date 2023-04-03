@@ -8,7 +8,7 @@ reticulate::py_to_r
 
 #' @export
 #' @importFrom reticulate r_to_py
-r_to_py.eventlog <- function(x, convert = FALSE) {
+r_to_py.log <- function(x, convert = FALSE) {
   df <- as.data.frame(x)
   # fix for https://github.com/rstudio/reticulate/issues/389
   #i <- sapply(df, is.factor)
@@ -41,21 +41,15 @@ py_to_r.pm4py.objects.log.log.TraceLog <- function(x) {
 #' @importFrom reticulate r_to_py
 r_to_py.petrinet <- function(x, convert = FALSE) {
 
-  pm4py_petrinet <- import("pm4py.objects.petri.petrinet", convert = convert)
+  pm4py_petrinet <- import("pm4py.objects.petri_net.obj", convert = convert)
   py_builtins <- import_builtins(convert = convert)
-
-  if ("label" %in% names(x$transitions)) {
-    t_labels <- x$transitions$label
-  } else {
-    t_labels <- rep(NA, nrow(x$transitions))
-  }
 
   t_list <- Map(function(name, label) {
     if (is.na(label)) {
       label <- NULL
     }
     pm4py_petrinet$PetriNet$Transition(name, label)
-  }, x$transitions$id, t_labels)
+  }, x$transitions$id, x$transitions$label)
 
   p_list <- Map(function(p) pm4py_petrinet$PetriNet$Place(p), x$places$id)
 
@@ -85,9 +79,83 @@ r_to_py.petrinet <- function(x, convert = FALSE) {
 }
 
 #' @export
+#' @importFrom reticulate r_to_py
+r_to_py.bpmn <- function(x, convert = F) {
+
+  pm4py_bpmn <- reticulate::import("pm4py.objects.bpmn.obj", convert = convert)
+
+  # gateways
+  Map(function(id, name, gateway_direction) {
+    pm4py_bpmn$BPMN$Gateway(id, name, gateway_direction)
+  }, x$gateways$id, x$gateways$name, x$gateways$gatewayDirection) -> gateways
+
+  # tasks
+  Map(function(id, name) {
+    pm4py_bpmn$BPMN$Task(id, name)
+  }, x$tasks$id, x$task$name) -> tasks
+
+  # startEvent
+  Map(function(id, name) {
+    pm4py_bpmn$BPMN$StartEvent(id, name)
+  }, x$startEvent$id, x$startEvent$name) -> startEvent
+
+  # endEvent
+  Map(function(id, name) {
+    pm4py_bpmn$BPMN$EndEvent(id, name)
+  }, x$endEvent$id, x$endEvent$name) -> endEvent
+
+  # sequenceFlows
+  Map(function(sourceRef, targetRef, id, name) {
+
+    # find source
+    if(sourceRef %in% names(gateways))
+      source <- gateways[[sourceRef]]
+    else if (sourceRef %in% names(startEvent)) {
+      source <- startEvent[[sourceRef]]
+    }
+    else if(sourceRef %in% names(endEvent)) {
+      source <- endEvent[[sourceRef]]
+    }
+    else {
+      source <- tasks[[sourceRef]]
+    }
+
+    # find target
+    if(targetRef %in% names(gateways))
+      target <- gateways[[targetRef]]
+    else if (targetRef %in% names(startEvent)) {
+      target <- startEvent[[targetRef]]
+    }
+    else if(targetRef %in% names(endEvent)) {
+      target <- endEvent[[targetRef]]
+    }
+    else {
+      target <- tasks[[targetRef]]
+    }
+
+    # map
+    pm4py_bpmn$BPMN$SequenceFlow(source = source, target = target, id = id, name = name)
+  }, x$sequenceFlows$sourceRef, x$sequenceFlows$targetRef, x$sequenceFlows$id, x$sequenceFlows$name) -> sequenceFlows
+
+  unname(unlist(tasks)) -> tasks
+  unname(unlist(sequenceFlows)) -> flows
+  unname(unlist(gateways)) -> gateways
+  unname(unlist(startEvent)) -> startEvent
+  unname(unlist(endEvent)) -> endEvent
+  c(tasks, gateways, startEvent, endEvent) -> nodes
+
+  pm4py_bpmn$BPMN(#process_id = "1", name = "A",
+    nodes = nodes,
+    flows = flows) -> py_x
+
+  return(py_x)
+  # return(list(tasks = tasks, gateways = gateways, sequenceFlows = sequence_flows, startEvent = start_events, endEvent = end_events))
+}
+
+#' @export
 #' @importFrom reticulate iterate
 #' @importFrom reticulate py_to_r
-py_to_r.pm4py.objects.petri.petrinet.PetriNet <- function(x) {
+py_to_r.pm4py.objects.petri_net.obj.PetriNet <- function(x) {
 
   places <- unlist(iterate(x$places, function(p) ensure_str(p$name)))
   transitions <- unlist(iterate(x$transitions, function(t) ensure_str(t$name)))
@@ -97,13 +165,15 @@ py_to_r.pm4py.objects.petri.petrinet.PetriNet <- function(x) {
 
   flows <- data.frame(from = arcs_from, to = arcs_to,
                       stringsAsFactors = F)
+  transitions <- data.frame(label = iterate(x$transitions, function(t) ensure_str(t$label)),
+                            id = transitions)
+  places <- data.frame(id = places,
+                       label = places)
 
-  pn <- petrinetR::create_PN(places, transitions, flows,
-                             c()) # pm4py Petri net does not know about marking
+  pn <- petrinetR::create_PN(places, transitions, flows) # pm4py Petri net does not know about marking
 
   # Make sure that labels are strings since PM4PY sometimes uses tuples or other objects
   # Also, replace NULL by NA to avoid issues with R removing elements
-  pn$transitions$label <- iterate(x$transitions, function(t) ensure_str(t$label))
 
   pn
 }
@@ -111,7 +181,7 @@ py_to_r.pm4py.objects.petri.petrinet.PetriNet <- function(x) {
 #' @export
 #' @importFrom reticulate iterate
 #' @importFrom reticulate py_to_r
-py_to_r.pm4py.objects.petri.petrinet.Marking <- function(x) {
+py_to_r.pm4py.objects.petri_net.obj.Marking <- function(x) {
   iterate(x$elements(), function(p) ensure_str(p$name))
 }
 
@@ -121,26 +191,15 @@ py_to_r.pm4py.objects.petri.petrinet.Marking <- function(x) {
 #'
 #' @param x A character vector with (possible duplicate) place identifiers.
 #' @param petrinet A PM4Py Petri net.
-#' @examples
-#' if (pm4py_available()) {
-#'   library(eventdataR)
-#'   data(patients)
-#'
-#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-#'   patients_completes <- patients[patients$registration_type == "complete", ]
-#'
-#'   net <- discovery_inductive(patients_completes)
-#'   as_pm4py_marking(c("sink"), r_to_py(net$petrinet))
-#' }
 #'
 #' @export
 as_pm4py_marking <- function(x, petrinet) {
 
-  if (inherits(x, "pm4py.objects.petri.petrinet.Marking")) {
+  if (inherits(x, "pm4py.objects.petri_net.data_petri_nets.data_marking.DataMarking")) {
     return(x)
   }
 
-  pm4py_petrinet <- import("pm4py.objects.petri.petrinet", convert = FALSE)
+  pm4py_petrinet <- import("pm4py.objects.petri_net.obj", convert = FALSE)
   marking <- pm4py_petrinet$Marking()
 
   found <- rep(FALSE, length(x))
