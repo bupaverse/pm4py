@@ -28,15 +28,3 @@ Additional requirements, for example, a C++ compiler and GraphViz might
 need to be installed to leverage all functionality. Please refer to the PM4Py documentation for details:
 https://pm4py.fit.fraunhofer.de/install
 }
-\examples{
-\donttest{
-  pm4py::install_pm4py()
-
-  # Specify path to conda
-  pm4py::install_pm4py(method = "conda", conda = "/home/user/miniconda3/bin/conda")
-
-  # Install specific version of PM4Py
-  pm4py::install_pm4py(version = "1.2.7")
-}
-
-}

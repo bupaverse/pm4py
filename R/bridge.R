@@ -8,7 +8,7 @@ reticulate::py_to_r
 
 #' @export
 #' @importFrom reticulate r_to_py
-r_to_py.eventlog <- function(x, convert = FALSE) {
+r_to_py.log <- function(x, convert = FALSE) {
   df <- as.data.frame(x)
   # fix for https://github.com/rstudio/reticulate/issues/389
   #i <- sapply(df, is.factor)
@@ -191,17 +191,6 @@ py_to_r.pm4py.objects.petri_net.obj.Marking <- function(x) {
 #'
 #' @param x A character vector with (possible duplicate) place identifiers.
 #' @param petrinet A PM4Py Petri net.
-#' @examples
-#' if (pm4py_available()) {
-#'   library(eventdataR)
-#'   data(patients)
-#'
-#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-#'   patients_completes <- patients[patients$registration_type == "complete", ]
-#'
-#'   net <- discovery_inductive(patients_completes)
-#'   as_pm4py_marking(c("sink"), r_to_py(net$petrinet))
-#' }
 #'
 #' @export
 as_pm4py_marking <- function(x, petrinet) {

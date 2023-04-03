@@ -39,9 +39,5 @@ version <- function() {
 #' }
 #'
 pm4py_available <- function() {
-  py_module_available("pm4py") &&
-    py_module_available("pm4py.algo") &&
-    py_module_available("pm4py.evaluation") &&
-    py_module_available("pm4py.objects") &&
-    py_module_available("pm4py.util")
+  py_module_available("pm4py")
 }

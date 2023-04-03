@@ -13,23 +13,6 @@
 #'
 #' @return A Petri net.
 #'
-#' @examples
-#' if (pm4py_available()) {
-#'   library(eventdataR)
-#'   data(patients)
-#'
-#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-#'   patients_completes <- patients[patients$registration_type == "complete", ]
-#'
-#'   net <- discovery_inductive(patients_completes)
-#'   petrinet_synchronous_product(net$petrinet,
-#'                                net$initial_marking,
-#'                                net$final_marking,
-#'                                net$petrinet,
-#'                                net$initial_marking,
-#'                                net$final_marking)
-#' }
-#'
 #' @import reticulate
 #' @export
 petrinet_synchronous_product <- function(pn1,
@@ -41,6 +24,7 @@ petrinet_synchronous_product <- function(pn1,
                                          skip = ">>",
                                          convert = TRUE) {
 
+  lifecycle::deprecate_stop("2.0.0", "petrinet_synchronous_product")
   pm4py_sync <- import("pm4py.objects.petri.synchronous_product", convert = convert)
 
   pn1 <- as_py_value(pn1)
@@ -67,22 +51,11 @@ petrinet_synchronous_product <- function(pn1,
 #'
 #' @return A single logical
 #'
-#' @examples
-#' if (pm4py_available()) {
-#'   library(eventdataR)
-#'   data(patients)
-#'
-#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-#'   patients_completes <- patients[patients$registration_type == "complete", ]
-#'
-#'   net <- discovery_inductive(patients_completes)
-#'   petrinet_check_wfnet(net$petrinet)
-#'
-#' }
 #' @import reticulate
 #' @export
 petrinet_check_wfnet <- function(pn,
                                  convert = TRUE) {
+  lifecycle::deprecate_stop("2.0.0", "petrinet_check_wfnet")
 
   pm4py_soundness <- import("pm4py.objects.petri.check_soundness", convert = convert)
 
@@ -102,24 +75,14 @@ petrinet_check_wfnet <- function(pn,
 #'
 #' @return A single logical
 #'
-#' @examples
-#' if (pm4py_available()) {
-#'   library(eventdataR)
-#'   data(patients)
-#'
-#'   # As Inductive Miner of PM4PY is not life-cycle aware, keep only `complete` events:
-#'   patients_completes <- patients[patients$registration_type == "complete", ]
-#'
-#'   net <- discovery_inductive(patients_completes)
-#'   petrinet_check_relaxed_soundness(net$petrinet)
-#'
-#' }
 #' @import reticulate
 #' @export
 petrinet_check_relaxed_soundness <- function(pn,
                                              im = NULL,
                                              fm = NULL,
                                              convert = TRUE) {
+
+  lifecycle::deprecate_stop("2.0.0", "petrinet_check_relaxed_soundness")
 
   pm4py_soundness <- import("pm4py.objects.petri.check_soundness", convert = convert)
 
