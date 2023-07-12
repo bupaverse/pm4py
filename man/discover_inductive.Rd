@@ -41,3 +41,12 @@ PM4PY discovery algorithms that discover a Petri net and its initial and final m
 \item \code{discover_inductive(log)}: Discover Inductive Miner model based on event log
 
 }}
+\examples{
+\dontrun{
+library(pm4py)
+library(eventdataR)
+
+discover_inductive(patients)
+
+}
+}

@@ -191,7 +191,7 @@ py_to_r.pm4py.objects.petri_net.obj.Marking <- function(x) {
 #'
 #' @param x A character vector with (possible duplicate) place identifiers.
 #' @param petrinet A PM4Py Petri net.
-#'
+#' @return PM4Py marking object
 #' @export
 as_pm4py_marking <- function(x, petrinet) {
 

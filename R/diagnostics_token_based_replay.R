@@ -7,7 +7,6 @@
 #' @inheritParams fitness_alignments
 #'
 #' @return Token-based-replay diagnostics.
-#' @seealso \url{https://pm4py.fit.fraunhofer.de/static/assets/api/2.3.0/generated/pm4py.conformance.conformance_diagnostics_token_based_replay.html}
 #'
 #' @export
 diagnostics_token_based_replay <- function(log,

@@ -27,6 +27,13 @@ precision metric.
 \description{
 Calculates the precision of the model w.r.t. the event log using alignments.
 }
-\seealso{
-\url{https://pm4py.fit.fraunhofer.de/static/assets/api/2.3.0/generated/pm4py.conformance.precision_alignments.html}
+\examples{
+\dontrun{
+library(pm4py)
+library(eventdataR)
+
+model <- discover_alpha(patients)
+precision_alignments(patients, model)
+
+}
 }

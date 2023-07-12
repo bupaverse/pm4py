@@ -18,6 +18,9 @@ discover_alpha(log, convert = TRUE)
 \item{convert}{\link{logical} (default: \link{TRUE}): \link{TRUE} to automatically convert Python objects to their R equivalent.
 If you pass \link{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
 }
+\value{
+Marked petri net, i.e. a named list with elements \code{petrinet}, \code{initial_marking}, and \code{final_marking} or the original Python object.
+}
 \description{
 Discover petrinet using Alpha Algorithm
 }
@@ -28,3 +31,12 @@ Discover petrinet using Alpha Algorithm
 \item \code{discover_alpha(activitylog)}: Discovery petri net based on activity log
 
 }}
+\examples{
+\dontrun{
+library(pm4py)
+library(eventdataR)
+
+discover_alpha(patients)
+
+}
+}

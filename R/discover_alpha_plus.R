@@ -1,6 +1,7 @@
 
 #' @title Discover petrinet using Alpha plus Algorithm
 #' @inheritParams discover_alpha
+#' @return Marked petri net, i.e. a named list with elements `petrinet`, `initial_marking`, and `final_marking` or the original Python object.
 #' @export
 #'
 discover_alpha_plus <- function(log, convert = TRUE) {

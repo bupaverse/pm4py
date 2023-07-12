@@ -11,6 +11,9 @@ as_pm4py_marking(x, petrinet)
 
 \item{petrinet}{A PM4Py Petri net.}
 }
+\value{
+PM4Py marking object
+}
 \description{
 Converts a character vector of place identifiers to a PM4Py marking object.
 }

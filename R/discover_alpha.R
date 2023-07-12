@@ -3,8 +3,16 @@
 #' @param log \code{\link{log}}: Object of class \code{\link{log}} or derivatives (\code{\link{grouped_log}}, \code{\link{eventlog}},
 #' @param convert [logical] (default: [TRUE]): [TRUE] to automatically convert Python objects to their R equivalent.
 #'  If you pass [FALSE] you can do manual conversion using the \link[reticulate]{r-py-conversion} function.
-#'
+#' @return Marked petri net, i.e. a named list with elements `petrinet`, `initial_marking`, and `final_marking` or the original Python object.
 #' @export
+#' @examples
+#' \dontrun{
+#' library(pm4py)
+#' library(eventdataR)
+#'
+#' discover_alpha(patients)
+#'
+#' }
 #' @importFrom petrinetR create_marked_PN
 #'
 discover_alpha <- function(log, convert = TRUE) {

@@ -16,6 +16,9 @@ By default the initial marking of the bupaR Petri net will be used if available.
 
 \item{final_marking}{A R vector with the place identifiers of the final marking or a PM4PY marking.}
 }
+\value{
+.pnml file written to system
+}
 \description{
 Write Petri net as PNML
 }

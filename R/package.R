@@ -3,10 +3,6 @@
 #' @return package_version S3 class
 #' @export
 #'
-#' @examples
-#' if (pm4py_available()) {
-#'   print(pm4py_version())
-#' }
 pm4py_version <- function() {
   if (pm4py_available()) {
     ver <- pm4py$`__version__`
@@ -33,10 +29,6 @@ version <- function() {
 #' @return `TRUE` is PM4Py is installed
 #' @export
 #'
-#' @examples
-#' if (pm4py_available()) {
-#'   print(pm4py_version())
-#' }
 #'
 pm4py_available <- function() {
   py_module_available("pm4py")

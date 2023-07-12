@@ -5,7 +5,7 @@
 #' @param initial_marking A R vector with the place identifiers of the initial marking or a PM4PY marking.
 #' By default the initial marking of the bupaR Petri net will be used if available.
 #' @param final_marking A R vector with the place identifiers of the final marking or a PM4PY marking.
-#'
+#' @return .pnml file written to system
 #' @export
 write_pnml <- function(petrinet,
                        file,

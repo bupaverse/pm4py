@@ -12,9 +12,3 @@ pm4py_available()
 \description{
 Is the PM4Py module available
 }
-\examples{
-if (pm4py_available()) {
-  print(pm4py_version())
-}
-
-}
