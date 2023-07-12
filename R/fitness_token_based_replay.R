@@ -4,6 +4,16 @@
 #' @inheritParams fitness_alignments
 #'
 #' @return List with fitness measures.
+#'
+#' @examples
+#' \dontrun{
+#' library(pm4py)
+#' library(eventdataR)
+#'
+#' model <- discover_alpha(patients)
+#' fitness_token_based_replay(patients, model)
+#'
+#' }
 #' @export
 #'
 

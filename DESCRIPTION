@@ -5,10 +5,14 @@ Version: 2.0.0
 Authors@R: c(person("Felix", "Mannhardt", email = "f.mannhardt@tue.nl", role = c("aut", "cre")),
   person("Gert","Janssenswillen", email = "gert.janssenswillen@uhasselt.be", role = c("ctb")),
   person("Ivan","Esin", email = "ivan.esin99@gmail.com", role = c("ctb")))
-Description: Interface to 'PM4py' <http://pm4py.org>, a process mining library 
-    in 'Python'. This package uses the 'reticulate' package to act as a bridge 
-    between 'PM4Py' and the 'R' package 'bupaR'. It provides several process 
-    discovery algorithms, evaluation measures, and alignments. 
+Description: Interface to 'PM4py', a process mining library 
+    in 'Python'. This package uses the 'reticulate' 
+    package to act as a bridge 
+    between 'PM4Py' (Berti et al. (2019) <arXiv:1905.06169>) 
+    and the 'R' package 'bupaR' (Janssenswillen et al. (2019) <doi:10.1016/j.knosys.2018.10.018>). 
+    It provides several process 
+    discovery algorithms, 
+    evaluation measures, and alignments. 
 License: GPL-3
 Encoding: UTF-8
 SystemRequirements: Python (>= 3.6)

@@ -20,3 +20,13 @@ List with fitness measures.
 \description{
 Measure Token-Based Replay Fitness
 }
+\examples{
+\dontrun{
+library(pm4py)
+library(eventdataR)
+
+model <- discover_alpha(patients)
+fitness_token_based_replay(patients, model)
+
+}
+}

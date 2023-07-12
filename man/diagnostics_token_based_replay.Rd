@@ -20,6 +20,3 @@ Token-based-replay diagnostics.
 \description{
 Apply token-based replay for conformance checking analysis. The methods return the full token-based-replay diagnostics.
 }
-\seealso{
-\url{https://pm4py.fit.fraunhofer.de/static/assets/api/2.3.0/generated/pm4py.conformance.conformance_diagnostics_token_based_replay.html}
-}

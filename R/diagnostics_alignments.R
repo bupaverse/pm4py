@@ -1,5 +1,4 @@
-# DIAGNOSTICS ALIGNMENTS --------------------------------------------------
-#' @title Apply the alignments algorithm between a log and a process model
+#'  Apply the alignments algorithm between a log and a process model
 #'
 #' @description Alignment-based replay aims to find one of the best alignment between the trace and the model.
 #'

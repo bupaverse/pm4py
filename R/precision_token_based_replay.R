@@ -4,6 +4,15 @@
 #' @inheritParams fitness_alignments
 #'
 #' @return Numeric vector of length one containing precision measure.
+#' @examples
+#' \dontrun{
+#' library(pm4py)
+#' library(eventdataR)
+#'
+#' model <- discover_alpha(patients)
+#' precision_token_based_replay(patients, model)
+#'
+#' }
 #' @export
 
 precision_token_based_replay <- function(log,

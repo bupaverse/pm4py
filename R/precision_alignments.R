@@ -6,15 +6,21 @@
 #' @inheritParams discover_inductive
 #' @inheritParams fitness_alignments
 #' @return precision metric.
-#' @seealso \url{https://pm4py.fit.fraunhofer.de/static/assets/api/2.3.0/generated/pm4py.conformance.precision_alignments.html}
+#' @examples
+#' \dontrun{
+#' library(pm4py)
+#' library(eventdataR)
 #'
+#' model <- discover_alpha(patients)
+#' precision_alignments(patients, model)
+#'
+#' }
 #' @export
 precision_alignments <- function(log,
                                  marked_petrinet,
                                  multi_processing = FALSE,
                                  convert = TRUE) {
-  UseMethod("precision_alignments")
-}
+  UseMethod("precision_alignments")}
 #' @export
 precision_alignments.log <- function(log,
                                           marked_petrinet,

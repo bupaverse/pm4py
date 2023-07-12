@@ -34,6 +34,9 @@ variant_inductive_only_dfg()
 \item{convert}{\link{logical} (default: \link{TRUE}): \link{TRUE} to automatically convert Python objects to their R equivalent.
 If you pass \link{FALSE} you can do manual conversion using the \link[reticulate]{r-py-conversion} function.}
 }
+\value{
+Marked petrinet for discovery_alpha. No return value for variant_ functions
+}
 \description{
 Deprecated functions
 }

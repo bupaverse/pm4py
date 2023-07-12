@@ -12,8 +12,3 @@ package_version S3 class
 \description{
 Returns PM4Py version used
 }
-\examples{
-if (pm4py_available()) {
-  print(pm4py_version())
-}
-}

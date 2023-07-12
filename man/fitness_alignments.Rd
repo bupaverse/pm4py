@@ -27,6 +27,13 @@ fitness alignments.
 \description{
 The calculation of the replay fitness aim to calculate how much of the behavior in the log is admitted by the process model.
 }
-\seealso{
-\url{https://pm4py.fit.fraunhofer.de/static/assets/api/2.3.0/generated/pm4py.conformance.fitness_alignments.html}
+\examples{
+\dontrun{
+library(pm4py)
+library(eventdataR)
+
+model <- discover_alpha(patients)
+fitness_alignments(patients, model)
+
+}
 }

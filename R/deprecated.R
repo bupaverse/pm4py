@@ -4,7 +4,7 @@
 #' @param parameters Parameters
 #' @param variant Variant
 #' @inheritParams discover_inductive
-#'
+#' @return Marked petrinet for discovery_alpha. No return value for variant_ functions
 #' @name deprecated
 #' @export
 discovery_alpha <- function(eventlog,

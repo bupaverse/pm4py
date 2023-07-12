@@ -20,3 +20,13 @@ Numeric vector of length one containing precision measure.
 \description{
 Measure Token-Based Replay Precision
 }
+\examples{
+\dontrun{
+library(pm4py)
+library(eventdataR)
+
+model <- discover_alpha(patients)
+precision_token_based_replay(patients, model)
+
+}
+}

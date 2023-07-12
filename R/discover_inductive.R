@@ -8,7 +8,14 @@
 #' @inheritParams discover_alpha
 #' @return A named list with elements `petrinet`, `initial_marking`, and `final_marking` or the original Python object.
 #'
+#' @examples
+#' \dontrun{
+#' library(pm4py)
+#' library(eventdataR)
 #'
+#' discover_inductive(patients)
+#'
+#' }
 #' @export
 discover_inductive <- function(log, # currently not for activitylog
                                 multi_processing = FALSE,

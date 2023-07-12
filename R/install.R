@@ -15,7 +15,7 @@
 #' @param conda Path to conda executable (or "auto" to find conda using the PATH and other conventional install locations).
 #' @param version Optional parameter overriding the PM4Py version that will be installed. Note that the R pm4py package was only tested against the default PM4Py version that will be installed.
 #' @param ... Additional arguments passed to py_install().
-#'
+#' @return No return value, called for side effects.
 #' @export
 #'
 #'

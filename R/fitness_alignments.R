@@ -7,8 +7,15 @@
 #' @param marked_petrinet A Marked Petrinet as defined by petrinetR, e.g. the output of [discover_inductive] or [discover_alpha].
 #' @inheritParams discover_inductive
 #' @return fitness alignments.
-#' @seealso \url{https://pm4py.fit.fraunhofer.de/static/assets/api/2.3.0/generated/pm4py.conformance.fitness_alignments.html}
+#' @examples
+#' \dontrun{
+#' library(pm4py)
+#' library(eventdataR)
 #'
+#' model <- discover_alpha(patients)
+#' fitness_alignments(patients, model)
+#'
+#' }
 #' @export
 fitness_alignments <- function(log,
                                marked_petrinet,

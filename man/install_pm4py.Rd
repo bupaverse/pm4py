@@ -16,6 +16,9 @@ Change the default to force a specific installation method. Note that the "virtu
 
 \item{...}{Additional arguments passed to py_install().}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 Installs the \code{pm4py} package and its dependencies using \code{pip} since no
 Conda package is available. Further information on the parameters can
