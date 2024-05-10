@@ -157,23 +157,21 @@ r_to_py.bpmn <- function(x, convert = F) {
 #' @importFrom reticulate py_to_r
 py_to_r.pm4py.objects.petri_net.obj.PetriNet <- function(x) {
 
+  # Make sure that labels are strings since PM4PY sometimes uses tuples or other objects
+  # Also, replace NULL by NA to avoid issues with R removing elements
+
   places <- unlist(iterate(x$places, function(p) ensure_str(p$name)))
   transitions <- unlist(iterate(x$transitions, function(t) ensure_str(t$name)))
+  transition_labels <- unlist(iterate(x$transitions, function(t) ensure_str(t$label)))
 
   arcs_from <- unlist(iterate(x$arcs, function(a) ensure_str(a$source$name)))
   arcs_to <- unlist(iterate(x$arcs,function(a) ensure_str(a$target$name)))
 
-  flows <- data.frame(from = arcs_from, to = arcs_to,
-                      stringsAsFactors = F)
-  transitions <- data.frame(label = iterate(x$transitions, function(t) ensure_str(t$label)),
-                            id = transitions)
-  places <- data.frame(id = places,
-                       label = places)
+  flows <- data.frame(from = arcs_from, to = arcs_to, stringsAsFactors = F)
+  transitions <- data.frame(label = transition_labels, id = transitions)
+  places <- data.frame(id = places, label = places)
 
-  pn <- petrinetR::create_PN(places, transitions, flows) # pm4py Petri net does not know about marking
-
-  # Make sure that labels are strings since PM4PY sometimes uses tuples or other objects
-  # Also, replace NULL by NA to avoid issues with R removing elements
+  pn <- petrinetR::create_PN(places, transitions, flows) 
 
   pn
 }
