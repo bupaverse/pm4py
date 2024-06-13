@@ -47,7 +47,7 @@ library(bupaR)
 patients_completes <- patients[patients$registration_type == "complete", ]
 
 # Discovery with Inductive Miner
-pn <- discovery_inductive(patients_completes)
+pn <- discover_inductive(patients_completes)
 
 # This results in an auto-converted bupaR Petri net and markings
 str(pn)
